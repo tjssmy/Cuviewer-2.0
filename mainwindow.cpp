@@ -31,6 +31,8 @@
 #include <QPrintDialog>
 #include <QColorDialog>
 #include <QPaintDevice>
+#include <QDesktopServices>
+#include <QUrl>
 
 #ifdef Q_WS_WIN
 #  include <math.h>
@@ -463,7 +465,7 @@ void MainWindow::filePrintHighRes()
     @brief Shows a printer dialog and gets the printer.
 
     The method filePrintSetup displays a printer dialog that asks the user which printer to use.
-    The user's selection is remembered for the duration of the program.
+    The user's selection is remembered for the duration of the program's life.
 
     @return True if a printer was retrieved from user
     @return False if user cancelled request for printer
@@ -607,9 +609,10 @@ void MainWindow::load( QString * loadthisfile ) {
     }
 
     QGLFormat * glformat;
-    QGL::FormatOptions glflags = QGL::DoubleBuffer | QGL::DepthBuffer | QGL::Rgba |
-                             QGL::NoAlphaChannel | QGL::AccumBuffer | QGL::NoStencilBuffer |
-                             QGL::NoStereoBuffers | QGL::NoOverlay;
+    QGL::FormatOptions glflags = QGL::DoubleBuffer | QGL::DepthBuffer |
+                                 QGL::Rgba | QGL::NoAlphaChannel |
+                                 QGL::AccumBuffer | QGL::NoStencilBuffer |
+                                 QGL::NoStereoBuffers | QGL::NoOverlay;
     if (prefdata.directRendering){
       qDebug("Direct Rendering mode");
       glflags |= QGL::DirectRendering;
@@ -620,6 +623,8 @@ void MainWindow::load( QString * loadthisfile ) {
     }
 
     glformat = new QGLFormat(glflags);
+    glformat->setVersion(3,2);
+    glformat->setProfile(QGLFormat::CoreProfile);
     cuviewDoc = new CUViewDoc(glformat, fileIn, this);
 #ifdef Q_WS_WIN
     //BUG NOTE: hey why is this here?, this is a hack to fix some memmory allocation problems
@@ -717,8 +722,11 @@ void MainWindow::fileOpenMerge( QString * loadthisfile )
       filedata.mergedFiles += fileIn->fileName();
       cuviewDoc->readData();
     }
-    if (moviestream.device() && moviestream.device()->openMode()==QIODevice::WriteOnly )
+    if (moviestream.device() &&
+        moviestream.device()->openMode() == QIODevice::WriteOnly )
+    {
       moviestream << QString("loadmergescene %1 \n").arg(file);
+    }
     fileIn->close();
     updateScenes();
   }
@@ -781,26 +789,36 @@ void MainWindow::slotOpen()
 void MainWindow::slotAbout()
 {
   QMessageBox::about( this, tr("Carleton 3D Viewer ")+VERSION,
-          tr("<p>This 3D viewer was made by</p>"
-             "<p>Carleton University Dept. of Electronics</p>"
-             "<p>http://www.doe.carleton.ca/~bwan/cuview</p>"
-             "<p>http://cuviewer.sf.net</p>"));
+          tr("<center>This 3D viewer was made by"
+             "<br>Carleton University Dept. of Electronics</br>"
+             "<br>http://www.doe.carleton.ca/~bwan/cuview</br>"
+             "<br>http://cuviewer.sf.net</br></center>"));
 }
 
 /**
-    @brief Opens a help window to the contents of an HTML file displaying
+    @brief Opens the default web browser to the contents of an HTML file displaying
            in-depth documentation and manuals of the cuviewer program.
 
-           NOTE: This method does not work yet.
+    The slot slotHelpContents opens the user's default web browser displaying the
+    contents of an HTML file that displays in-depth documentation and manuals on
+    the cuviewer program.
+
+    A warning message is displayed if it is unable to find the HTML file.
+
+    @warning slotHelpContents opens the file "index.html" of whatever folder that
+             was set as the folder containing the documents in QString "prefdata.docPath".
   */
 void MainWindow::slotHelpContents()
 {
-//  TODO: Add functionality to this method (Port all Qt3 stuff to the newest version)
-//  HelpWindow* hw = new HelpWindow("index.html",prefdata.docPath,
-//                  0,"helpwidow");
-//  qApp->setMainWidget(hw);
-//  hw->show();
-//  qApp->setMainWidget(0);
+  QUrl url(prefdata.docPath + "/index.html");
+  qDebug("Opening url: %s", qPrintable(url.toString()));
+  if (!QDesktopServices::openUrl(url)){
+    QMessageBox msgbox;
+    msgbox.setIcon(QMessageBox::Warning);
+    msgbox.setText("Opening documentation failed: "
+                   "Check that you set the right folder in global preferences.");
+    msgbox.exec();
+  }
 }
 
 /**
@@ -823,10 +841,11 @@ void MainWindow::quickHelp()
 }
 
 /**
-    @brief Closes the window when close is clicked or 'ctrl + w' or 'ctrl + q' is pressed
+    @brief Closes the window when close is clicked or
+           'ctrl + w' or 'ctrl + q' is pressed
 
     The slotClose method closes the CUViewDoc file and writes to a file called
-    cuviewer all of the workspace settings for the CUViewer program.
+    "cuviewer" all of the workspace settings for the CUViewer program.
     Workspace settings saved to file are
       - whether Viewer Settings dock is shown or hidden
       - position and size of the MainWindow
@@ -920,7 +939,8 @@ void MainWindow::slotExit()
 
     Then when the script settings are aquired the method begins to prepare the
     script by writing all essential information related to the cuviewDoc object
-    and starts the timer for a period given by the user during the MovieDialog dialog.
+    and starts the timer for a period given by the user during the MovieDialog
+    dialog.
   */
 void MainWindow::slotCreateMovie()
 {
@@ -1127,9 +1147,11 @@ void MainWindow::slotReadMovieFile( QString filename )
 
     The slotWriteMovieFrame method writes camera settings such as camera
     position, camera aim, and camera up to the movie script file. The method
-    keeps writing the settings until the number of movie frames left is depleted.
+    keeps writing the settings until the number of movie frames left is
+    depleted.
 
-    This method is called
+    This method is called periodically. The period which it is called is
+    determined by
   */
 void MainWindow::slotWriteMovieFrame()
 {
@@ -1162,6 +1184,9 @@ void MainWindow::slotWriteMovieFrame()
   --moviedata.movieframes;
 }
 
+/**
+    @brief Opens the GlobalPreferences window with all settings loaded.
+  */
 void MainWindow::slotGlobalPrefs()
 {
   PrefData* pd = getPreferences();
@@ -1763,6 +1788,37 @@ void MainWindow::setZeroClipping()
   }
 }
 
+/**
+    @fn goto1
+    @brief Changes view point to show the object's top.
+
+    @fn goto2
+    @brief Changes view point to show the object's front.
+
+    @fn goto3
+    @brief Changes view point to show the object's right.
+
+    @fn goto4
+    @brief Changes view point to show the object's bottom.
+
+    @fn goto5
+    @brief Changes view point to show the object's back.
+
+    @fn goto6
+    @brief Changes view point to show the object's left.
+
+    @fn goto7
+    @brief Changes view point to show the object's top back-left.
+
+    @fn goto8
+    @brief Changes view point to show the object's top back-right.
+
+    @fn goto9
+    @brief Changes view point to show the object's top front-left.
+
+    @fn goto0
+    @brief Changes view point to show the object's top front-right.
+  */
 void MainWindow::goto1() { gotoViewpoint(1); }
 void MainWindow::goto2() { gotoViewpoint(2); }
 void MainWindow::goto3() { gotoViewpoint(3); }
@@ -1829,36 +1885,36 @@ void MainWindow::showScenes()
     showSceneDialog->delaySpinBox->setValue(timeout);
     showSceneDialog->show();
     connect(showSceneDialog->visibleList,
-        SIGNAL(itemSelectionChanged()),SLOT(setSceneVisible()));
+            SIGNAL(itemSelectionChanged()),SLOT(setSceneVisible()));
     connect(showSceneDialog->editingList,
-        SIGNAL(itemSelectionChanged()),SLOT(setSceneEditing()));
+            SIGNAL(itemSelectionChanged()),SLOT(setSceneEditing()));
 
     connect(showSceneDialog->reversePlay,
-        SIGNAL(clicked()),SLOT(reversePlayScene()));
+            SIGNAL(clicked()),SLOT(reversePlayScene()));
     connect(showSceneDialog->forwardPlay,
-        SIGNAL(clicked()),SLOT(forwardPlayScene()));
+            SIGNAL(clicked()),SLOT(forwardPlayScene()));
 
     connect(showSceneDialog->reverseStep,
-        SIGNAL(clicked()),SLOT(reverseStep()));
+            SIGNAL(clicked()),SLOT(reverseStep()));
     connect(showSceneDialog->forwardStep,
-        SIGNAL(clicked()),SLOT(forwardStep()));
+            SIGNAL(clicked()),SLOT(forwardStep()));
 
     connect(showSceneDialog->stopPlay,
-        SIGNAL(clicked()),SLOT(stopPlayScene()));
+            SIGNAL(clicked()),SLOT(stopPlayScene()));
     connect(showSceneDialog->scstartLineEdit,
-        SIGNAL(returnPressed()),SLOT(startScene()));
+            SIGNAL(returnPressed()),SLOT(startScene()));
     connect(showSceneDialog->scendLineEdit,
-        SIGNAL(returnPressed()),SLOT(endScene()));
+            SIGNAL(returnPressed()),SLOT(endScene()));
 
     connect(showSceneDialog->editingCheckBox,
-        SIGNAL(toggled(bool)),editModeAction,SLOT(setOn(bool)));
+            SIGNAL(toggled(bool)),editModeAction,SLOT(setOn(bool)));
     connect(showSceneDialog->applyTranslateButton,
-        SIGNAL(clicked()),SLOT(transformScene()));
+            SIGNAL(clicked()),SLOT(transformScene()));
     connect(showSceneDialog->applyRotateButton,
-        SIGNAL(clicked()),SLOT(rotateScene()));
+            SIGNAL(clicked()),SLOT(rotateScene()));
 
     connect(showSceneDialog->dismissButton,
-        SIGNAL(clicked()),SLOT(showScenes()));
+            SIGNAL(clicked()),SLOT(showScenes()));
 
     showSceneDialog->exec();
     showSceneDialog = NULL;
@@ -2290,7 +2346,6 @@ void MainWindow::rotateScene()
         //Editing
         editing = cuviewDoc->isEditing(index);
         cuviewDoc->setSceneEditing(index,true);
-        //Rotate scene given by index by the amounts found in line edit widgets rotateXLineEdit, rotateYLineEdit, and rotateZLineEdit
         cuviewDoc->rotateScene(index,
                    showSceneDialog->rotateXLineEdit->text().toFloat(),
                    showSceneDialog->rotateYLineEdit->text().toFloat(),
