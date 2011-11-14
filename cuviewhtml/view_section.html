@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+     
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+     
+  <meta name="Author" content="Cliff Dugal">
+     
+  <meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+  <title>Carleton University 3D Viewer 2.0 View Section</title>
+</head>
+  <body bgcolor="#e5e9f2">
+   <a href="index.html"><img src="cu_viewer.png" border="0" height="77"
+ width="362">
+ </a>   
+<h1 align="center">View Section</h1>
+    
+<hr>   
+<h3 align="center">Summary</h3>
+    
+<p><a href="#view_section_items">View Section Items</a></p>
+    
+<blockquote>        
+  <p><a href="#view_section_items_camera_translate_item">Camera     Translate 
+Item</a><br>
+      <a href="#view_section_items_camera_rotate_item">Camera     Rotate
+Item</a><br>
+      <a href="#view_section_items_camera_orbit_item">Camera Orbit     Item</a><br>
+      <a href="#view_section_items_outline_color_item">Outline     Color
+Item</a><br>
+      <a href="#view_section_items_preset_view_item">Preset View     Item</a><br>
+  <a href="#view_section_items_fogmode_item">Fog Mode Item</a><br>
+  <a href="#view_section_items_view_mode_item">View Mode Item</a>       <br>
+      <a href="#view_section_items_field_of_view_item">Field of     View
+Item</a><br>
+      <a href="#view_section_items_clipping_plane_item">Clipping     Plane 
+Item</a><br>
+      <a href="#view_section_items_line_width_item">Line Width Item</a> 
+   <br>
+      <a href="#view_section_items_shading_item">Shading Item</a><br>
+      <a href="#view_section_items_bin_palette_select_item">Bin     Palette 
+Select Item</a> <br>
+      <a href="#view_section_items_bin_palette_map_item">Bin     Palette
+Map Item</a> <br>
+   <a href="#view_section_items_bin_palette_min_max_item">Bin Palette Min 
+Max Item</a><br>
+   <a href="#view_section_items_bin_palette_type_item">Bin Palette Type Item<br>
+   </a><a href="#view_section_items_lighting_item">Lighting Item</a>    
+  <br>
+   <a href="#view_section_items_light_item">Light Item</a><br>
+      <a href="#view_section_items_ambient_light_item">Ambient     Light
+Item</a><br>
+      <a href="#view_section_items_diffuse_light_item">Diffuse     Light
+Item</a><br>
+      <a href="#view_section_items_background_light_item">Background    
+Light Item</a><br>
+      <a href="#view_section_items_gamma_item">Gamma Item</a><a
+ href="#view_section_items_wireframe_item"><br>
+   </a><a href="#view_section_items_specular_item">Specular Item</a><br>
+   <a href="#view_section_items_fog_item">Fog Item</a><br>
+   <a href="#view_section_items_wireframe_item">Wireframe Item</a>     <a
+ href="#view_section_items_outlines_item"><br>
+ Outlines Item</a>     <br>
+      <a href="#view_section_items_two_sided_item">Two Sided Item</a>   
+   <br>
+      <a href="#view_section_items_transparent_item">Transparent     Item</a><br>
+      <a href="#view_section_items_bin_palette_item">Bin Palette     Item</a><br>
+      <a href="#view_section_items_antialias_item">Antialias Item<br>
+   </a><a href="#view_section_items_opaquewireframe_item">Opaque Wireframe 
+Item</a><a href="#view_section_items_antialias_item"><br>
+   </a></p>
+  </blockquote>
+    
+<hr>   
+<h3 align="center"><a name="view_section_items"></a>View Section Items</h3>
+    
+<h4><a name="view_section_items_camera_translate_item"></a>Camera Translate 
+Item (VCAM_TRANS tag)</h4>
+    
+<p>This item translates the camera in the scene in scene coordinates. It can
+either be relative the current camera position, or be an absolute position. 
+An absolute position could be treated as a relative translation from the origin.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VRELATIVE | VRELATIVE&gt;<br>
+  float [3] = (x, y, z)</p>
+    
+<h4><a name="view_section_items_camera_rotate_item"></a>Camera Rotate Item 
+(VCAM_ROTATE tag)</h4>
+    
+<p>This item rotates the camera in the scene. It can either be relative the 
+current camera rotation, or be an absolute rotation. An absolute rotation 
+could be treated as a relative rotation from the camera aim (0, 0, -1) and 
+camera up (0, 1, 0). The rotation is specified by an angle in degrees, followed 
+by a vector about which it should rotate in a counterclockwise fashion. If 
+either the angle or all the vector coordinates are 0's, then no rotation
+will occur.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VRELATIVE | VRELATIVE&gt;<br>
+  float [4] = (theta, x, y, z)</p>
+    
+<h4><a name="view_section_items_camera_orbit_item"></a>Camera Orbit Item (VCAM_ORBIT
+tag)</h4>
+    
+<p>This item orbits the camera around the objects in the scene. It can either 
+be relative the current camera orbit, or be an absolute orbit. An absolute 
+orbit could be treated as a relative rotation from the camera aim (0, 0, -1)
+and camera up (0, 1, 0) while at the origin. The orbit is specified by an
+angle in degrees, followed by a vector about which it should orbit in a counterclockwise
+fashion. If either the angle or all the vector coordinates are 0's, then
+no rotation will occur.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VRELATIVE | VRELATIVE&gt;<br>
+  float [4] = (theta, x, y, z)</p>
+    
+<h4><a name="view_section_items_outline_color_item"></a>Outline Color Item 
+(VOUTLINE_CLR tag)</h4>
+    
+<p>This item changes the outline color. It takes 3 floats for colors, and 
+each of those floats are capped to the range [0, 1].</p>
+    
+<p>Format:</p>
+    
+<p>float [3] = (R, G, B)</p>
+    
+<h4><a name="view_section_items_preset_view_item"></a>Preset View Item (VPRESET_VIEW 
+tag)</h4>
+    
+<p>This item does the same functionality as pressing the number keys. The 
+distance the camera is away from the center of the object is: objectSize /
+(2 * tan(FOV / 2)) where objectSize is defined as being the diagonal length 
+of the object's bounding box. If an undefined preset view is requested, then 
+the last requested view is restored.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = preset view<br>
+</p>
+<h4><a name="view_section_items_fogmode_item"></a>Fog Mode Item (VFOG_MODE 
+tag)</h4>
+    
+<p>Applies the fog effect to either the environment or the object.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt; VFOG_OBJECT | VFOG_ENVIROMENT &gt; </p>
+     
+<h4><a name="view_section_items_view_mode_item"></a>View Mode Item (VVIEW_MODE 
+tag)</h4>
+    
+<p>This item specifies whether to use orthogonal view or perspective view.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VORHTO | VPERSPECTIVE&gt;</p>
+    
+<h4><a name="view_section_items_field_of_view_item"></a>Field of View Item 
+(VFOV tag)</h4>
+    
+<p>This item changes the field of view (in degrees). It is capped to the range
+[1, 179].</p>
+    
+<p>Format:</p>
+    
+<p>float = FOV</p>
+    
+<h4><a name="view_section_items_clipping_plane_item"></a>Clipping Plane Item 
+(VCLIP_PLANE tag)</h4>
+    
+<p>This item changes the clipping plane. There are two different clipping 
+planes; one for orthogonal, and one for perspective. Orthogonal is specified 
+in the fractional part of the object to show, e.g., 1 shows everything, and 
+0.5 would cut off half the object. Perspective is specified in object sizes 
+away from the camera, e.g., if the value is 4, then everything closer than 
+4 object sizes to the camera would be clipped, and anything farther would 
+be visible. The object's size is defined as being the diagonal length of the
+object's bounding box. The clipping plane that is being changed is dependent 
+on which view mode is selected. </p>
+    
+<p>Format:</p>
+    
+<p>float = clipping plane</p>
+    
+<h4><a name="view_section_items_line_width_item"></a>Line Width Item (VLINE_WIDTH 
+tag)</h4>
+    
+<p>This item changes the line width of all outlines.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = line width</p>
+    
+<h4><a name="view_section_items_shading_item"></a>Shading Item (VSHADING
+tag)</h4>
+    
+<p>This item chooses either smooth or flat shading to render the scene. Smooth 
+shading takes longer to render since all normals are taken into account to 
+give the effect of smoothed surfaces, and multiple vertex colors can be used 
+in the process. Flat shading only takes into account the first defined normal 
+and color of each shape, and uses that to define how light will be reflected 
+off it, making the surface to appear flat.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VFLAT | VSMOOTH&gt;</p>
+    
+<h4><a name="view_section_items_bin_palette_select_item"></a>Bin Palette Select
+Item (VBIN_PAL_SEL tag)</h4>
+    
+<p>This item selects which bin window palette to use. The entire unsigned 
+char range is valid. If an unused palette is selected, and the scene is rendered 
+with bin window on, bin window will be turned off, and the scene will be rendered
+normally.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = bin window palette number</p>
+    
+<h4><a name="view_section_items_bin_palette_map_item"></a>Bin Palette Map 
+Item (VBIN_PAL_MAP tag)</h4>
+    
+<p>This item creates/changes/deletes bin window palettes. This command does 
+not have an interactive counterpart. This item can select any palette to operate
+on (the entire unsigned char range is valid). If it is an unused palette,
+and colors are requested to be saved, a new palette will be created with
+those colors; if no colors are requested, then nothing happens. If a used
+palette is selected, and colors are requested to be saved, that palette  will
+be replaced with the requested one; if no colors are requested, then that
+palette will be deleted. Colors are in the RGB colorspace, and are defined 
+by floats capped to the range [0, 1]. When defining the map, all colors to 
+map from must be described first, then all the colors to map to. Colors to 
+map to must always be present.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = bin window palette number<br>
+  unsigned int = color count (number of RGB triplet pairs)<br>
+  float [3][color count] = colors to map from<br>
+  float [3][color count] = colors to map to<br>
+ </p>
+ 
+<p><b><a name="view_section_items_bin_palette_min_max_item"></a>Bin Palette 
+Min Max Item (VBIN_PAL_MIN_MAX tag)</b><br>
+ </p>
+ 
+<p>This item&nbsp;corresponds to the lowest and highest float values on the 
+palette. example: palette may be a temperature scale (min 0 deg C, max 200 
+deg C)<br>
+  </p>
+ 
+<p>Format <br>
+  float = lower bound of bin palette range <br>
+ float = upper bound of bin palette range<br>
+ </p>
+ 
+<p><b><a name="view_section_items_bin_palette_type_item"></a>Bin Palette Type
+Item (VBIN_PAL_TYPE tag)</b><br>
+  </p>
+   
+<p>This string represents the units for the corresponding float values. example: 
+palette may be a temperature scale (units of Kelvins or Celcius)<br>
+  </p>
+   
+<p>Format:<br>
+ a string of chars (byte)<br>
+ '\0' terminating char<br>
+  </p>
+     
+<h4><a name="view_section_items_lighting_item"></a>Lighting Item (VLIGHTING 
+tag)</h4>
+    
+<p>This item turns lighting on and off.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_light_item"></a>Light Item (VLIGHT tag)</h4>
+    
+<p>This item turns the diffuse light on and off.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_ambient_light_item"></a>Ambient Light Item 
+(VAMB_LIGHT tag)</h4>
+    
+<p>This item changes the intensity of the ambient light. It is capped to be
+&gt;= 0.</p>
+    
+<p>Format:</p>
+    
+<p>float = intensity</p>
+    
+<h4><a name="view_section_items_diffuse_light_item"></a>Diffuse Light Item 
+(VDIFF_LIGHT tag)</h4>
+    
+<p>This item changes the intensity of the diffuse light. It is capped to be
+&gt;= 0.</p>
+    
+<p>Format:</p>
+    
+<p>float = intensity</p>
+    
+<h4><a name="view_section_items_background_light_item"></a>Background Light 
+Item (VBG_LIGHT tag)</h4>
+    
+<p>This item changes the intensity of the background light. It is capped to
+the range [0, 1].</p>
+    
+<p>Format:</p>
+    
+<p>float = intensity</p>
+    
+<h4><a name="view_section_items_gamma_item"></a>Gamma Item (VGAMMA and VGAMMA_LEVEL 
+tag)</h4>
+    
+<p>Toggles gamma lighting on or off<br>
+ This item adjusts the gamma curve of the image (some detail is lost in the 
+process). It is capped to the range [0.1, 10].</p>
+    
+<p>Format:&nbsp;&nbsp; &nbsp;</p>
+    
+<p>float = gamma &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; (VGAMMA_LEVEL)<br>
+ unsigned char = &lt; VON|VOFF &gt; &nbsp;  (VGAMMA)<br>
+ </p>
+ 
+<h4><a name="view_section_items_specular_item"></a><b>Specular Item (VSPECULAR_LEVEL 
+tag)</b></h4>
+ 
+<p>Sets the specular light level. Useful values range between [0.1, 25]<br>
+ </p>
+ 
+<p>Format:&nbsp;</p>
+ 
+<p>float = specular<br>
+ </p>
+ 
+<h4><a name="view_section_items_fog_item"></a>Fog Item<b> (VFOG_LEVEL and 
+VFOG tag)</b></h4>
+ When the fog property is on, a linear decaying fog effect is produced with
+the same colour as the background's.<br>
+ <br>
+ Format:<br>
+ <br>
+ float = fog density &nbsp; &nbsp; &nbsp;(fog level)<br>
+ unsigned char =  &lt;VOFF | VON&gt; &nbsp; (vfog tag)<br>
+    
+<h4><a name="view_section_items_wireframe_item"></a>Wireframe Item (VWIREFRAME 
+tag)</h4>
+    
+<p>This item turns on and off wireframe view.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_outlines_item"></a>Outlines Item (VOUTLINES 
+tag)</h4>
+    
+<p>This item turns on and off outlines.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_two_sided_item"></a>Two Sided Item (VTWO_SIDED 
+tag)</h4>
+    
+<p>This item turns on and off two-sided view.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_transparent_item"></a>Transparent Item (VTRANSPARENT 
+tag)</h4>
+    
+<p>This item turns on and off transparency.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_bin_palette_item"></a>Bin Palette Item (VBIN_PAL 
+tag)</h4>
+    
+<p>This item turns on and off binned palette.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VOFF | VON&gt;</p>
+    
+<h4><a name="view_section_items_antialias_item"></a>Antialias Item (VANTIALIAS 
+tag)</h4>
+    
+<p>This item turns on and off antialiasing.</p>
+    
+<p>Format:</p>
+    
+<p>unsigned char = &lt;VOFF | VON&gt;</p>
+   
+<h4><a name="view_section_items_opaquewireframe_item"></a>Opaque Wireframe 
+Item (VOPAQUE_WIRE tag)<br>
+ </h4>
+ In wireframe mode only, all normal surfaces are painted with the same colour 
+as the background.<br>
+ <br>
+ 
+<p>unsigned char&nbsp;= &lt;VOFF | VON&gt;</p>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ .<br>
+ <br>
+</body>
+</html>

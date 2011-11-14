@@ -1,0 +1,2068 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Carleton University 3D Viewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/images/images/windowsicon.png</normaloff>:/images/images/windowsicon.png</iconset>
+  </property>
+  <widget class="QWidget" name="widget">
+   <layout class="QVBoxLayout">
+    <property name="margin">
+     <number>11</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="fileToolbar">
+   <property name="windowTitle">
+    <string>File</string>
+   </property>
+   <property name="label" stdset="0">
+    <string>File</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="fileOpen"/>
+   <addaction name="reloadFileAction"/>
+   <addaction name="loadScriptAction"/>
+   <addaction name="saveViewAction"/>
+   <addaction name="separator"/>
+   <addaction name="printWindowResAction"/>
+   <addaction name="exportImageAction"/>
+   <addaction name="createMovieAction"/>
+   <addaction name="autoExportImageAction"/>
+   <addaction name="globalPreferences"/>
+  </widget>
+  <widget class="QToolBar" name="viewingToolbar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="label" stdset="0">
+    <string>Toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="viewerSettings"/>
+   <addaction name="showBoundingBoxAction"/>
+   <addaction name="showScenesAction"/>
+   <addaction name="editModeAction"/>
+   <addaction name="redrawAction"/>
+   <addaction name="zeroClippingPlane"/>
+  </widget>
+  <widget class="QMenuBar" name="fileMenuItem">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>720</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuPrint">
+     <property name="title">
+      <string>Print</string>
+     </property>
+     <addaction name="printWindowResAction"/>
+     <addaction name="printLowResAction"/>
+     <addaction name="printMedResAction"/>
+     <addaction name="printHighResAction"/>
+     <addaction name="printSetupAction"/>
+    </widget>
+    <addaction name="fileOpen"/>
+    <addaction name="openFileMergeAction"/>
+    <addaction name="reloadFileAction"/>
+    <addaction name="loadScriptAction"/>
+    <addaction name="saveViewAction"/>
+    <addaction name="closeFileAction"/>
+    <addaction name="closeWindowAction"/>
+    <addaction name="separator"/>
+    <addaction name="menuPrint"/>
+    <addaction name="exportImageAction"/>
+    <addaction name="autoExportImageAction"/>
+    <addaction name="exportImageAtSize"/>
+    <addaction name="createMovieAction"/>
+    <addaction name="globalPreferences"/>
+    <addaction name="separator"/>
+    <addaction name="fileExit"/>
+   </widget>
+   <widget class="QMenu" name="EditPopupMenu">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="showScenesAction"/>
+    <addaction name="editModeAction"/>
+   </widget>
+   <widget class="QMenu" name="ViewingPopupMenu">
+    <property name="title">
+     <string>&amp;Viewing</string>
+    </property>
+    <widget class="QMenu" name="menuChange_View_Point">
+     <property name="title">
+      <string>Change View Point</string>
+     </property>
+     <addaction name="Action_1"/>
+     <addaction name="Action_2"/>
+     <addaction name="Action_3"/>
+     <addaction name="Action_4"/>
+     <addaction name="Action_5"/>
+     <addaction name="Action_6"/>
+     <addaction name="Action_7"/>
+     <addaction name="Action_8"/>
+     <addaction name="Action_9"/>
+     <addaction name="Action_10"/>
+    </widget>
+    <addaction name="viewerSettings"/>
+    <addaction name="menuChange_View_Point"/>
+    <addaction name="showBoundingBoxAction"/>
+    <addaction name="showBoxAlwaysAction"/>
+    <addaction name="drawAxisAction"/>
+    <addaction name="redrawAction"/>
+    <addaction name="zeroClippingPlane"/>
+    <addaction name="separator"/>
+    <addaction name="outline"/>
+    <addaction name="twoSided"/>
+    <addaction name="shading"/>
+    <addaction name="antialiasing"/>
+    <addaction name="wireframe"/>
+    <addaction name="opaquewireframe"/>
+    <addaction name="perspective"/>
+    <addaction name="transparency"/>
+    <addaction name="fog"/>
+    <addaction name="gamma"/>
+    <addaction name="lighting"/>
+    <addaction name="diffuse"/>
+   </widget>
+   <widget class="QMenu" name="binPalettePopupMenu">
+    <property name="title">
+     <string>&amp;Bin Palettes</string>
+    </property>
+    <addaction name="binnedPalette"/>
+    <addaction name="paletteExportImage"/>
+    <addaction name="binnedPaletteColor"/>
+    <addaction name="cyclebinpalettenext"/>
+    <addaction name="cyclebinpaletteprev"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="helpAbout"/>
+    <addaction name="QuickHelpAction"/>
+    <addaction name="helpContents"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="EditPopupMenu"/>
+   <addaction name="ViewingPopupMenu"/>
+   <addaction name="binPalettePopupMenu"/>
+   <addaction name="helpMenu"/>
+  </widget>
+  <widget class="QDockWidget" name="viewerSettingsDockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>80</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Viewer Settings</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents"/>
+  </widget>
+  <action name="blankAction">
+   <property name="iconText">
+    <string>Global Preferences</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>blankAction</cstring>
+   </property>
+  </action>
+  <actiongroup name="viewerSettingsActionGroup">
+   <action name="showScenesAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/ordertool.png</normaloff>:/images/images/ordertool.png</iconset>
+    </property>
+    <property name="text">
+     <string>Show Scenes</string>
+    </property>
+    <property name="iconText">
+     <string>Show Scenes</string>
+    </property>
+    <property name="toolTip">
+     <string>Show and Edit Scenes</string>
+    </property>
+    <property name="shortcut">
+     <string>E</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>showScenesAction</cstring>
+    </property>
+   </action>
+   <action name="redrawAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/editlower.png</normaloff>:/images/images/editlower.png</iconset>
+    </property>
+    <property name="text">
+     <string>Redraw Document</string>
+    </property>
+    <property name="iconText">
+     <string>&amp;Redraw Document</string>
+    </property>
+    <property name="toolTip">
+     <string>Redraw document from memory</string>
+    </property>
+    <property name="shortcut">
+     <string>C</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>redrawAction</cstring>
+    </property>
+   </action>
+   <action name="viewerSettings">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/listbox.png</normaloff>:/images/images/listbox.png</iconset>
+    </property>
+    <property name="text">
+     <string>Viewer Settings</string>
+    </property>
+    <property name="iconText">
+     <string>Viewe&amp;r Settings</string>
+    </property>
+    <property name="toolTip">
+     <string>Shows the viewer settings toolbar</string>
+    </property>
+    <property name="shortcut">
+     <string>R</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>viewerSettings</cstring>
+    </property>
+   </action>
+   <action name="zeroClippingPlane">
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/no.png</normaloff>:/images/images/no.png</iconset>
+    </property>
+    <property name="text">
+     <string>Zero Clipping Plane</string>
+    </property>
+    <property name="iconText">
+     <string>&amp;Zero Clipping Plane</string>
+    </property>
+    <property name="toolTip">
+     <string>zero clipping plane</string>
+    </property>
+    <property name="shortcut">
+     <string>Z</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>zeroClippingPlane</cstring>
+    </property>
+   </action>
+   <action name="outline">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Outline</string>
+    </property>
+    <property name="iconText">
+     <string>&amp;Outline</string>
+    </property>
+    <property name="toolTip">
+     <string>Outline</string>
+    </property>
+    <property name="shortcut">
+     <string>O</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>outline</cstring>
+    </property>
+   </action>
+   <action name="twoSided">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Two Sided</string>
+    </property>
+    <property name="iconText">
+     <string>Two Sided</string>
+    </property>
+    <property name="toolTip">
+     <string>Two Sided Poly</string>
+    </property>
+    <property name="shortcut">
+     <string>T</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>twoSided</cstring>
+    </property>
+   </action>
+   <action name="shading">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Shading</string>
+    </property>
+    <property name="iconText">
+     <string>Shading</string>
+    </property>
+    <property name="toolTip">
+     <string>Shading</string>
+    </property>
+    <property name="shortcut">
+     <string>S</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>shading</cstring>
+    </property>
+   </action>
+   <action name="antialiasing">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Anti-Aliasing</string>
+    </property>
+    <property name="iconText">
+     <string>Anti-Aliasing</string>
+    </property>
+    <property name="toolTip">
+     <string>Antialiasing</string>
+    </property>
+    <property name="shortcut">
+     <string>A</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>antialiasing</cstring>
+    </property>
+   </action>
+   <action name="wireframe">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Wireframe</string>
+    </property>
+    <property name="iconText">
+     <string>Wireframe</string>
+    </property>
+    <property name="toolTip">
+     <string>wireframe</string>
+    </property>
+    <property name="shortcut">
+     <string>W</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>wireframe</cstring>
+    </property>
+   </action>
+   <action name="opaquewireframe">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="iconText">
+     <string>Opaque Wireframe</string>
+    </property>
+    <property name="toolTip">
+     <string>Opaque wireframe</string>
+    </property>
+    <property name="shortcut">
+     <string>Q</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>opaquewireframe</cstring>
+    </property>
+   </action>
+   <action name="perspective">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Perspective</string>
+    </property>
+    <property name="iconText">
+     <string>Perspective</string>
+    </property>
+    <property name="toolTip">
+     <string>perspective</string>
+    </property>
+    <property name="shortcut">
+     <string>V</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>perspective</cstring>
+    </property>
+   </action>
+   <action name="transparency">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="iconText">
+     <string>Transparency</string>
+    </property>
+    <property name="toolTip">
+     <string>transparency</string>
+    </property>
+    <property name="shortcut">
+     <string>X</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>transparency</cstring>
+    </property>
+   </action>
+   <action name="fog">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Fog</string>
+    </property>
+    <property name="iconText">
+     <string>Fog</string>
+    </property>
+    <property name="toolTip">
+     <string>Fog</string>
+    </property>
+    <property name="shortcut">
+     <string>F</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>fog</cstring>
+    </property>
+   </action>
+   <action name="gamma">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Gamma</string>
+    </property>
+    <property name="iconText">
+     <string>Gamma</string>
+    </property>
+    <property name="toolTip">
+     <string>gamma light</string>
+    </property>
+    <property name="shortcut">
+     <string>G</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>gamma</cstring>
+    </property>
+   </action>
+   <action name="lighting">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Lighting</string>
+    </property>
+    <property name="iconText">
+     <string>Lighting</string>
+    </property>
+    <property name="toolTip">
+     <string>lighting</string>
+    </property>
+    <property name="shortcut">
+     <string>L</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>lighting</cstring>
+    </property>
+   </action>
+   <action name="diffuse">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Diffuse</string>
+    </property>
+    <property name="iconText">
+     <string>Diffuse</string>
+    </property>
+    <property name="toolTip">
+     <string>diffuse</string>
+    </property>
+    <property name="shortcut">
+     <string>D</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>diffuse</cstring>
+    </property>
+   </action>
+   <action name="binnedPalette">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Binned Palettes</string>
+    </property>
+    <property name="iconText">
+     <string>&amp;Binned Palettes</string>
+    </property>
+    <property name="toolTip">
+     <string>binned palettes</string>
+    </property>
+    <property name="shortcut">
+     <string>P</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>binnedPalette</cstring>
+    </property>
+   </action>
+   <action name="paletteExportImage">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Exports binned palette scale to image</string>
+    </property>
+    <property name="iconText">
+     <string>Exports binned palette scale to image</string>
+    </property>
+    <property name="toolTip">
+     <string>binned palettes</string>
+    </property>
+    <property name="shortcut">
+     <string/>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>paletteExportImage</cstring>
+    </property>
+   </action>
+   <action name="binnedPaletteColor">
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>Binned Palettes Color</string>
+    </property>
+    <property name="iconText">
+     <string>Binned Palettes Color</string>
+    </property>
+    <property name="toolTip">
+     <string>toggle binned palettes color and black and white scheme</string>
+    </property>
+    <property name="shortcut">
+     <string>Shift+P</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>binnedPaletteColor</cstring>
+    </property>
+   </action>
+   <action name="Action_1">
+    <property name="text">
+     <string>Top</string>
+    </property>
+    <property name="iconText">
+     <string>Action</string>
+    </property>
+    <property name="shortcut">
+     <string>1</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_1</cstring>
+    </property>
+   </action>
+   <action name="Action_2">
+    <property name="text">
+     <string>Front</string>
+    </property>
+    <property name="iconText">
+     <string>Action_2</string>
+    </property>
+    <property name="shortcut">
+     <string>2</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_2</cstring>
+    </property>
+   </action>
+   <action name="Action_3">
+    <property name="text">
+     <string>Right</string>
+    </property>
+    <property name="iconText">
+     <string>Action_3</string>
+    </property>
+    <property name="shortcut">
+     <string>3</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_3</cstring>
+    </property>
+   </action>
+   <action name="Action_4">
+    <property name="text">
+     <string>Bottom</string>
+    </property>
+    <property name="iconText">
+     <string>Action_4</string>
+    </property>
+    <property name="shortcut">
+     <string>4</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_4</cstring>
+    </property>
+   </action>
+   <action name="Action_5">
+    <property name="text">
+     <string>Back</string>
+    </property>
+    <property name="iconText">
+     <string>Action_5</string>
+    </property>
+    <property name="shortcut">
+     <string>5</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_5</cstring>
+    </property>
+   </action>
+   <action name="Action_6">
+    <property name="text">
+     <string>Left</string>
+    </property>
+    <property name="iconText">
+     <string>Action_6</string>
+    </property>
+    <property name="shortcut">
+     <string>6</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_6</cstring>
+    </property>
+   </action>
+   <action name="Action_7">
+    <property name="text">
+     <string>Top Back-Left</string>
+    </property>
+    <property name="iconText">
+     <string>Action_7</string>
+    </property>
+    <property name="shortcut">
+     <string>7</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_7</cstring>
+    </property>
+   </action>
+   <action name="Action_8">
+    <property name="text">
+     <string>Top Back-Right</string>
+    </property>
+    <property name="iconText">
+     <string>Action_8</string>
+    </property>
+    <property name="shortcut">
+     <string>8</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_8</cstring>
+    </property>
+   </action>
+   <action name="Action_9">
+    <property name="text">
+     <string>Top Front-Left</string>
+    </property>
+    <property name="iconText">
+     <string>Action_9</string>
+    </property>
+    <property name="shortcut">
+     <string>9</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_9</cstring>
+    </property>
+   </action>
+   <action name="Action_10">
+    <property name="text">
+     <string>Top Front-Right</string>
+    </property>
+    <property name="iconText">
+     <string>Action_10</string>
+    </property>
+    <property name="shortcut">
+     <string>0</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>Action_10</cstring>
+    </property>
+   </action>
+   <action name="showBoundingBoxAction">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/wirebox.png</normaloff>:/images/images/wirebox.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Bounding box while moving camera</string>
+    </property>
+    <property name="toolTip">
+     <string>Show bounding box while camera is moving</string>
+    </property>
+    <property name="shortcut">
+     <string>B</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>showBoundingBoxAction</cstring>
+    </property>
+   </action>
+   <action name="cyclebinpalettenext">
+    <property name="iconText">
+     <string>Cycle to the next bin palette</string>
+    </property>
+    <property name="shortcut">
+     <string>]</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>cyclebinpalettenext</cstring>
+    </property>
+   </action>
+   <action name="cyclebinpaletteprev">
+    <property name="iconText">
+     <string>Cycle to the previous bin palette</string>
+    </property>
+    <property name="shortcut">
+     <string>[</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>cyclebinpaletteprev</cstring>
+    </property>
+   </action>
+   <action name="editModeAction">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/adjustsize.png</normaloff>:/images/images/adjustsize.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Edit Mode</string>
+    </property>
+    <property name="toolTip">
+     <string>Edit Mode</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+E</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>editModeAction</cstring>
+    </property>
+   </action>
+   <action name="showBoxAlwaysAction">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/wirebox.png</normaloff>:/images/images/wirebox.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Bounding box always</string>
+    </property>
+    <property name="toolTip">
+     <string>Show bounding box always</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+B</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>showBoxAlwaysAction</cstring>
+    </property>
+   </action>
+   <action name="drawAxisAction">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="iconText">
+     <string>Show Axis</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>drawAxisAction</cstring>
+    </property>
+   </action>
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>viewerSettingsActionGroup</cstring>
+   </property>
+  </actiongroup>
+  <actiongroup name="helpActionGroup">
+   <action name="helpAbout">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/windowsicon.png</normaloff>:/images/images/windowsicon.png</iconset>
+    </property>
+    <property name="text">
+     <string>About</string>
+    </property>
+    <property name="iconText">
+     <string>About</string>
+    </property>
+    <property name="toolTip">
+     <string>Click to see information about this program</string>
+    </property>
+    <property name="shortcut">
+     <string>Shift+F1</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>helpAbout</cstring>
+    </property>
+   </action>
+   <action name="helpContents">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/help.png</normaloff>:/images/images/help.png</iconset>
+    </property>
+    <property name="text">
+     <string>Contents</string>
+    </property>
+    <property name="iconText">
+     <string>&amp;Contents</string>
+    </property>
+    <property name="toolTip">
+     <string>Click to see the help</string>
+    </property>
+    <property name="shortcut">
+     <string>F1</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>helpContents</cstring>
+    </property>
+   </action>
+   <action name="QuickHelpAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/help.png</normaloff>:/images/images/help.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Quick Help</string>
+    </property>
+    <property name="toolTip">
+     <string>Viewing shortcuts, Command prompt usage, and how to edit scences</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>QuickHelpAction</cstring>
+    </property>
+   </action>
+   <property name="name" stdset="0">
+    <cstring>helpActionGroup</cstring>
+   </property>
+  </actiongroup>
+  <actiongroup name="fileActionGroup">
+   <action name="fileOpen">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/fileopen.png</normaloff>:/images/images/fileopen.png</iconset>
+    </property>
+    <property name="text">
+     <string>Open</string>
+    </property>
+    <property name="iconText">
+     <string>Open</string>
+    </property>
+    <property name="toolTip">
+     <string>Open</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+O</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>fileOpen</cstring>
+    </property>
+   </action>
+   <action name="fileExit">
+    <property name="text">
+     <string>Exit</string>
+    </property>
+    <property name="iconText">
+     <string>Exit</string>
+    </property>
+    <property name="toolTip">
+     <string>Exit, and saves workspace settings</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+Q</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>fileExit</cstring>
+    </property>
+   </action>
+   <action name="exportImageAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/pixlabel.png</normaloff>:/images/images/pixlabel.png</iconset>
+    </property>
+    <property name="text">
+     <string>Export Image</string>
+    </property>
+    <property name="iconText">
+     <string>Export Image</string>
+    </property>
+    <property name="toolTip">
+     <string>Export Image</string>
+    </property>
+    <property name="shortcut">
+     <string>I</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>exportImageAction</cstring>
+    </property>
+   </action>
+   <action name="saveViewAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/filesave.png</normaloff>:/images/images/filesave.png</iconset>
+    </property>
+    <property name="text">
+     <string>Save View to Script File</string>
+    </property>
+    <property name="iconText">
+     <string>Save View to Script File</string>
+    </property>
+    <property name="toolTip">
+     <string>save preset to script</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+S</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>saveViewAction</cstring>
+    </property>
+   </action>
+   <action name="globalPreferences">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/home.png</normaloff>:/images/images/home.png</iconset>
+    </property>
+    <property name="text">
+     <string>Global Preferences</string>
+    </property>
+    <property name="iconText">
+     <string>Global Preferences</string>
+    </property>
+    <property name="toolTip">
+     <string>Global Preferences</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>globalPreferences</cstring>
+    </property>
+   </action>
+   <action name="createMovieAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/movie.png</normaloff>:/images/images/movie.png</iconset>
+    </property>
+    <property name="text">
+     <string>Create Movie Script</string>
+    </property>
+    <property name="iconText">
+     <string>Create Movie Script</string>
+    </property>
+    <property name="toolTip">
+     <string>Create Movie Script</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>createMovieAction</cstring>
+    </property>
+   </action>
+   <action name="reloadFileAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/redo.png</normaloff>:/images/images/redo.png</iconset>
+    </property>
+    <property name="text">
+     <string>Reload File</string>
+    </property>
+    <property name="iconText">
+     <string>Reload File</string>
+    </property>
+    <property name="toolTip">
+     <string>Reload File</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+R</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>reloadFileAction</cstring>
+    </property>
+   </action>
+   <action name="exportImageAtSize">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/pixlabel.png</normaloff>:/images/images/pixlabel.png</iconset>
+    </property>
+    <property name="text">
+     <string>Export Image with size ...</string>
+    </property>
+    <property name="iconText">
+     <string>Export Image with size ...</string>
+    </property>
+    <property name="toolTip">
+     <string>Export image and specify size</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+X</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>exportImageAtSize</cstring>
+    </property>
+   </action>
+   <action name="openFileMergeAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/fileopen.png</normaloff>:/images/images/fileopen.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Merge another file...</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+M</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>openFileMergeAction</cstring>
+    </property>
+   </action>
+   <action name="closeWindowAction">
+    <property name="iconText">
+     <string>Close Window</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+W</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>closeWindowAction</cstring>
+    </property>
+   </action>
+   <action name="autoExportImageAction">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/timeedit.png</normaloff>:/images/images/timeedit.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Auto Export Image</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+A</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>autoExportImageAction</cstring>
+    </property>
+   </action>
+   <action name="closeFileAction">
+    <property name="iconText">
+     <string>Close File</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+C</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>closeFileAction</cstring>
+    </property>
+   </action>
+   <action name="loadScriptAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/book.png</normaloff>:/images/images/book.png</iconset>
+    </property>
+    <property name="iconText">
+     <string>Load Script</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+L</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>loadScriptAction</cstring>
+    </property>
+   </action>
+   <property name="name" stdset="0">
+    <cstring>fileActionGroup</cstring>
+   </property>
+  </actiongroup>
+  <actiongroup name="printActionGroup">
+   <action name="printWindowResAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/print.png</normaloff>:/images/images/print.png</iconset>
+    </property>
+    <property name="text">
+     <string>Print Window Resolution</string>
+    </property>
+    <property name="iconText">
+     <string>Print Window Resolution</string>
+    </property>
+    <property name="toolTip">
+     <string>Print</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+P</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>printWindowResAction</cstring>
+    </property>
+   </action>
+   <action name="printLowResAction">
+    <property name="text">
+     <string>Print Low Resolution 640x480 </string>
+    </property>
+    <property name="iconText">
+     <string>Print Low Resolution 640x480 </string>
+    </property>
+    <property name="toolTip">
+     <string>Print</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>printLowResAction</cstring>
+    </property>
+   </action>
+   <action name="printMedResAction">
+    <property name="text">
+     <string>Print Medium Resolution 1024x768</string>
+    </property>
+    <property name="iconText">
+     <string>Print Medium Resolution 1024x768</string>
+    </property>
+    <property name="toolTip">
+     <string>Print</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>printMedResAction</cstring>
+    </property>
+   </action>
+   <action name="printHighResAction">
+    <property name="text">
+     <string>Print High Resolution 2048x1536 </string>
+    </property>
+    <property name="iconText">
+     <string>Print High Resolution 2048x1536 </string>
+    </property>
+    <property name="toolTip">
+     <string>Print</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>printHighResAction</cstring>
+    </property>
+   </action>
+   <action name="printSetupAction">
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/images/print.png</normaloff>:/images/images/print.png</iconset>
+    </property>
+    <property name="text">
+     <string>Setup ...</string>
+    </property>
+    <property name="iconText">
+     <string>Setup ...</string>
+    </property>
+    <property name="toolTip">
+     <string>Print Setup</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>printSetupAction</cstring>
+    </property>
+   </action>
+   <property name="name" stdset="0">
+    <cstring>printActionGroup</cstring>
+   </property>
+  </actiongroup>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <includes>
+  <include location="global">qtimer.h</include>
+  <include location="global">qstringlist.h</include>
+  <include location="global">qfile.h</include>
+ </includes>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>Action_1</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_10</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto0()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_2</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_3</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_4</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_5</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_6</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto6()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_7</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto7()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_8</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto8()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Action_9</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>goto9()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>antialiasing</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setAntialiasingChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>binnedPalette</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setBinnedPaletteChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>blankAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeFileAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>closeFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeWindowAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>createMovieAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotCreateMovie()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>diffuse</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setDiffuseChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>drawAxisAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setDrawAxis(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editModeAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setEditMode(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileExit</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotExit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileOpen</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotOpen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fog</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setFogChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gamma</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setGammaChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>globalPreferences</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotGlobalPrefs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpAbout</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAbout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpContents</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotHelpContents()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lighting</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setLightingChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadScriptAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotLoadPreset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>opaquewireframe</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setOpaqueWireframeChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openFileMergeAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadFileOpenMerge()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>outline</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setOutlineChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>perspective</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setPerspectiveChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printHighResAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>filePrintHighRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printLowResAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>filePrintLowRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printMedResAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>filePrintMedRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printSetupAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>filePrintSetup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>printWindowResAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>filePrintWindowRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>QuickHelpAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>quickHelp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>redrawAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>redrawDocument()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reloadFileAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>reload()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveViewAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotSavePreset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>shading</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setShadingChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showBoundingBoxAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setBoundingBox(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showBoxAlwaysAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setDrawBoundingBoxAlways(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showScenesAction</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showScenes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>transparency</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTransparencyChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>twoSided</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTwoSidedChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewerSettings</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotViewerSettings(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wireframe</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setWireframeChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zeroClippingPlane</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setZeroClipping()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>setZeroClipping()</slot>
+  <slot>setWireframeChecked(bool)</slot>
+  <slot>slotViewerSettings(bool)</slot>
+ </slots>
+</ui>

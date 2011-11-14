@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; U; SunOS 5.7 sun4u) [Netscape]">
+                
+  <meta name="Keywords" content="Carleton University 3D Viewer Tutorial">
+  <title>CUView 3.0 File Format</title>
+</head>
+  <body>
+   <a href="index.html"><img src="cu_viewer.png" border="0" height="77"
+ width="362">
+ </a>  
+<h1>File Format Summary</h1>
+        <a href="manual.html">Manual</a> <br>
+        <a href="license.html">Licensing</a> <br>
+      <a href="#basics"><br>
+  Basics</a>      
+<blockquote><a href="#basics_intro">Intro</a>   <br>
+     <a href="#basics_data_order">Data Order</a>   <br>
+     <a href="#basics_tags">Tags</a>   <br>
+     <a href="#basics_data_section">Data Section</a><br>
+     <a href="#basics_version_section">Version Section</a>   <br>
+     <a href="#basics_basic_file_structure">Basic File Structure</a>    </blockquote>
+    <a href="#data_section_items">Data Section Items</a><a
+ href="#data_section_items"> &nbsp;</a>          
+<blockquote><a href="#data_section_items_user_interact_item">User Interact
+  Item</a>   deprecated<br>
+       <a href="#data_section_items_reset_view_item">Reset View Item</a>
+  deprecated<br>
+       <a href="#data_section_items_grab_image_item">Grab Image Item</a>
+  deprecated<br>
+       <a href="#data_section_items_grab_frame_item">Grab Frame Item</a>
+deprecated&nbsp;      </blockquote>
+    <a href="#data_section_subsections">Data Section Subsections</a>    
+         
+<blockquote><a href="#data_section_subsections_image_setup_section">Image
+  Setup Section</a>   - <a href="image_setup_section.html">More info</a>
+not implemented<br>
+         <a href="#data_section_subsections_movie_setup_section">Movie Setup
+  Section</a>   - <a href="movie_setup_section.html">More info</a>   not
+implemented<br>
+         <a href="#data_section_subsections_scene_section">Scene Section</a>
+   - <a href="scene_section.html">More info</a>   (over 10 tags)<br>
+         <a href="#data_section_subsections_view_section">View Section</a>
+   - <a href="view_section.html">More info</a> (over 30 tags)        </blockquote>
+    <a href="#example">Example</a>   <br>
+                   
+<hr>                
+<center>                
+<h3> <a name="basics"></a>  Basics</h3>
+         </center>
+                    
+<h4> <a name="basics_intro"></a>  Intro</h4>
+    When building a file for this viewer, one thing to keep in mind is the
+ file is read sequentially. So, all "instructions" are carried out in the
+order that they are specified, and are not looped (or anything else resembling
+intelligence).                
+<p>The file format for the viewer is divided into different sections.  These 
+sections can have items in them or even other subsections. As an analogy,
+  the format of a viewer file can be compared to that of a directory structure.
+        </p>
+                 
+<h4> <a name="basics_data_order"></a>  Data Order</h4>
+    Different processors have different bit/byte orders, and this causes
+problems   when sharing files across systems. To counter this, all files
+must start  with an <b>unsigned long</b> of value <b>DATA_ORDER_CHECK</b>.
+The value is defined in <b>cuvtags.h</b>, and the viewer will figure out
+what byte order  to use from how this is written (do not alter the value
+in any way--just write an unsigned long of that value).                
+<h4> <a name="basics_tags"></a>  Tags</h4>
+    All sections and items are identified by <b>unsigned chars</b>, known 
+as        <b>tags</b>. Besides starting a section with a tag, the section 
+also  has to be terminated by another tag. The values of those unsigned char 
+tags  are defined in <b>cuvtags.h</b>, which should be included in all file 
+creation  programs. (* for programming purposes, an unsigned char by definition 
+is 8 bits = 1 byte =&gt;&nbsp; with a number range of 0 to 255; the ASCII 
+character set uses only about half the range).                
+<h4> <a name="basics_data_section"></a>  Data Section<i></i></h4>
+    Everything within a viewer file is within the <b>Data Section</b> (except
+  data order)--the top-level directory in the analogy. The Data Section is
+ started by the tag called <b>BEGIN_DATA</b>, and is ended by either <b>END_DATA_STAY</b>
+   or <b>END_DATA_EXIT</b>. END_DATA_STAY will close the file, and leave
+the   viewer open for the user, while END_DATA_EXIT will close the viewer
+when  it is reached (useful for batching).                
+<h4> <a name="basics_version_section"></a>  Version Section</h4>
+    Another section that is always in existence is the <b>Version</b> Section.
+  This section allows the viewer to deal with different versions, and it
+also  contains a human-readable string in it so the file format is easy to
+determine  when viewing the file as text. It is started by the <b>BEGIN_VERSION</b>
+ tag, and ended by the <b>END_VERSION</b> tag. The data between the two tags
+ is always <b>VERSION_STRING</b>.                
+<h4> <a name="basics_basic_file_structure"></a>  Basic File Structure</h4>
+    Other sections and/or items occur between the end of the version, and 
+the  end of the data. This is the space where all the 3D info goes.      
+         
+<p>Visually, the file should look like: </p>
+                 
+<p>DATA_ORDER_CHECK </p>
+                 
+<p>BEGIN_DATA </p>
+                 
+<blockquote>BEGIN_VERSION                      
+  <blockquote>VERSION_STRING</blockquote>
+    END_VERSION                          
+  <p>(Other sections/items)</p>
+             </blockquote>
+    END_DATA_STAY or END_DATA_EXIT <br>
+                           
+<hr>                        
+<center>                        
+<h3> <a name="data_section_items"></a>  Data Section Items</h3>
+             </center>
+                            
+<h4> <a name="data_section_items_user_interact_item"></a>  User Interact Item
+(USER_INTERACT tag)</h4>
+<h4><b><i>deprecated</i></b></h4>
+This item will pause the reading of the file, and allow for user interaction.
+  This is useful when creating a movie, and the user needs to interactively
+  alter the environment, or just to peek at the scene to make sure your movie
+  is going as planned. It can also be used for a "slide show" to advance
+to  the next part of the file once the user has had enough time to view and 
+manipulate  the scene. To let the viewer go back to reading the file, the 
+space bar must  be hit by the user.                        
+<h4> <a name="data_section_items_reset_view_item"></a>  Reset View Item (RESET_VIEW 
+tag)&nbsp;
+<h4><b><i>deprecated</i></b></h4>
+</h4>
+    This is the same as the 'r' key. It resets all the viewing variables
+to  the defaults (see the interactive reset view command for more info).
+                       
+<h4> <a name="data_section_items_grab_image_item"></a>  Grab Image Item (GRAB_IMAGE 
+tag)</h4>
+<h4><b><i>deprecated</i></b></h4>
+This is the same as the 'e' key. The current export options are used to  create
+an image on disk (see the interactive export image command for more  info).
+                       
+<h4> <a name="data_section_items_grab_frame_item"></a>  Grab Frame Item (GRAB_FRAME 
+tag)</h4>
+<h4><b><i>deprecated</i></b></h4>
+    This is the same as the 'm' key. The current movie options are used to
+ add a frame to the current movie (see the interactive add a frame to the
+movie command for more info). <br>
+                           
+<hr>                        
+<center>                        
+<h3> <a name="data_section_subsections"></a>  Data Section Subsections</h3>
+             </center>
+                            
+<h4> <a name="data_section_subsections_image_setup_section"></a>  Image Setup 
+Section (BEGIN_IMG_SET and END_IMG_SET tags)&nbsp;</h4>
+<i>not implemented</i><br>
+<br>
+    This section is used to set the default image export options. <a
+ href="image_setup_section.html">  More info</a>                         
+<h4> <a name="data_section_subsections_movie_setup_section"></a>  Movie Setup 
+Section (BEGIN_MOV_SET and END_MOV_SET tags)</h4>
+<i>not implemented</i><br>
+<br>
+&nbsp;This section is used to set the default movie options. <a
+ href="movie_setup_section.html">  More info</a>                         
+<h4> <a name="data_section_subsections_scene_section"></a>  Scene Section 
+(BEGIN_SCENE and END_SCENE tags)</h4>
+    This section is where all the 3D objects are defined. Over 10 tags defined:
+<a href="scene_section.html">  More info</a>                          
+<h4> <a name="data_section_subsections_view_section"></a>  View Section (BEGIN_VIEW 
+and END_VIEW tags)</h4>
+    This section is where all the view's properties can be altered.&nbsp;Over
+30 tags defined: <a href="view_section.html">  More info</a>   <br>
+                           
+<hr>                        
+<center>                        
+<h3> <a name="example"></a>  Example</h3>
+             </center>
+    The following example file creates a blue sphere, radius = 1 at the origin,
+  then goes to preset view 0 and lets the user interact with it. Following
+ that, the image is saved to disk, and a red sphere is saved to the disk
+using  the same environment. The bin palette information&nbsp;corresponding
+to the lowest and highest values on the palette are written, in units of
+Celcius. The file is then closed, and the program is instructed  to remain
+open.                        
+<p>BEGIN_DATA </p>
+                         
+<blockquote>BEGIN_VERSION                              
+  <blockquote>VERSION_STRING</blockquote>
+    END_VERSION                                  
+  <p>BEGIN_SCENE </p>
+                                   
+  <blockquote>SSPHERE                                        
+    <blockquote>unsigned char = 0x01 (filled) <br>
+   float [3] = {0.0, 0.0, 0.0} (position) <br>
+   float = 1.0 (radius) <br>
+   float [3] = {0.0, 0.0, 1.0} (color)</blockquote>
+    </blockquote>
+    END_SCENE                                          
+  <p>BEGIN_VIEW </p>
+                                           
+  <blockquote>VPRESET_VIEW</blockquote>
+                                                  
+  <blockquote>                                                    
+    <blockquote>unsigned char = 0x00 (preset view 0)<br>
+       <br>
+     </blockquote>
+    </blockquote>
+   
+  <blockquote>VBIN_PAL_MIN_MAX<br>
+   </blockquote>
+                                                                        
+                            
+  <blockquote>     
+    <blockquote>float = 1.31 <br>
+ float = 253.22<br>
+     </blockquote>
+   </blockquote>
+   
+  <blockquote>VBIN_PAL_TYPE<br>
+  </blockquote>
+                                                                        
+                              
+  <blockquote>        
+    <blockquote>"Celcius\0"<br>
+    </blockquote>
+  </blockquote>
+ END_VIEW                                                      
+  <p>USER_INTERACT </p>
+                                                       
+  <p>GRAB_IMAGE </p>
+                                                       
+  <p>BEGIN_SCENE </p>
+                                                       
+  <blockquote>SSPHERE</blockquote>
+                                                              
+  <blockquote>                                                           
+   
+    <blockquote>unsigned char = 0x01 (filled) <br>
+   float [3] = {0.0, 0.0, 0.0} (position) <br>
+   float = 1.0 (radius) <br>
+   float [3] = {1.0, 0.0, 0.0} (color)</blockquote>
+    </blockquote>
+    END_SCENE                                                           
+      
+  <p>GRAB_IMAGE</p>
+                                 </blockquote>
+    END_DATA_STAY                                                       
+       <br>
+ <br>
+</body>
+</html>

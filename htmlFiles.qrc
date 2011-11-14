@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/cuviewhtml">
+        <file>cuviewhtml/bump.png</file>
+        <file>cuviewhtml/COPYING.html</file>
+        <file>cuviewhtml/cu_viewer.png</file>
+        <file>cuviewhtml/dev.png</file>
+        <file>cuviewhtml/fileformat.html</file>
+        <file>cuviewhtml/image_setup_section.html</file>
+        <file>cuviewhtml/index.html</file>
+        <file>cuviewhtml/license.html</file>
+        <file>cuviewhtml/manual.html</file>
+        <file>cuviewhtml/movie_setup_section.html</file>
+        <file>cuviewhtml/scene_section.html</file>
+        <file>cuviewhtml/view_section.html</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,242 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Cliff Dugal">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Carleton University 3D Viewer 2.0 Scene Section</title>
+</head>
+
+<body bgcolor="#E5E9F2" text="#000000"
+link="#0000FF" vlink="#FF0000" alink="#000088">
+
+ <a href="index.html"><img src="cu_viewer.png" border="0" height="77" width="362"></a>
+
+<h1 align="center">Scene Section</h1>
+
+<hr>
+
+<h3 align="center">Summary</h3>
+
+<p><a href="#common_scene_item_properties">Common Scene Item
+Properties</a></p>
+
+<blockquote>
+    <p><a href="#common_scene_item_properties_filled">Filled</a><br>
+    <a href="#common_scene_item_properties_outlined">Outlined</a>
+    <br>
+    <a href="#common_scene_item_properties_multicolor">Multicolor</a>
+    <br>
+    <a href="#common_scene_item_properties_transparent">Transparent</a>
+    <br>
+    <a href="#common_scene_item_properties_normals">Normals</a></p>
+</blockquote>
+
+<p><a href="#scene_section_items">Scene Section Items</a></p>
+
+<blockquote>
+    <p><a href="#scene_section_items_point_item">Point Item</a><br>
+    <a href="#scene_section_items_line_item">Line Item</a><br>
+    <a href="#scene_section_items_triangle_item">Triangle Item</a>
+    <br>
+    <a href="#scene_section_items_quadrilateral_item">Quadrilateral
+    Item</a><br>
+    <a href="#scene_section_items_sphere_item">Sphere Item</a><br>
+    <a href="#scene_section_items_spheroid_item">Spheroid Item</a></p>
+</blockquote>
+
+<hr>
+
+<h3 align="center"><a name="common_scene_item_properties"></a>Common
+Scene Item Properties</h3>
+
+<p>Each different Scene Item follows the following pattern for
+arrangement:</p>
+
+<p>unsigned char = object properties<br>
+float [3] = vertex position<br>
+. . .<br>
+float [&lt;3 | 4&gt;] = color of vertex or shape (may not be
+needed)<br>
+. . .<br>
+float [3] = normalized normal vector<br>
+. . .</p>
+
+<p>All Scene Items share a common-format description byte. It is
+an <b>unsigned char</b> that describes what object properties to
+expect. The property byte is composed by <b>or</b>ing the
+following:</p>
+
+<h4><a name="common_scene_item_properties_filled"></a>Filled (SFILL
+tag)</h4>
+
+<p>Indicates that the object should be filled. *</p>
+
+<h4><a name="common_scene_item_properties_outlined"></a>Outlined
+(SOUTLINE tag)</h4>
+
+<p>Indicates that the object should be outlined. *</p>
+
+<h4><a name="common_scene_item_properties_multicolor"></a>Multicolor
+(SMULTICOLOR tag)</h4>
+
+<p>Indicates that each vertex should be a different color, e.g.,
+a triangle would have three sets of colors instead of one in the
+file. It is not possible to only specify colors for some of the
+vertices--all must be specified.</p>
+
+<h4><a name="common_scene_item_properties_transparent"></a>Transparent
+(STRANSPARENT tag)</h4>
+
+<p>Indicates that all defined colors will have an alpha channel,
+i.e., the RGBA color model is to be used instead of the RGB color
+model. This results in a float [4] being written for each color.</p>
+
+<h4><a name="common_scene_item_properties_normals"></a>Normals (SNORMALS
+tag)</h4>
+
+<p>Indicates that normals are specified. Normally, normals are
+implicitly defined as being a vector orthogonal to the plane
+defined by the first three points of a closed shape; however,
+this allows for non-orthogonal normals to create smoother-looking
+scenes. <b>Important</b>: if normals are to be defined, make sure
+they are normalized, i.e., they are unit length. Also, normals
+must point away from the surface being lit, e.g., a sphere made
+from triangles would have all normal vectors pointing <i>away</i>
+from the center.</p>
+
+<p>When defining closed shapes (triangles and quadrilaterals),
+corners must be defined in a counterclockwise fashion to the
+front. If normals are specified, then they must agree with the
+direction of the corners of the shape. For example, in a sphere
+made of triangles, looking at it from the outside, all visible
+triangles must be defined counterclockwise and all normals must
+be pointing towards the camera.</p>
+
+<p>* the Filled and Outlined Properties can be used together to
+get interesting results. If neither is specified, then the shape
+is sent to the outline list, and no colors are needed in the file.
+If both are specified, then the shape is outlined (sent to the
+outline list), and it is also filled.</p>
+
+<p>Since each shape is different, not all properties can be set
+the same, e.g., a point cannot be filled, multicolor, or have a
+normal. See each shape for more details.</p>
+
+<hr>
+
+<h3 align="center"><a name="scene_section_items"></a>Scene
+Section Items</h3>
+
+<h4><a name="scene_section_items_point_item"></a>Point Item (SPOINT
+tag)</h4>
+
+<p>This item draws a point. Points cannot be filled, they are
+always outlined, they cannot be multicolor, they can be
+transparent, and they cannot have normals.</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)</p>
+
+<h4><a name="scene_section_items_line_item"></a>Line Item (SLINE
+tag)</h4>
+
+<p>This item draws a line. Lines cannot be filled, they are
+always outlined, they can be multicolor, they can be transparent,
+and they cannot have normals.</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1<br>
+float [3] = vector 2<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)<br>
+(. . .) (if multicolor)</p>
+
+<h4><a name="scene_section_items_triangle_item"></a>Triangle Item
+(STRIA tag)</h4>
+
+<p>This item draws a triangle. Triangles can be filled, they can
+be outlined, they can be multicolor, they can be transparent, and
+they can have normals.</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1<br>
+float [3] = vector 2<br>
+float [3] = vector 3<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)<br>
+(. . .<br>
+&nbsp;. . .) (if multicolor)<br>
+(float [3][3] = normals) (if normals are selected)</p>
+
+<h4><a name="scene_section_items_quadrilateral_item"></a>Quadrilateral
+Item (SQUADRI tag)</h4>
+
+<p>This item draws a quadrilateral. Quadrilaterals can be filled,
+they can be outlined, they can be multicolor, they can be
+transparent, and they can have normals. <b>Important</b>: the
+quadrilateral corners must be coplanar when defined in order to
+render properly--if a non-flat quadrilateral is wanted, then two
+triangles should be used.</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1<br>
+float [3] = vector 2<br>
+float [3] = vector 3<br>
+float [3] = vector 4<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)<br>
+(. . .<br>
+&nbsp;. . .<br>
+&nbsp;. . .) (if multicolor)<br>
+(float [3][4] = normals) (if normals are selected)</p>
+
+<h4><a name="scene_section_items_sphere_item"></a>Sphere Item (SSPHERE
+tag)</h4>
+
+<p>This item draws a sphere. Spheres can be filled, they can be
+outlined, they cannot be multicolor, they can be transparent, and
+they cannot have normals defined (normals are automatically
+created for a filled sphere).</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1 (the position of the center of the sphere)<br>
+float = radius<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)</p>
+
+<h4><a name="scene_section_items_spheroid_item"></a>Spheroid Item
+(SSPHOID tag)</h4>
+
+<p>This item draws a spheroid. Spheroids can be filled, they can
+be outlined, they cannot be multicolor, they can be transparent,
+and they cannot have normals defined (normals are automatically
+created for a filled spheroid).</p>
+
+<p>Format:</p>
+
+<p>unsigned char = common scene item properties<br>
+float [3] = vector 1 (the position of the center of the spheroid)
+<br>
+float [3] = size (the (x, y, z) dimensions before rotation)<br>
+float [4] = rotation (specified by (theta, x, y, z), where theta
+is the counterclockwise angle in degrees, which is to rotate
+about the vector (x, y, z). No rotation will occur if a zero
+angle or a null vector is passed)<br>
+float [&lt;3 | 4&gt;] = color (may be using RGB or RGBA depending
+on properties)</p>
+</body>
+</html>

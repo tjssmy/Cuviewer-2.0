@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShowScene</class>
+ <widget class="QDialog" name="ShowScene">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>447</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Show and Edit Scenes</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout">
+   <property name="margin">
+    <number>7</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QLabel" name="TextLabel1">
+     <property name="text">
+      <string>Scene
+Visibility:</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="dismissButton">
+     <property name="text">
+      <string>Dismiss</string>
+     </property>
+     <property name="shortcut">
+      <string>E</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QCheckBox" name="editingCheckBox">
+     <property name="text">
+      <string>Editing</string>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+E</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <spacer name="Spacer2_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>257</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <spacer name="Spacer2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>459</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0">
+    <widget class="QListWidget" name="visibleList">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::MultiSelection</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QListWidget" name="editingList">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>109</width>
+       <height>32767</height>
+      </size>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::MultiSelection</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>5</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>6</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>7</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>9</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>10</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>11</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>12</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>13</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>14</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>15</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="2" colspan="2">
+    <widget class="QTabWidget" name="sceneTabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="sceneInfoTab">
+      <attribute name="title">
+       <string>Scene Info</string>
+      </attribute>
+      <layout class="QGridLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QListWidget" name="sceneInfoText">
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="animateTab">
+      <attribute name="title">
+       <string>Animate</string>
+      </attribute>
+      <widget class="QLabel" name="sclabelend">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>34</y>
+         <width>85</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ending scene #:</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="scstartlabel">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>34</y>
+         <width>90</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Starting scene #:</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="forwardPlay">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>23</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-&gt;</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="reversePlay">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>10</y>
+         <width>23</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;-</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="scloopCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>10</y>
+         <width>60</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Loop</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="stopPlay">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>10</y>
+         <width>23</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string></string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scendLineEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>265</x>
+         <y>34</y>
+         <width>70</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scstartLineEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>105</x>
+         <y>34</y>
+         <width>70</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="textLabel1">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>60</y>
+         <width>82</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Delay (ms)</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="delaySpinBox">
+       <property name="geometry">
+        <rect>
+         <x>99</x>
+         <y>60</y>
+         <width>53</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>30</number>
+       </property>
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="reverseStep">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>10</y>
+         <width>23</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>|&lt;</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="forwardStep">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>10</y>
+         <width>23</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&gt;|</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="scexportCheck">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Export Image</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="extremsInfoTab">
+      <attribute name="title">
+       <string>Extrems Info</string>
+      </attribute>
+      <layout class="QGridLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QListWidget" name="extremInfoText">
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>New Item</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="translateTab">
+      <attribute name="title">
+       <string>Translate</string>
+      </attribute>
+      <layout class="QGridLayout">
+       <property name="margin">
+        <number>11</number>
+       </property>
+       <item row="0" column="2" rowspan="6">
+        <widget class="QGroupBox" name="ExtremsGroupBox">
+         <property name="title">
+          <string>Extremeties</string>
+         </property>
+         <layout class="QGridLayout">
+          <property name="margin">
+           <number>11</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="TextLabel1_2_2">
+            <property name="text">
+             <string>Xmin</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="TextLabel3_2">
+            <property name="text">
+             <string>Zmin</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="TextLabel2_2">
+            <property name="text">
+             <string>Ymin</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="extremXminLineEdit"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="extremYminLineEdit"/>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="extremXmaxLineEdit"/>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLineEdit" name="extremZmaxLineEdit"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="TextLabel1_2_2_2">
+            <property name="text">
+             <string>Xmax</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="extremYmaxLineEdit"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="TextLabel2_2_2">
+            <property name="text">
+             <string>Ymax</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="TextLabel3_2_2">
+            <property name="text">
+             <string>Zmax</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="extremZminLineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="2" rowspan="4">
+        <widget class="QGroupBox" name="tileGroupBox">
+         <property name="title">
+          <string>Tile</string>
+         </property>
+         <layout class="QGridLayout">
+          <property name="margin">
+           <number>11</number>
+          </property>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="tileYCountSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="TextLabel1_3">
+            <property name="text">
+             <string>X</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="TextLabel2_3">
+            <property name="text">
+             <string>Y</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="TextLabel3_3">
+            <property name="text">
+             <string>Z</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="tileZCountSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="tileXCountSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="tileXoffsetLineEdit">
+            <property name="toolTip">
+             <string>enter tile offset here</string>
+            </property>
+            <property name="text">
+             <string>default_offset</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="tileYoffsetLineEdit">
+            <property name="toolTip">
+             <string>enter tile offset here</string>
+            </property>
+            <property name="text">
+             <string>default_offset</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLineEdit" name="tileZoffsetLineEdit">
+            <property name="toolTip">
+             <string>enter tile offset here</string>
+            </property>
+            <property name="text">
+             <string>default_offset</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="10" column="2">
+        <spacer name="Spacer5_2_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="3">
+        <spacer name="Spacer8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="3">
+        <spacer name="Spacer8_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="sceneLabel">
+         <property name="text">
+          <string>Translate</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="TextLabel3">
+         <property name="text">
+          <string>Z</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="translateXLineEdit"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="translateYLineEdit"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="TextLabel1_2">
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="2">
+        <widget class="QPushButton" name="applyTranslateButton">
+         <property name="text">
+          <string>Apply</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QCheckBox" name="xMirrorCheck">
+         <property name="toolTip">
+          <string>Click to mirror selected scenes on X axis</string>
+         </property>
+         <property name="text">
+          <string>Mirror X</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="translateZLineEdit"/>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QCheckBox" name="zMirrorCheck">
+         <property name="toolTip">
+          <string>Click to mirror selected scenes on Z axis</string>
+         </property>
+         <property name="text">
+          <string>Mirror Z</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="TextLabel2">
+         <property name="text">
+          <string>Y</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" rowspan="2" colspan="2">
+        <widget class="QCheckBox" name="yMirrorCheck">
+         <property name="toolTip">
+          <string>Click to mirror selected scenes on Y axis</string>
+         </property>
+         <property name="text">
+          <string>Mirror Y</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1" rowspan="2">
+        <spacer name="Spacer5_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="rotateTab">
+      <attribute name="title">
+       <string>Rotate</string>
+      </attribute>
+      <widget class="QLabel" name="TextLabel3_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>11</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>y</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TextLabel4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>10</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>z</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TextLabel2_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>17</y>
+         <width>10</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>x</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="rotateXLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>33</x>
+         <y>7</y>
+         <width>108</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="rotateYLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>33</x>
+         <y>37</y>
+         <width>108</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="rotateZLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>33</x>
+         <y>67</y>
+         <width>108</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="applyRotateButton">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>100</y>
+         <width>88</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <tabstops>
+  <tabstop>editingCheckBox</tabstop>
+  <tabstop>sceneTabWidget</tabstop>
+  <tabstop>translateXLineEdit</tabstop>
+  <tabstop>translateYLineEdit</tabstop>
+  <tabstop>translateZLineEdit</tabstop>
+  <tabstop>xMirrorCheck</tabstop>
+  <tabstop>yMirrorCheck</tabstop>
+  <tabstop>zMirrorCheck</tabstop>
+  <tabstop>applyTranslateButton</tabstop>
+  <tabstop>dismissButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

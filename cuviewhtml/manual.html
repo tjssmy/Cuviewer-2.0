@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; U; SunOS 5.7 sun4u) [Netscape]">
+  <meta name="Keywords" content="Carleton University 3D Viewer Tutorial">
+  <title>CUView 3.0 Manual</title>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 1.0.2  (Linux)">
+  <style>
+	<!--
+		@page { margin: 2cm }
+	-->
+	</style>
+</head>
+<body>
+<a href="index.html"><img src="cu_viewer.png" border="0" height="77"
+ width="362" alt="Carleton University 3D Viewer Logo"> </a>
+<h1>CUViewer User Manual:</h1>
+<a href="fileformat.html">Atar File Format</a> <br>
+<a href="license.html">Licensing</a> <br>
+<ol>
+  <li><a href="#1">Installation</a></li>
+  <li><a href="#2">Usage</a></li>
+  <li><a href="#3">Mouse Commands</a></li>
+  <li><a href="#4">Keyboard Commands</a></li>
+</ol>
+<font face="Century Schoolbook"><br>
+The CU Viewer program displays *.gl.#.SS and *.cuv output from Atar
+simulations. The following sections describe the installation<span
+ lang="en-US"> procedure and program usage </span>for<span lang="en-US">
+Unix </span>and windows environments.</font>
+<ol>
+</ol>
+<h2><a name="1"></a>1. Installation</h2>
+	 	 	 	
+<p><font face="Century Schoolbook">Requires latest <span lang="en-US">OpenGL</span>/video
+card drivers (goto video card website, look for downloads/drivers).
+Download the correct source or binary files from
+cuviewer.sourceforge.com for the correct system (Linux/Unix, Windows)</font></p>
+<h3>I. Binary Installation:</h3>
+UNIX/LINUX:<br>
+1. download binary distribution and unzip&nbsp; (tar -zxvf
+&nbsp;cuviewer-version.tar.gz, extracts into folder called cuviewer)<br>
+2. log in as administrator (root)<br>
+3. run script:<br>
+./installcuviewer<br>
+i.e. <br>
+#copies binaries:<br>
+cp -fr cuviewer cuviewertc /usr/bin/<br>
+#copies online documentation<br>
+cp -fr cuviewhtml /usr/share/doc/cuviewer/<br>
+<br>
+Uninstallation:<br>
+run script:<br>
+./removecuviewer<br>
+<br>
+Provides:<br>
+/usr/bin/cuviewer<br>
+/usr/bin/cuviewertc<br>
+documentation:<br>
+/usr/share/doc/cuviewer/cuviewhtml<br>
+<br>
+WINDOWS (Versions Win95,98,ME,XP,2000):<br>
+Run setup program. That's it.<br>
+*.cuv, *.gl, and *.SS files are automatically registered to run
+cuviewer.
+<h3>II. Instructions to compile cuviewer from source:</h3>
+<br>
+Source Installation Requires:<br>
+<ul>
+  <li><a href="http://www.trolltech.com">Trolltech</a> Qt. 3.0 or higher</li>
+  <li>set Qt 3.0 environment: </li>
+  <li> Global: /etc/profile.d/qt3.sh, or user: in ~/.bash_profile<br>
+    <pre>    QTDIR=/usr/lib/qt-3.0.0<br>    PATH=$QTDIR/bin:$PATH<br>    MANPATH=$QTDIR/doc/man:<br>    $MANPATH<br>    LD_LIBRARY_PATH=$QTDIR/lib:/usr/X11R6/lib/:/usr/lib/<br>    QMAKESPEC=/usr/lib/qt-3.0.0/mkspecs/linux-g++<br>    export QTDIR PATH MANPATH LD_LIBRARY_PATH QMAKESPEC<br>    </pre>
+  </li>
+  <li>Instructions to compile cuviewer from source: </li>
+  <li>download tar.gz distribution </li>
+  <li>extract cuviewer.tar.gz </li>
+  <li>cd cuviewer </li>
+  <li>optional - edit config.h, specify location of documentation files</li>
+  <li>qmake cuviewer.pro (you may have to edit out some libraries
+before running, ie. -lglut, -lXmu etc.)</li>
+  <li>make </li>
+  <li>copy cuviewer (binary executable) to bin path </li>
+</ul>
+<h2><a name="2"></a>2. Usage</h2>
+<p><font face="Century Schoolbook">CUViewer is simple program with a
+nice user interface for displaying data in a 3D window The viewer can
+save images to many file formats, print, and display the view in
+serveral ways. Some features are for general displaying purposes like
+lighting, fog, transparency, etc. <i>Bin Paletting</i> (shortcut p, P,
+[, and ]) creates equally spaced contours (ie. blue to red, that is
+minimum to maximum temperature resp.) and displays the contours on a
+temperature scale. The <i>Show Scenes Dialog</i> (keyboard shortcut e)
+control scenes and multi-scene animation.</font></p>
+<p>Using the command prompt:</p>
+<p>example: &nbsp; &nbsp;<span style="font-weight: bold;">cuviewer
+[OPTIONS] file1 file2 ...</span></p>
+<p>on low color video cards:<br>
+cuviewertc [OPTIONS] file1 file2 ...<br>
+</p>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top">
+      <p><b>X Windows options</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <p>-bg or -background color (X11 only) <br>
+-fg or -foreground color (X11 only) <br>
+&nbsp;&nbsp; sets the default foreground color <br>
+-geometry WIDTHxHEIGHT (X11 only) <br>
+&nbsp;&nbsp; sets the client geometry of the main window, example: </p>
+      <p><tt>&nbsp;&nbsp;&nbsp; -geometry 800x600</tt></p>
+-visual TrueColor <br>
+&nbsp;&nbsp;&nbsp; make use of all the colors from the underlying
+window system.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>image export</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">-e <i>filename</i> &nbsp;Export image to file,
+and uses the default image format that is specified in
+~/.cuviewer/cuviewrc<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>viewsettings script</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">-s <i>filename</i>.script &nbsp;execute script
+on first file<br>
+      <br>
+Instructions on how to use script file:<br>
+      <ul>
+        <li>open cuviewer, open a file.</li>
+        <li>make any adjustments to viewing angle or viewer settings.<br>
+        </li>
+        <li>click file-&gt;save to script file</li>
+        <li>close and run the program with the "-s filename.script"
+specified and specify a cuviewer file to open.</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>movie script</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">-m <i>filename</i>.script &nbsp;execute movie
+script on first file<br>
+      <br>
+&nbsp;Instructions on how to use a movie script file:<br>
+      <ul>
+        <li>open cuviewer, open a file.</li>
+        <li>click file-&gt;create movie script&nbsp;</li>
+        <li>save script to a file</li>
+        <li>set movie properties (frames per second, time limit,
+etc...), click ok to start recording.</li>
+        <li>exit program anytime to stop recording.</li>
+        <li>run the program with the "-m filename.script" specified at
+command prompt and specify a cuviewer file to open.</li>
+        <li>frames will be saved to disk as images in the default image
+ format specified under global preferences.<br>
+        </li>
+      </ul>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Miscellaneous</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+-v &nbsp;version<br>
+-h &nbsp;help<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br clear="all">
+<hr> <a name="3">
+<h2>3. Mouse Mappings</h2>
+</a> L: Left button, M: Middle, R: Right<br>
+<br>
+<table border="1" width="600" bgcolor="#ffffff">
+  <tbody>
+    <tr align="center">
+      <td>Mouse Button</td>
+      <td width="20">L</td>
+      <td width="20">M</td>
+      <td width="20">R</td>
+    </tr>
+    <tr>
+      <td>Spin object about it's center</td>
+      <td align="center">x</td>
+      <td align="center">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Zooms in/out with mouse</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>x</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>Change the camera's aim</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>x</center>
+      </td>
+    </tr>
+    <tr>
+      <td>Rotate object about it's center</td>
+      <td>
+      <center>x</center>
+      </td>
+      <td>
+      <center>x</center>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Rotate object about the point where the camera aims at.</td>
+      <td>
+      <center>x</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>x</center>
+      </td>
+    </tr>
+    <tr>
+      <td>Translate camera vertically and horizontally</td>
+      <td>&nbsp;</td>
+      <td>
+      <center>x</center>
+      </td>
+      <td>
+      <center>x</center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr> <a name="4">
+<h2>4. Keyboard Shortcuts</h2>
+</a>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td valign="top">
+      <p><b>File Operations</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"> 	 CTRL+O<br>
+	 CTRL+M<br>
+	 CTRL+R<br>
+	 CTRL+L<br>
+	 CTRL+S<br>
+	 CTRL+C<br>
+	 CTRL+W<br>
+	 CTRL+P<br>
+	 CTRL+A<br>
+	 CTRL+X<br>
+	 CTRL+Q<br>
+F1<br>
+Shift+F1<br>
+      </td>
+      <td valign="top"> 	 open file <br>
+merge another file into current scene<br>
+reload file<br>
+load script<br>
+save script<br>
+close file <br>
+close window <br>
+print file<br>
+autoexport image<br>
+export image at a specified resolution<br>
+exit program<br>
+Help<br>
+Show Version<small><small><big><big></big></big><small><br>
+      </small> </small></small> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td valign="top">
+      <p><b>Viewing</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0-9<br>
+a<br>
+Ctrl+b<br>
+c<br>
+d<br>
+e<br>
+Ctrl+E<br>
+b<br>
+g<br>
+i<br>
+l<br>
+o<br>
+p<br>
+Shift+P<br>
+[<br>
+]<br>
+r<br>
+s<br>
+t<br>
+v<br>
+f<br>
+q<br>
+x<br>
+z<br>
+w<br>
+      <br>
+up,down,<br>
+right,left<br>
+      <span style="font-style: italic;">Keypadkeys:</span><br>
+/,*,-,+<br>
+PgUp,<br>
+PgDown<br>
+Home,End<br>
+      <br>
+      </td>
+      <td valign="top"> reset camera to a predefined viewpoint <br>
+anti-aliasing (produces a higher quality image at the cost of slower
+rendering performance).<br>
+toggle bounding box always<br>
+redraw document (opengl refresh)<br>
+diffuse light (i.e.. brightness of the total image)<br>
+show scenes dialog (toggles entities)<br>
+toggle edit mode<br>
+toggle bounding box<br>
+gamma lighting filter<br>
+export image to file<br>
+lighting<br>
+outlines<br>
+bin window paletting (maps 100% red to 100% blue colours into equally
+spaced bins) <br>
+toggle paletting colours (changes the bin colours)<br>
+increase number of bins <br>
+decrease number of bins     &nbsp; <br>
+show viewer settings panel <br>
+toggle between flat and smooth shading <br>
+two sided polygons <br>
+change between perspective and orthogonal views <br>
+fog <br>
+opaque wireframes <br>
+transparency <br>
+zero clipping plane of view <br>
+wireframe/line mode<br>
+      <br>
+orbit camera around object<br>
+      <br>
+      <br>
+Slide view left,right,up,down resp.<br>
+Rotate camera counterclockwise, <br>
+Rotate camera clockwise<br>
+Zoom camera in,out<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,1776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ViewerSettings</class>
+ <widget class="QWidget" name="ViewerSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>223</width>
+    <height>439</height>
+   </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Viewer Settings</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="settingsTabWidget">
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="settingsTab">
+      <attribute name="title">
+       <string>Settings</string>
+      </attribute>
+      <widget class="Line" name="Line1">
+       <property name="geometry">
+        <rect>
+         <x>6</x>
+         <y>260</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="gammaCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>209</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="windowTitle">
+        <string/>
+       </property>
+       <property name="toolTip">
+        <string>Click to adjust lighting property, warning: may degrade rendering performance. Keyboard: g</string>
+       </property>
+       <property name="text">
+        <string>Gamma</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="shadingCheck">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>78</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable object shading. Keyboard: s</string>
+       </property>
+       <property name="text">
+        <string>Shading</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="zeroClippingPlaneButton">
+       <property name="geometry">
+        <rect>
+         <x>2</x>
+         <y>183</y>
+         <width>95</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Click to set the clipping plane to zero. Keyboard: z</string>
+       </property>
+       <property name="text">
+        <string>No clipping</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="twoSidedCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>79</y>
+         <width>92</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to force double sided polygons (as opposed to one sided). Keyboard: t</string>
+       </property>
+       <property name="text">
+        <string>Two-sided</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="OutlineWidthTextLabel">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>54</y>
+         <width>92</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Changes the width of the outlines</string>
+       </property>
+       <property name="text">
+        <string>Outline Width</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="outlineCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>30</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Click to show polygonal outlines. Keyboard: o</string>
+       </property>
+       <property name="text">
+        <string>Outline</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="perspectiveCheck">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>120</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable perspective view, which enables a vanishing point. Keyboard: v</string>
+       </property>
+       <property name="text">
+        <string>Perspective</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="diffuseSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>293</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>80</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="opaquewireframeCheck">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>141</y>
+         <width>116</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to get a solid object while in wireframe mode. key: q</string>
+       </property>
+       <property name="text">
+        <string>Opaque Object</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AmbientLightTextLabel">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>272</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Changes the ambient lighting emmited by the object.</string>
+       </property>
+       <property name="text">
+        <string>Ambient Light</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="fovSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>230</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>179</number>
+       </property>
+       <property name="value">
+        <number>20</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="specularSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>314</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="sphereTessSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>251</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>8</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="antialiasingCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>99</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable antialiasing, improve image quality but degrades redering performance. Keyboard: a</string>
+       </property>
+       <property name="text">
+        <string>Antialiasing</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FieldOfViewTextLabel">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>230</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Changes the field of view [1-179] degrees, default 20 degrees</string>
+       </property>
+       <property name="text">
+        <string>Field of View</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="specularTextLabel">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>314</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Specular Shine</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="gammaSlider">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>209</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TextLabel2">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>251</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Sphere tesselation, adjusts the number of flat surfaces to approximate spherical surfaces.</string>
+       </property>
+       <property name="text">
+        <string>Sphere Tess.</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="buddy">
+        <cstring></cstring>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="wireframeCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>142</y>
+         <width>92</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable polygon outline model (removes all flat surfaces). Keyboard: w</string>
+       </property>
+       <property name="text">
+        <string>Wireframe</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="lightingCheck">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>120</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable point source lighting, keyboard: l</string>
+       </property>
+       <property name="text">
+        <string>Lighting</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="transparencyCheck">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>99</y>
+         <width>105</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Grande</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable objects with this property to be rendered as transparent. Keyboard: x</string>
+       </property>
+       <property name="text">
+        <string>Transparency</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="clippingSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>185</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Set Clipping plane</string>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="diffuseCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>293</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable diffuse lighting, keyboard: d</string>
+       </property>
+       <property name="text">
+        <string>Diffuse</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="ambientSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>272</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="viewPresetLabel">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>4</y>
+         <width>92</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>View Preset:</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="blackBackgroundButton">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>162</y>
+         <width>46</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Black Background</string>
+       </property>
+       <property name="text">
+        <string>Black</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="backgroundSlider">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>162</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Sets background level</string>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="whiteBackgroundButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>162</y>
+         <width>46</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>White Background</string>
+       </property>
+       <property name="text">
+        <string>White</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="fogCheck">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>335</y>
+         <width>92</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Click to enable fog effect, keyboard: </string>
+       </property>
+       <property name="text">
+        <string>Fog</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="fogSlider">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>335</y>
+         <width>104</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>200</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="outlineValue">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>54</y>
+         <width>104</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="value">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="presetNumber">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>4</y>
+         <width>104</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Changes the keyboard shortcut that remembers the viewpoint and viewing setup.</string>
+       </property>
+       <property name="wrapping">
+        <bool>true</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
+       </property>
+       <property name="maximum">
+        <number>9</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="outlineColor">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>28</y>
+         <width>104</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Change the color of the outlines</string>
+       </property>
+       <property name="text">
+        <string>Color ...</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="palettesTab">
+      <attribute name="title">
+       <string>Palettes</string>
+      </attribute>
+      <widget class="QToolButton" name="colorBinPalette">
+       <property name="geometry">
+        <rect>
+         <x>101</x>
+         <y>190</y>
+         <width>39</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Color Palettes</string>
+       </property>
+       <property name="text">
+        <string>Color</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="Line" name="Line2">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>219</y>
+         <width>120</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="paletteIndexSpinBox">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>190</y>
+         <width>46</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Palette Index</string>
+       </property>
+       <property name="wrapping">
+        <bool>true</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>256</number>
+       </property>
+      </widget>
+      <widget class="QSlider" name="bpStart">
+       <property name="geometry">
+        <rect>
+         <x>61</x>
+         <y>266</y>
+         <width>120</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Palette Start Range</string>
+       </property>
+       <property name="minimum">
+        <number>11</number>
+       </property>
+       <property name="maximum">
+        <number>255</number>
+       </property>
+       <property name="value">
+        <number>255</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="binnedPaletteCheck">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>170</y>
+         <width>100</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Enable binned color display, keyboard: p</string>
+       </property>
+       <property name="text">
+        <string>Bin Palette</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="bwBinPalette">
+       <property name="geometry">
+        <rect>
+         <x>61</x>
+         <y>190</y>
+         <width>40</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Black and White Palettes</string>
+       </property>
+       <property name="text">
+        <string>BW</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QSlider" name="bpEnd">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>319</y>
+         <width>120</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Palette End Range</string>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>244</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksAbove</enum>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layout4">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>340</y>
+         <width>131</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QToolButton" name="reversePlayEndButton">
+          <property name="text">
+           <string>&lt;-</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="stopPlayEndButton">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="forwardPlayEndButton">
+          <property name="text">
+           <string>-&gt;</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QToolButton" name="nextBinPaletteTB">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>130</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Next</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="prevBinPaletteTB">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>130</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Previous</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="bpEndValueSpinBox">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>290</y>
+         <width>60</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Palette End Range</string>
+       </property>
+       <property name="suffix">
+        <string>%</string>
+       </property>
+       <property name="maximum">
+        <number>96</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="bpStartValueSpinBox">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>230</y>
+         <width>57</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Palette Start Range</string>
+       </property>
+       <property name="suffix">
+        <string>%</string>
+       </property>
+       <property name="minimum">
+        <number>4</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="bpupperlabel">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>240</y>
+         <width>80</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Upperbound</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="bplowerlabel">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>290</y>
+         <width>80</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>lowerbound</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="PaletteView" name="paletteView" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>50</width>
+         <height>410</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="bpcolor">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>80</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="paletteLCD">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>90</y>
+         <width>110</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="smallDecimalPoint">
+        <bool>true</bool>
+       </property>
+       <property name="numDigits">
+        <number>10</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="paletteExportImageCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>70</y>
+         <width>130</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>In export image</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="postFix">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>50</y>
+         <width>30</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>32767</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>K</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TextLabel3">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>50</y>
+         <width>50</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Postfix</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelMax_Value">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>0</y>
+         <width>29</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Max</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="maxValue">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>0</y>
+         <width>100</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>32767</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="minValue">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>20</y>
+         <width>100</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>32767</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelMin_Value">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>20</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Min</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="lightsTab">
+      <attribute name="title">
+       <string>Lights</string>
+      </attribute>
+      <widget class="QCheckBox" name="fixedSourceCheckBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>60</y>
+         <width>85</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stationary</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="lightPitch">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>240</y>
+         <width>110</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>90</number>
+       </property>
+       <property name="singleStep">
+        <number>3</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickInterval">
+        <number>15</number>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lightPitchLCD">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>240</y>
+         <width>37</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="smallDecimalPoint">
+        <bool>true</bool>
+       </property>
+       <property name="numDigits">
+        <number>3</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
+       </property>
+       <property name="value" stdset="0">
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="lightColor">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>90</y>
+         <width>80</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Change the color of the light source</string>
+       </property>
+       <property name="text">
+        <string>Color ...</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="editLightListBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>98</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::MultiSelection</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>Light0</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="editLightsTextLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>98</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Edit Light</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="resetPositionPushButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>97</width>
+         <height>44</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reset Light
+ Position</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="textLabel6_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>190</y>
+         <width>56</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Light 
+Source</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="textLabel6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>37</width>
+         <height>52</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pitch
+Angle
+(0,90)</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QDial" name="lightSourceDial">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>140</y>
+         <width>100</width>
+         <height>100</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Adjust dial to rotate light source</string>
+       </property>
+       <property name="maximum">
+        <number>360</number>
+       </property>
+       <property name="singleStep">
+        <number>3</number>
+       </property>
+       <property name="value">
+        <number>270</number>
+       </property>
+       <property name="wrapping">
+        <bool>true</bool>
+       </property>
+       <property name="notchTarget">
+        <double>2.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="addLightPB">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>100</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Add Light</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="6"/>
+ <customwidgets>
+  <customwidget>
+   <class>PaletteView</class>
+   <extends>QWidget</extends>
+   <header>paletteview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>settingsTabWidget</tabstop>
+  <tabstop>outlineCheck</tabstop>
+  <tabstop>outlineColor</tabstop>
+  <tabstop>twoSidedCheck</tabstop>
+  <tabstop>shadingCheck</tabstop>
+  <tabstop>antialiasingCheck</tabstop>
+  <tabstop>transparencyCheck</tabstop>
+  <tabstop>perspectiveCheck</tabstop>
+  <tabstop>lightingCheck</tabstop>
+  <tabstop>wireframeCheck</tabstop>
+  <tabstop>opaquewireframeCheck</tabstop>
+  <tabstop>blackBackgroundButton</tabstop>
+  <tabstop>whiteBackgroundButton</tabstop>
+  <tabstop>zeroClippingPlaneButton</tabstop>
+  <tabstop>gammaCheck</tabstop>
+  <tabstop>diffuseCheck</tabstop>
+  <tabstop>specularSlider</tabstop>
+  <tabstop>fogCheck</tabstop>
+  <tabstop>fogSlider</tabstop>
+  <tabstop>addLightPB</tabstop>
+  <tabstop>editLightListBox</tabstop>
+  <tabstop>resetPositionPushButton</tabstop>
+  <tabstop>fixedSourceCheckBox</tabstop>
+  <tabstop>maxValue</tabstop>
+  <tabstop>minValue</tabstop>
+  <tabstop>postFix</tabstop>
+  <tabstop>paletteExportImageCheckBox</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">paletteview.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>postFix</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>paletteView</receiver>
+   <slot>setPostFix(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>paletteView</receiver>
+   <slot>setMinValue(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maxValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>paletteView</receiver>
+   <slot>setMaxValue(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gammaCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gammaSlider</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>diffuseCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>diffuseSlider</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>outlineCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>outlineColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wireframeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>opaquewireframeCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>paletteView</sender>
+   <signal>selectedValueChanged(QString)</signal>
+   <receiver>paletteLCD</receiver>
+   <slot>display(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>postFix</sender>
+   <signal>returnPressed()</signal>
+   <receiver>paletteExportImageCheckBox</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maxValue</sender>
+   <signal>returnPressed()</signal>
+   <receiver>paletteExportImageCheckBox</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minValue</sender>
+   <signal>returnPressed()</signal>
+   <receiver>paletteExportImageCheckBox</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lightPitch</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lightPitchLCD</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fogCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>fogSlider</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>371</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>150</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
