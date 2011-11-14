@@ -5,1554 +5,569 @@
 	};
 	objectVersion = 42;
 	objects = {
-		D7BA7D76DAB5DD13389D6332 = {
+
+/* Begin PBXBuildFile section */
+		069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */; };
+		0A73F7030B6E35EA7C6A926E /* cuvdatahandler.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 36150AD6591CD16F9C296936 /* cuvdatahandler.cpp */; settings = {ATTRIBUTES = (); }; };
+		0C6D4628EE0B0D1479A20551 /* AGL.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = C6766F86E49E9C8701C8E637 /* AGL.framework */; };
+		0F383CAF1F369FAB80830F99 /* draw_text.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 6B62213495B32505D737C0E9 /* draw_text.cpp */; settings = {ATTRIBUTES = (); }; };
+		10C3022827534A869A24BB42 /* displaylistscene.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = F21ECBE74723448A18E15AC7 /* displaylistscene.cpp */; settings = {ATTRIBUTES = (); }; };
+		15E3698CEFA60393EBD88312 /* qrc_glshaders.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 29A8868787C983C25FEE5528 /* qrc_glshaders.cpp */; settings = {ATTRIBUTES = (); }; };
+		15F2A60A9D3DD85163F857BB /* moc_cuvdatahandler.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 86ADD011432BE838C9E91C59 /* moc_cuvdatahandler.cpp */; settings = {ATTRIBUTES = (); }; };
+		1D65DDAC0A2F0E488770DAE1 /* moviedialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = ADCA4584528210E7A236C209 /* moviedialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		1FBEC5F04CD36A072CBDFF0B /* qrc_images.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */; settings = {ATTRIBUTES = (); }; };
+		20272530CE64D4C8D2E566EE /* moc_getimagesize.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = C0E112E876DADE40080A9321 /* moc_getimagesize.cpp */; settings = {ATTRIBUTES = (); }; };
+		2047DA1749B439430FFA7C2D /* moc_paletteview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = DF7C32C250EB7EC8B56EAD06 /* moc_paletteview.cpp */; settings = {ATTRIBUTES = (); }; };
+		26C2BED6C570C95F5243C556 /* moc_mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		2B093CA6F071B023A473CED0 /* main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 118FCBAABA162BA17933C789 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
+		2C15445969F8AD08DC10EBB1 /* showscene.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 76E707E0DD0C96657DEABF6E /* showscene.cpp */; settings = {ATTRIBUTES = (); }; };
+		2E4F3B7F73EA13BD74FF1774 /* moc_pixmaplabel.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = FFD51BBC46A331EE3D7B908A /* moc_pixmaplabel.cpp */; settings = {ATTRIBUTES = (); }; };
+		361A9707E486D2BAF94F3A64 /* glrenderer.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 6C3809F3EAFABBA2FCAE7A27 /* glrenderer.cpp */; settings = {ATTRIBUTES = (); }; };
+		3CD42FE090232060C7EE599D /* globalpreferences.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 4F752D6BB4A5AE44860BC64C /* globalpreferences.cpp */; settings = {ATTRIBUTES = (); }; };
+		450A0D11527AF164AEFE7377 /* QtOpenGL.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = C374004D45E01156F931B37D /* QtOpenGL.framework */; };
+		462C0F34BBEF2375A9469BB5 /* mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = EA177DE95BF7D3EF58EE43F7 /* mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		47D642AC530AFBDD720B939A /* moc_showscene.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 782C30F73B870B599FAB5F0A /* moc_showscene.cpp */; settings = {ATTRIBUTES = (); }; };
+		4F513DF64352B6AAC37AD636 /* moc_moviedialog.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 85E01D040996E4B4811C478B /* moc_moviedialog.cpp */; settings = {ATTRIBUTES = (); }; };
+		501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 9B36DA7E32F0304E780E7972 /* QtGui.framework */; };
+		58F3AC2799B61059F4E2F3BA /* draw_sphoid.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 0E38A4AD8BF7BAA400D1CD2F /* draw_sphoid.cpp */; settings = {ATTRIBUTES = (); }; };
+		709E6F64DC4BE7C5298F844A /* autoexport.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 4E3AB0E36A594E69CDAE45EB /* autoexport.cpp */; settings = {ATTRIBUTES = (); }; };
+		7162C5CAE4FCA7F0809F1C16 /* moc_globalpreferences.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 273A6034CB751754568EA056 /* moc_globalpreferences.cpp */; settings = {ATTRIBUTES = (); }; };
+		74B0AB4F771CC10802993870 /* draw_tria.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 4014219B7681577BC82BB491 /* draw_tria.cpp */; settings = {ATTRIBUTES = (); }; };
+		76138EBF01A5DEA3F6CCED0B /* sceneentity.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 1ACC2D1B2B149FEA7010F0C6 /* sceneentity.cpp */; settings = {ATTRIBUTES = (); }; };
+		798A4D29F9FD9FA31CDE4AD8 /* moc_imageprocessing.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D64D26B967E8D7C4C19A0F7B /* moc_imageprocessing.cpp */; settings = {ATTRIBUTES = (); }; };
+		7A8B396291E9D00F4EF6065A /* binpalettes.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = E884A6022398F2664CEF7825 /* binpalettes.cpp */; settings = {ATTRIBUTES = (); }; };
+		7D12242113F3402CACBA4B0A /* draw_quadri.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 479DBFD51D780DE7D86E535A /* draw_quadri.cpp */; settings = {ATTRIBUTES = (); }; };
+		82131C329AEDFF8F54785923 /* cuvvector.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7A53AF8D8A86F2B7703B47A6 /* cuvvector.cpp */; settings = {ATTRIBUTES = (); }; };
+		836C9A5E147145E600E421CB /* cuviewer.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 836C9A5B147145E600E421CB /* cuviewer.app */; };
+		870DDBBE994CE80C5FA37A4A /* pixmaplabel.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 33DEF0A4988E3A1EE413F9FF /* pixmaplabel.cpp */; settings = {ATTRIBUTES = (); }; };
+		8C7A93D4203FACE9ABA20001 /* moc_binpalettes.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D314BE77BE81D94E4B3B9DAB /* moc_binpalettes.cpp */; settings = {ATTRIBUTES = (); }; };
+		8F8D827365C90D3E391C6D8E /* printpreview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3F8F0D1104AAE3C3CCD9C806 /* printpreview.cpp */; settings = {ATTRIBUTES = (); }; };
+		9DF3AD8164F445541BC8A06D /* viewersettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 27594C621E702237A4E20CF8 /* viewersettings.cpp */; settings = {ATTRIBUTES = (); }; };
+		A8FC24A582C2037D551B0697 /* draw_line.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7850C326E6D3BA00F603277B /* draw_line.cpp */; settings = {ATTRIBUTES = (); }; };
+		AA9AA27340D303D9CF305CCB /* moc_viewersettings.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 188B6FB5E82399FC5CB69802 /* moc_viewersettings.cpp */; settings = {ATTRIBUTES = (); }; };
+		B98F0DC9493E59403E010F3A /* entityscene.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 55708F1CDDEB2DB1F69EF0CA /* entityscene.cpp */; settings = {ATTRIBUTES = (); }; };
+		BCEF71E1EDFB18DA77DC750B /* OpenGL.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DA18A6831232F53228631AD1 /* OpenGL.framework */; };
+		C1F25E9F20C99C0956CE1BDF /* getimagesize.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 5505FBE7E376EA2713588D32 /* getimagesize.cpp */; settings = {ATTRIBUTES = (); }; };
+		C98EADAE0AFAA655934BFA10 /* moc_glrenderer.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 59CD4F9263E55318D7ABB6BE /* moc_glrenderer.cpp */; settings = {ATTRIBUTES = (); }; };
+		CE3C2FF4A779B5209CEF604D /* draw_sphere.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 0203B878A6E1E2E93C12034C /* draw_sphere.cpp */; settings = {ATTRIBUTES = (); }; };
+		D1ACC097C6BBA6EC000E2CF9 /* draw_point.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7AB51513DE1759874568D11A /* draw_point.cpp */; settings = {ATTRIBUTES = (); }; };
+		D99AEB34B547632746B1B991 /* cuviewdoc.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 0ECB297F54627F0995A63467 /* cuviewdoc.cpp */; settings = {ATTRIBUTES = (); }; };
+		DD3A249383E106E3A5B47005 /* moc_autoexport.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 9804ACD0514EBC184BA205F0 /* moc_autoexport.cpp */; settings = {ATTRIBUTES = (); }; };
+		E104D424C477AF3497DEA307 /* script.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 8458ADCEDC17D046942185CB /* script.cpp */; settings = {ATTRIBUTES = (); }; };
+		E4B721BED49A77B828A4CCF0 /* qrc_htmlFiles.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3CDF27B041FE1F2D2E06D52E /* qrc_htmlFiles.cpp */; settings = {ATTRIBUTES = (); }; };
+		EFE8A117B3E4EC9AC40A0835 /* moc_cuviewdoc.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 323A4FB145C650EA534D96CC /* moc_cuviewdoc.cpp */; settings = {ATTRIBUTES = (); }; };
+		F44A3C2E1C61FC8FC39A2AFA /* imageprocessing.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D1EFC2E7C32FD804288A5E3E /* imageprocessing.cpp */; settings = {ATTRIBUTES = (); }; };
+		F4BF60642BF059EC564147FD /* paletteview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D47AE44419C69FB1394CE5FF /* paletteview.cpp */; settings = {ATTRIBUTES = (); }; };
+		F4FEF62F90840B2318303C89 /* moc_printpreview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 74321A947AD3A0F5FF194EB2 /* moc_printpreview.cpp */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
+			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
+			dstPath = /Users/tjssmy/source/ospice/cuviewer2;
+			dstSubfolderSpec = 0;
 			files = (
-				);
-			generatedFileNames = (
-				);
-			isa = PBXShellScriptBuildPhase;
-			name = "Qt Qmake";
-			neededFileNames = (
-				);
-			shellPath = "/bin/sh";
-			shellScript = "make\ -C\ /Users/tjssmy/source/ospice/cuviewer2\ -f\ \'cuviewer.xcodeproj/qt_makeqmake.mak\'";
-		};
-		118FCBAABA162BA17933C789 = {
-			isa = PBXFileReference;
-			name = "main.cpp";
-			path = "main.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		2B093CA6F071B023A473CED0 = {
-			fileRef = "118FCBAABA162BA17933C789";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		EA177DE95BF7D3EF58EE43F7 = {
-			isa = PBXFileReference;
-			name = "mainwindow.cpp";
-			path = "mainwindow.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		462C0F34BBEF2375A9469BB5 = {
-			fileRef = "EA177DE95BF7D3EF58EE43F7";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		27594C621E702237A4E20CF8 = {
-			isa = PBXFileReference;
-			name = "viewersettings.cpp";
-			path = "viewersettings.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		9DF3AD8164F445541BC8A06D = {
-			fileRef = "27594C621E702237A4E20CF8";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		D47AE44419C69FB1394CE5FF = {
-			isa = PBXFileReference;
-			name = "paletteview.cpp";
-			path = "paletteview.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		F4BF60642BF059EC564147FD = {
-			fileRef = "D47AE44419C69FB1394CE5FF";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		D1EFC2E7C32FD804288A5E3E = {
-			isa = PBXFileReference;
-			name = "imageprocessing.cpp";
-			path = "imageprocessing.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		F44A3C2E1C61FC8FC39A2AFA = {
-			fileRef = "D1EFC2E7C32FD804288A5E3E";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		E884A6022398F2664CEF7825 = {
-			isa = PBXFileReference;
-			name = "binpalettes.cpp";
-			path = "binpalettes.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		7A8B396291E9D00F4EF6065A = {
-			fileRef = "E884A6022398F2664CEF7825";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		1ACC2D1B2B149FEA7010F0C6 = {
-			isa = PBXFileReference;
-			name = "sceneentity.cpp";
-			path = "cuviewdoc/sceneentity.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		76138EBF01A5DEA3F6CCED0B = {
-			fileRef = "1ACC2D1B2B149FEA7010F0C6";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		6C3809F3EAFABBA2FCAE7A27 = {
-			isa = PBXFileReference;
-			name = "glrenderer.cpp";
-			path = "cuviewdoc/glrenderer.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		361A9707E486D2BAF94F3A64 = {
-			fileRef = "6C3809F3EAFABBA2FCAE7A27";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		55708F1CDDEB2DB1F69EF0CA = {
-			isa = PBXFileReference;
-			name = "entityscene.cpp";
-			path = "cuviewdoc/entityscene.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		B98F0DC9493E59403E010F3A = {
-			fileRef = "55708F1CDDEB2DB1F69EF0CA";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		4014219B7681577BC82BB491 = {
-			isa = PBXFileReference;
-			name = "draw_tria.cpp";
-			path = "cuviewdoc/draw_tria.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		74B0AB4F771CC10802993870 = {
-			fileRef = "4014219B7681577BC82BB491";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		6B62213495B32505D737C0E9 = {
-			isa = PBXFileReference;
-			name = "draw_text.cpp";
-			path = "cuviewdoc/draw_text.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		0F383CAF1F369FAB80830F99 = {
-			fileRef = "6B62213495B32505D737C0E9";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		0E38A4AD8BF7BAA400D1CD2F = {
-			isa = PBXFileReference;
-			name = "draw_sphoid.cpp";
-			path = "cuviewdoc/draw_sphoid.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		58F3AC2799B61059F4E2F3BA = {
-			fileRef = "0E38A4AD8BF7BAA400D1CD2F";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		0203B878A6E1E2E93C12034C = {
-			isa = PBXFileReference;
-			name = "draw_sphere.cpp";
-			path = "cuviewdoc/draw_sphere.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		CE3C2FF4A779B5209CEF604D = {
-			fileRef = "0203B878A6E1E2E93C12034C";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		479DBFD51D780DE7D86E535A = {
-			isa = PBXFileReference;
-			name = "draw_quadri.cpp";
-			path = "cuviewdoc/draw_quadri.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		7D12242113F3402CACBA4B0A = {
-			fileRef = "479DBFD51D780DE7D86E535A";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		7AB51513DE1759874568D11A = {
-			isa = PBXFileReference;
-			name = "draw_point.cpp";
-			path = "cuviewdoc/draw_point.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		D1ACC097C6BBA6EC000E2CF9 = {
-			fileRef = "7AB51513DE1759874568D11A";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		7850C326E6D3BA00F603277B = {
-			isa = PBXFileReference;
-			name = "draw_line.cpp";
-			path = "cuviewdoc/draw_line.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		A8FC24A582C2037D551B0697 = {
-			fileRef = "7850C326E6D3BA00F603277B";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		F21ECBE74723448A18E15AC7 = {
-			isa = PBXFileReference;
-			name = "displaylistscene.cpp";
-			path = "cuviewdoc/displaylistscene.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		10C3022827534A869A24BB42 = {
-			fileRef = "F21ECBE74723448A18E15AC7";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		0ECB297F54627F0995A63467 = {
-			isa = PBXFileReference;
-			name = "cuviewdoc.cpp";
-			path = "cuviewdoc/cuviewdoc.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		D99AEB34B547632746B1B991 = {
-			fileRef = "0ECB297F54627F0995A63467";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		36150AD6591CD16F9C296936 = {
-			isa = PBXFileReference;
-			name = "cuvdatahandler.cpp";
-			path = "cuviewdoc/cuvdatahandler.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		0A73F7030B6E35EA7C6A926E = {
-			fileRef = "36150AD6591CD16F9C296936";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		7A53AF8D8A86F2B7703B47A6 = {
-			isa = PBXFileReference;
-			name = "cuvvector.cpp";
-			path = "include/cuvvector.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		82131C329AEDFF8F54785923 = {
-			fileRef = "7A53AF8D8A86F2B7703B47A6";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		3F8F0D1104AAE3C3CCD9C806 = {
-			isa = PBXFileReference;
-			name = "printpreview.cpp";
-			path = "printpreview.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		8F8D827365C90D3E391C6D8E = {
-			fileRef = "3F8F0D1104AAE3C3CCD9C806";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		33DEF0A4988E3A1EE413F9FF = {
-			isa = PBXFileReference;
-			name = "pixmaplabel.cpp";
-			path = "pixmaplabel.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		870DDBBE994CE80C5FA37A4A = {
-			fileRef = "33DEF0A4988E3A1EE413F9FF";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		76E707E0DD0C96657DEABF6E = {
-			isa = PBXFileReference;
-			name = "showscene.cpp";
-			path = "showscene.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		2C15445969F8AD08DC10EBB1 = {
-			fileRef = "76E707E0DD0C96657DEABF6E";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		4F752D6BB4A5AE44860BC64C = {
-			isa = PBXFileReference;
-			name = "globalpreferences.cpp";
-			path = "globalpreferences.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		3CD42FE090232060C7EE599D = {
-			fileRef = "4F752D6BB4A5AE44860BC64C";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		5505FBE7E376EA2713588D32 = {
-			isa = PBXFileReference;
-			name = "getimagesize.cpp";
-			path = "getimagesize.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		C1F25E9F20C99C0956CE1BDF = {
-			fileRef = "5505FBE7E376EA2713588D32";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		ADCA4584528210E7A236C209 = {
-			isa = PBXFileReference;
-			name = "moviedialog.cpp";
-			path = "moviedialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		1D65DDAC0A2F0E488770DAE1 = {
-			fileRef = "ADCA4584528210E7A236C209";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		8458ADCEDC17D046942185CB = {
-			isa = PBXFileReference;
-			name = "script.cpp";
-			path = "script.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		E104D424C477AF3497DEA307 = {
-			fileRef = "8458ADCEDC17D046942185CB";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		4E3AB0E36A594E69CDAE45EB = {
-			isa = PBXFileReference;
-			name = "autoexport.cpp";
-			path = "autoexport.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		709E6F64DC4BE7C5298F844A = {
-			fileRef = "4E3AB0E36A594E69CDAE45EB";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		336D3C48DD3B44974395C633 = {
-			isa = PBXFileReference;
-			name = "moc_mainwindow.cpp";
-			path = "moc_mainwindow.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		26C2BED6C570C95F5243C556 = {
-			fileRef = "336D3C48DD3B44974395C633";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		188B6FB5E82399FC5CB69802 = {
-			isa = PBXFileReference;
-			name = "moc_viewersettings.cpp";
-			path = "moc_viewersettings.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		AA9AA27340D303D9CF305CCB = {
-			fileRef = "188B6FB5E82399FC5CB69802";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		DF7C32C250EB7EC8B56EAD06 = {
-			isa = PBXFileReference;
-			name = "moc_paletteview.cpp";
-			path = "moc_paletteview.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		2047DA1749B439430FFA7C2D = {
-			fileRef = "DF7C32C250EB7EC8B56EAD06";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		D64D26B967E8D7C4C19A0F7B = {
-			isa = PBXFileReference;
-			name = "moc_imageprocessing.cpp";
-			path = "moc_imageprocessing.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		798A4D29F9FD9FA31CDE4AD8 = {
-			fileRef = "D64D26B967E8D7C4C19A0F7B";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		D314BE77BE81D94E4B3B9DAB = {
-			isa = PBXFileReference;
-			name = "moc_binpalettes.cpp";
-			path = "moc_binpalettes.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		8C7A93D4203FACE9ABA20001 = {
-			fileRef = "D314BE77BE81D94E4B3B9DAB";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		59CD4F9263E55318D7ABB6BE = {
-			isa = PBXFileReference;
-			name = "moc_glrenderer.cpp";
-			path = "moc_glrenderer.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		C98EADAE0AFAA655934BFA10 = {
-			fileRef = "59CD4F9263E55318D7ABB6BE";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		323A4FB145C650EA534D96CC = {
-			isa = PBXFileReference;
-			name = "moc_cuviewdoc.cpp";
-			path = "moc_cuviewdoc.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		EFE8A117B3E4EC9AC40A0835 = {
-			fileRef = "323A4FB145C650EA534D96CC";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		86ADD011432BE838C9E91C59 = {
-			isa = PBXFileReference;
-			name = "moc_cuvdatahandler.cpp";
-			path = "moc_cuvdatahandler.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		15F2A60A9D3DD85163F857BB = {
-			fileRef = "86ADD011432BE838C9E91C59";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		74321A947AD3A0F5FF194EB2 = {
-			isa = PBXFileReference;
-			name = "moc_printpreview.cpp";
-			path = "moc_printpreview.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		F4FEF62F90840B2318303C89 = {
-			fileRef = "74321A947AD3A0F5FF194EB2";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		FFD51BBC46A331EE3D7B908A = {
-			isa = PBXFileReference;
-			name = "moc_pixmaplabel.cpp";
-			path = "moc_pixmaplabel.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		2E4F3B7F73EA13BD74FF1774 = {
-			fileRef = "FFD51BBC46A331EE3D7B908A";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		782C30F73B870B599FAB5F0A = {
-			isa = PBXFileReference;
-			name = "moc_showscene.cpp";
-			path = "moc_showscene.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		47D642AC530AFBDD720B939A = {
-			fileRef = "782C30F73B870B599FAB5F0A";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		273A6034CB751754568EA056 = {
-			isa = PBXFileReference;
-			name = "moc_globalpreferences.cpp";
-			path = "moc_globalpreferences.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		7162C5CAE4FCA7F0809F1C16 = {
-			fileRef = "273A6034CB751754568EA056";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		C0E112E876DADE40080A9321 = {
-			isa = PBXFileReference;
-			name = "moc_getimagesize.cpp";
-			path = "moc_getimagesize.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		20272530CE64D4C8D2E566EE = {
-			fileRef = "C0E112E876DADE40080A9321";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		85E01D040996E4B4811C478B = {
-			isa = PBXFileReference;
-			name = "moc_moviedialog.cpp";
-			path = "moc_moviedialog.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		4F513DF64352B6AAC37AD636 = {
-			fileRef = "85E01D040996E4B4811C478B";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		9804ACD0514EBC184BA205F0 = {
-			isa = PBXFileReference;
-			name = "moc_autoexport.cpp";
-			path = "moc_autoexport.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		DD3A249383E106E3A5B47005 = {
-			fileRef = "9804ACD0514EBC184BA205F0";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		AEDF5D6213366FC9B4765BAC = {
-			isa = PBXFileReference;
-			name = "qrc_images.cpp";
-			path = "qrc_images.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		1FBEC5F04CD36A072CBDFF0B = {
-			fileRef = "AEDF5D6213366FC9B4765BAC";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		29A8868787C983C25FEE5528 = {
-			isa = PBXFileReference;
-			name = "qrc_glshaders.cpp";
-			path = "qrc_glshaders.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		15E3698CEFA60393EBD88312 = {
-			fileRef = "29A8868787C983C25FEE5528";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		3CDF27B041FE1F2D2E06D52E = {
-			isa = PBXFileReference;
-			name = "qrc_htmlFiles.cpp";
-			path = "qrc_htmlFiles.cpp";
-			refType = 4;
-			lastKnownFileType = "sourcecode.cpp.cpp";
-		};
-		E4B721BED49A77B828A4CCF0 = {
-			fileRef = "3CDF27B041FE1F2D2E06D52E";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		AFB98B37FF0012B837A2131C = {
-			isa = PBXFileReference;
-			name = "ui_mainwindow.h";
-			path = "ui_mainwindow.h";
-			refType = 4;
-		};
-		F530E24F4248853EB19DC931 = {
-			isa = PBXFileReference;
-			name = "ui_viewersettings.h";
-			path = "ui_viewersettings.h";
-			refType = 4;
-		};
-		04351BE90B4FC2907329BF1A = {
-			isa = PBXFileReference;
-			name = "ui_printpreview.h";
-			path = "ui_printpreview.h";
-			refType = 4;
-		};
-		928317DD4257A06615538127 = {
-			isa = PBXFileReference;
-			name = "ui_showscene.h";
-			path = "ui_showscene.h";
-			refType = 4;
-		};
-		DE7834C83F6E50DE612A2701 = {
-			isa = PBXFileReference;
-			name = "ui_globalpreferences.h";
-			path = "ui_globalpreferences.h";
-			refType = 4;
-		};
-		1B9B2F2D5B61D65DD2661A8E = {
-			isa = PBXFileReference;
-			name = "ui_getimagesize.h";
-			path = "ui_getimagesize.h";
-			refType = 4;
-		};
-		CAAC1B351042DD6C482F6C45 = {
-			isa = PBXFileReference;
-			name = "ui_moviedialog.h";
-			path = "ui_moviedialog.h";
-			refType = 4;
-		};
-		ACB76DDFD3D71F333870F13A = {
-			isa = PBXFileReference;
-			name = "ui_autoexport.h";
-			path = "ui_autoexport.h";
-			refType = 4;
-		};
-		C63FA392C61F27B1B13369C1 = {
-			isa = PBXFileReference;
-			name = "mainwindow.h";
-			path = "mainwindow.h";
-			refType = 4;
-		};
-		0C81AB28DEC703193B2B8313 = {
-			isa = PBXFileReference;
-			name = "viewersettings.h";
-			path = "viewersettings.h";
-			refType = 4;
-		};
-		3EE623AB78C6A9206E270998 = {
-			isa = PBXFileReference;
-			name = "paletteview.h";
-			path = "paletteview.h";
-			refType = 4;
-		};
-		EB7364053870250347D716DF = {
-			isa = PBXFileReference;
-			name = "viewdata.h";
-			path = "viewdata.h";
-			refType = 4;
-		};
-		4AC71EB5C4CD4C258D558FE1 = {
-			isa = PBXFileReference;
-			name = "imageprocessing.h";
-			path = "imageprocessing.h";
-			refType = 4;
-		};
-		4CE2A6A8783A086674E631FC = {
-			isa = PBXFileReference;
-			name = "binpalettes.h";
-			path = "binpalettes.h";
-			refType = 4;
-		};
-		F281A32A0AF1796161245F1A = {
-			isa = PBXFileReference;
-			name = "sceneentity.h";
-			path = "cuviewdoc/sceneentity.h";
-			refType = 4;
-		};
-		0EAE6BAB43DACFA986924F5B = {
-			isa = PBXFileReference;
-			name = "glrenderer.h";
-			path = "cuviewdoc/glrenderer.h";
-			refType = 4;
-		};
-		B617BE036C1A801963B6EF84 = {
-			isa = PBXFileReference;
-			name = "entityscene.h";
-			path = "cuviewdoc/entityscene.h";
-			refType = 4;
-		};
-		5A94EA870D093ED397311341 = {
-			isa = PBXFileReference;
-			name = "drawablescene.h";
-			path = "cuviewdoc/drawablescene.h";
-			refType = 4;
-		};
-		1C4417D7CC66215ADB639528 = {
-			isa = PBXFileReference;
-			name = "displaylistscene.h";
-			path = "cuviewdoc/displaylistscene.h";
-			refType = 4;
-		};
-		40FCEA26392903D9D2D69061 = {
-			isa = PBXFileReference;
-			name = "cuviewdoc.h";
-			path = "cuviewdoc/cuviewdoc.h";
-			refType = 4;
-		};
-		EB1FE5B767E92C9507AA6575 = {
-			isa = PBXFileReference;
-			name = "cuvdatahandler.h";
-			path = "cuviewdoc/cuvdatahandler.h";
-			refType = 4;
-		};
-		B17C6083214BF37362F0451C = {
-			isa = PBXFileReference;
-			name = "changeablescene.h";
-			path = "cuviewdoc/changeablescene.h";
-			refType = 4;
-		};
-		375123A56E2E4BB27DD1CB90 = {
-			isa = PBXFileReference;
-			name = "lessalloc.h";
-			path = "include/lessalloc.h";
-			refType = 4;
-		};
-		A2F82EBECE0F7900EFDB4134 = {
-			isa = PBXFileReference;
-			name = "cuvvector.h";
-			path = "include/cuvvector.h";
-			refType = 4;
-		};
-		1615A18A82455E7CA8A8EE3C = {
-			isa = PBXFileReference;
-			name = "cuvtags.h";
-			path = "include/cuvtags.h";
-			refType = 4;
-		};
-		C065A0C4008372A9D595A8E7 = {
-			isa = PBXFileReference;
-			name = "cuvdatautils.h";
-			path = "include/cuvdatautils.h";
-			refType = 4;
-		};
-		043CFFCD0275CF806C6B7618 = {
-			isa = PBXFileReference;
-			name = "cuvcommonstructs.h";
-			path = "include/cuvcommonstructs.h";
-			refType = 4;
-		};
-		EC9B221F0B8E4EDD6647865D = {
-			isa = PBXFileReference;
-			name = "printpreview.h";
-			path = "printpreview.h";
-			refType = 4;
-		};
-		29834053D461501391C90C68 = {
-			isa = PBXFileReference;
-			name = "pixmaplabel.h";
-			path = "pixmaplabel.h";
-			refType = 4;
-		};
-		7E853AE0E46046837550D5E0 = {
-			isa = PBXFileReference;
-			name = "showscene.h";
-			path = "showscene.h";
-			refType = 4;
-		};
-		9EF0F84725EEE0A8385AC2D2 = {
-			isa = PBXFileReference;
-			name = "globalpreferences.h";
-			path = "globalpreferences.h";
-			refType = 4;
-		};
-		E58F17E990C6B7D1A3BE0BCF = {
-			isa = PBXFileReference;
-			name = "getimagesize.h";
-			path = "getimagesize.h";
-			refType = 4;
-		};
-		30EBAFE0D3C3F13ECA46AEE7 = {
-			isa = PBXFileReference;
-			name = "moviedialog.h";
-			path = "moviedialog.h";
-			refType = 4;
-		};
-		28467D66BEB9D6D4C69F4581 = {
-			isa = PBXFileReference;
-			name = "script.h";
-			path = "script.h";
-			refType = 4;
-		};
-		C372C466F35514D2A00F5789 = {
-			isa = PBXFileReference;
-			name = "autoexport.h";
-			path = "autoexport.h";
-			refType = 4;
-		};
-		7AD8BCE9D1E0939B92FCEC7E = {
-			isa = PBXFileReference;
-			name = "cuviewer.pro";
-			path = "cuviewer.pro";
-			refType = 4;
-		};
-		8ED80A96032A99F6AB328584 = {
-			isa = PBXFileReference;
-			name = "images.qrc";
-			path = "images.qrc";
-			refType = 4;
-		};
-		798F54F17102249B1A0E6EC1 = {
-			fileRef = "8ED80A96032A99F6AB328584";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		61ACFEDAA04B35D03E6A2A50 = {
-			isa = PBXFileReference;
-			name = "glshaders.qrc";
-			path = "glshaders.qrc";
-			refType = 4;
-		};
-		A07586394087DC80101BFF4A = {
-			fileRef = "61ACFEDAA04B35D03E6A2A50";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		E0D977A372CF9E09499E26A4 = {
-			isa = PBXFileReference;
-			name = "htmlFiles.qrc";
-			path = "htmlFiles.qrc";
-			refType = 4;
-		};
-		A1133F44A824B27204721D6B = {
-			fileRef = "E0D977A372CF9E09499E26A4";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		AB241F823D3821A41AAC4BDE = {
-			isa = PBXFileReference;
-			name = "mainwindow.ui";
-			path = "mainwindow.ui";
-			refType = 4;
-		};
-		A5DB83BD78FE4205FDAD3FC5 = {
-			fileRef = "AB241F823D3821A41AAC4BDE";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		799D37889D1CBC4B19E25EE3 = {
-			isa = PBXFileReference;
-			name = "viewersettings.ui";
-			path = "viewersettings.ui";
-			refType = 4;
-		};
-		45B6B12559945B5924E2CF56 = {
-			fileRef = "799D37889D1CBC4B19E25EE3";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		B95D71128A56E304CF2B7620 = {
-			isa = PBXFileReference;
-			name = "printpreview.ui";
-			path = "printpreview.ui";
-			refType = 4;
-		};
-		DB10978398EB2241D727E7DB = {
-			fileRef = "B95D71128A56E304CF2B7620";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		DC43A7ACB12AF7100F6FDC2B = {
-			isa = PBXFileReference;
-			name = "showscene.ui";
-			path = "showscene.ui";
-			refType = 4;
-		};
-		BE8795F1453E1A735BC3B4BD = {
-			fileRef = "DC43A7ACB12AF7100F6FDC2B";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		9F3E43F4B09D4A87C80BFBD7 = {
-			isa = PBXFileReference;
-			name = "globalpreferences.ui";
-			path = "globalpreferences.ui";
-			refType = 4;
-		};
-		F9C07EDAA3567921B903E3D1 = {
-			fileRef = "9F3E43F4B09D4A87C80BFBD7";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		9CF82C910C1F420D93370C43 = {
-			isa = PBXFileReference;
-			name = "getimagesize.ui";
-			path = "getimagesize.ui";
-			refType = 4;
-		};
-		0F5EAFFE7FFA65BC6B96D011 = {
-			fileRef = "9CF82C910C1F420D93370C43";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		23A12D294C35DE209B2AD673 = {
-			isa = PBXFileReference;
-			name = "moviedialog.ui";
-			path = "moviedialog.ui";
-			refType = 4;
-		};
-		FDCCD3A840261D9F7796CFC3 = {
-			fileRef = "23A12D294C35DE209B2AD673";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		4A9A6A7E5D1B06E591D53156 = {
-			isa = PBXFileReference;
-			name = "autoexport.ui";
-			path = "autoexport.ui";
-			refType = 4;
-		};
-		58561C7CB05329BF21E64742 = {
-			fileRef = "4A9A6A7E5D1B06E591D53156";
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					);
-			};
-		};
-		883D7615C4D2DE3FA1218F12 = {
-			isa = PBXGroup;
-			children = (
-				"C63FA392C61F27B1B13369C1",
-				"0C81AB28DEC703193B2B8313",
-				"3EE623AB78C6A9206E270998",
-				"EB7364053870250347D716DF",
-				"4AC71EB5C4CD4C258D558FE1",
-				"4CE2A6A8783A086674E631FC",
-				"55D67B18A28EA5F427C73E32",
-				"3B5C31E0476CF26CC94CDADA",
-				"EC9B221F0B8E4EDD6647865D",
-				"29834053D461501391C90C68",
-				"7E853AE0E46046837550D5E0",
-				"9EF0F84725EEE0A8385AC2D2",
-				"E58F17E990C6B7D1A3BE0BCF",
-				"30EBAFE0D3C3F13ECA46AEE7",
-				"28467D66BEB9D6D4C69F4581",
-				"C372C466F35514D2A00F5789");
-			name = "Headers";
-			refType = 4;
-		};
-		55D67B18A28EA5F427C73E32 = {
-			isa = PBXGroup;
-			children = (
-				"F281A32A0AF1796161245F1A",
-				"0EAE6BAB43DACFA986924F5B",
-				"B617BE036C1A801963B6EF84",
-				"5A94EA870D093ED397311341",
-				"1C4417D7CC66215ADB639528",
-				"40FCEA26392903D9D2D69061",
-				"EB1FE5B767E92C9507AA6575",
-				"B17C6083214BF37362F0451C");
-			name = "cuviewdoc";
-			refType = 4;
-		};
-		3B5C31E0476CF26CC94CDADA = {
-			isa = PBXGroup;
-			children = (
-				"375123A56E2E4BB27DD1CB90",
-				"A2F82EBECE0F7900EFDB4134",
-				"1615A18A82455E7CA8A8EE3C",
-				"C065A0C4008372A9D595A8E7",
-				"043CFFCD0275CF806C6B7618");
-			name = "include";
-			refType = 4;
-		};
-		DC93BB8C751B238A8E5F09C6 = {
-			isa = PBXGroup;
-			children = (
-				"1ACC2D1B2B149FEA7010F0C6",
-				"6C3809F3EAFABBA2FCAE7A27",
-				"55708F1CDDEB2DB1F69EF0CA",
-				"4014219B7681577BC82BB491",
-				"6B62213495B32505D737C0E9",
-				"0E38A4AD8BF7BAA400D1CD2F",
-				"0203B878A6E1E2E93C12034C",
-				"479DBFD51D780DE7D86E535A",
-				"7AB51513DE1759874568D11A",
-				"7850C326E6D3BA00F603277B",
-				"F21ECBE74723448A18E15AC7",
-				"0ECB297F54627F0995A63467",
-				"36150AD6591CD16F9C296936");
-			name = "cuviewdoc";
-			refType = 4;
-		};
-		4F0DF760062C343C4C01827F = {
-			isa = PBXGroup;
-			children = (
-				"7A53AF8D8A86F2B7703B47A6");
-			name = "include";
-			refType = 4;
-		};
-		FB61758D0F0FDA4BA867C3D5 = {
-			isa = PBXGroup;
-			children = (
-				"118FCBAABA162BA17933C789",
-				"EA177DE95BF7D3EF58EE43F7",
-				"27594C621E702237A4E20CF8",
-				"D47AE44419C69FB1394CE5FF",
-				"D1EFC2E7C32FD804288A5E3E",
-				"E884A6022398F2664CEF7825",
-				"DC93BB8C751B238A8E5F09C6",
-				"4F0DF760062C343C4C01827F",
-				"3F8F0D1104AAE3C3CCD9C806",
-				"33DEF0A4988E3A1EE413F9FF",
-				"76E707E0DD0C96657DEABF6E",
-				"4F752D6BB4A5AE44860BC64C",
-				"5505FBE7E376EA2713588D32",
-				"ADCA4584528210E7A236C209",
-				"8458ADCEDC17D046942185CB",
-				"4E3AB0E36A594E69CDAE45EB");
-			name = "Sources";
-			refType = 4;
-		};
-		52C235EBF1C9B07808119459 = {
-			isa = PBXGroup;
-			children = (
-				"8ED80A96032A99F6AB328584",
-				"61ACFEDAA04B35D03E6A2A50",
-				"E0D977A372CF9E09499E26A4");
-			name = "Sources [RCC]";
-			refType = 4;
-		};
-		EEC299C65D5017EB9DD513B0 = {
-			isa = PBXGroup;
-			children = (
-				"AB241F823D3821A41AAC4BDE",
-				"799D37889D1CBC4B19E25EE3",
-				"B95D71128A56E304CF2B7620",
-				"DC43A7ACB12AF7100F6FDC2B",
-				"9F3E43F4B09D4A87C80BFBD7",
-				"9CF82C910C1F420D93370C43",
-				"23A12D294C35DE209B2AD673",
-				"4A9A6A7E5D1B06E591D53156");
-			name = "Sources [UIC]";
-			refType = 4;
-		};
-		7CABE3C80E79AD2B307756D2 = {
-			isa = PBXGroup;
-			children = (
-				"7AD8BCE9D1E0939B92FCEC7E");
-			name = "Sources [qmake]";
-			refType = 4;
-		};
-		46E892BBB6BB6952967E0561 = {
-			isa = PBXGroup;
-			children = (
-				"336D3C48DD3B44974395C633",
-				"188B6FB5E82399FC5CB69802",
-				"DF7C32C250EB7EC8B56EAD06",
-				"D64D26B967E8D7C4C19A0F7B",
-				"D314BE77BE81D94E4B3B9DAB",
-				"59CD4F9263E55318D7ABB6BE",
-				"323A4FB145C650EA534D96CC",
-				"86ADD011432BE838C9E91C59",
-				"74321A947AD3A0F5FF194EB2",
-				"FFD51BBC46A331EE3D7B908A",
-				"782C30F73B870B599FAB5F0A",
-				"273A6034CB751754568EA056",
-				"C0E112E876DADE40080A9321",
-				"85E01D040996E4B4811C478B",
-				"9804ACD0514EBC184BA205F0",
-				"AEDF5D6213366FC9B4765BAC",
-				"29A8868787C983C25FEE5528",
-				"3CDF27B041FE1F2D2E06D52E",
-				"AFB98B37FF0012B837A2131C",
-				"F530E24F4248853EB19DC931",
-				"04351BE90B4FC2907329BF1A",
-				"928317DD4257A06615538127",
-				"DE7834C83F6E50DE612A2701",
-				"1B9B2F2D5B61D65DD2661A8E",
-				"CAAC1B351042DD6C482F6C45",
-				"ACB76DDFD3D71F333870F13A");
-			name = "Temporary Sources";
-			refType = 4;
-		};
-		A0A52A2ADF7A1E2A99738674 = {
-			buildActionMask = 2147483647;
-			files = (
-				);
-			generatedFileNames = (
-				"2B093CA6F071B023A473CED0",
-				"462C0F34BBEF2375A9469BB5",
-				"9DF3AD8164F445541BC8A06D",
-				"F4BF60642BF059EC564147FD",
-				"F44A3C2E1C61FC8FC39A2AFA",
-				"7A8B396291E9D00F4EF6065A",
-				"76138EBF01A5DEA3F6CCED0B",
-				"361A9707E486D2BAF94F3A64",
-				"B98F0DC9493E59403E010F3A",
-				"74B0AB4F771CC10802993870",
-				"0F383CAF1F369FAB80830F99",
-				"58F3AC2799B61059F4E2F3BA",
-				"CE3C2FF4A779B5209CEF604D",
-				"7D12242113F3402CACBA4B0A",
-				"D1ACC097C6BBA6EC000E2CF9",
-				"A8FC24A582C2037D551B0697",
-				"10C3022827534A869A24BB42",
-				"D99AEB34B547632746B1B991",
-				"0A73F7030B6E35EA7C6A926E",
-				"82131C329AEDFF8F54785923",
-				"8F8D827365C90D3E391C6D8E",
-				"870DDBBE994CE80C5FA37A4A",
-				"2C15445969F8AD08DC10EBB1",
-				"3CD42FE090232060C7EE599D",
-				"C1F25E9F20C99C0956CE1BDF",
-				"1D65DDAC0A2F0E488770DAE1",
-				"E104D424C477AF3497DEA307",
-				"709E6F64DC4BE7C5298F844A",
-				"26C2BED6C570C95F5243C556",
-				"AA9AA27340D303D9CF305CCB",
-				"2047DA1749B439430FFA7C2D",
-				"798A4D29F9FD9FA31CDE4AD8",
-				"8C7A93D4203FACE9ABA20001",
-				"C98EADAE0AFAA655934BFA10",
-				"EFE8A117B3E4EC9AC40A0835",
-				"15F2A60A9D3DD85163F857BB",
-				"F4FEF62F90840B2318303C89",
-				"2E4F3B7F73EA13BD74FF1774",
-				"47D642AC530AFBDD720B939A",
-				"7162C5CAE4FCA7F0809F1C16",
-				"20272530CE64D4C8D2E566EE",
-				"4F513DF64352B6AAC37AD636",
-				"DD3A249383E106E3A5B47005",
-				"1FBEC5F04CD36A072CBDFF0B",
-				"15E3698CEFA60393EBD88312",
-				"E4B721BED49A77B828A4CCF0");
-			isa = PBXShellScriptBuildPhase;
-			name = "Qt Preprocessors";
-			neededFileNames = (
-				"2B093CA6F071B023A473CED0",
-				"462C0F34BBEF2375A9469BB5",
-				"9DF3AD8164F445541BC8A06D",
-				"F4BF60642BF059EC564147FD",
-				"F44A3C2E1C61FC8FC39A2AFA",
-				"7A8B396291E9D00F4EF6065A",
-				"76138EBF01A5DEA3F6CCED0B",
-				"361A9707E486D2BAF94F3A64",
-				"B98F0DC9493E59403E010F3A",
-				"74B0AB4F771CC10802993870",
-				"0F383CAF1F369FAB80830F99",
-				"58F3AC2799B61059F4E2F3BA",
-				"CE3C2FF4A779B5209CEF604D",
-				"7D12242113F3402CACBA4B0A",
-				"D1ACC097C6BBA6EC000E2CF9",
-				"A8FC24A582C2037D551B0697",
-				"10C3022827534A869A24BB42",
-				"D99AEB34B547632746B1B991",
-				"0A73F7030B6E35EA7C6A926E",
-				"82131C329AEDFF8F54785923",
-				"8F8D827365C90D3E391C6D8E",
-				"870DDBBE994CE80C5FA37A4A",
-				"2C15445969F8AD08DC10EBB1",
-				"3CD42FE090232060C7EE599D",
-				"C1F25E9F20C99C0956CE1BDF",
-				"1D65DDAC0A2F0E488770DAE1",
-				"E104D424C477AF3497DEA307",
-				"709E6F64DC4BE7C5298F844A",
-				"26C2BED6C570C95F5243C556",
-				"AA9AA27340D303D9CF305CCB",
-				"2047DA1749B439430FFA7C2D",
-				"798A4D29F9FD9FA31CDE4AD8",
-				"8C7A93D4203FACE9ABA20001",
-				"C98EADAE0AFAA655934BFA10",
-				"EFE8A117B3E4EC9AC40A0835",
-				"15F2A60A9D3DD85163F857BB",
-				"F4FEF62F90840B2318303C89",
-				"2E4F3B7F73EA13BD74FF1774",
-				"47D642AC530AFBDD720B939A",
-				"7162C5CAE4FCA7F0809F1C16",
-				"20272530CE64D4C8D2E566EE",
-				"4F513DF64352B6AAC37AD636",
-				"DD3A249383E106E3A5B47005",
-				"1FBEC5F04CD36A072CBDFF0B",
-				"15E3698CEFA60393EBD88312",
-				"E4B721BED49A77B828A4CCF0");
-			shellPath = "/bin/sh";
-			shellScript = "make\ -C\ /Users/tjssmy/source/ospice/cuviewer2\ -f\ \'cuviewer.xcodeproj/qt_preprocess.mak\'";
-		};
-		C29B8785722055ED95EF7B57 = {
-			buildActionMask = 2147483647;
-			files = (
-				"2B093CA6F071B023A473CED0",
-				"462C0F34BBEF2375A9469BB5",
-				"9DF3AD8164F445541BC8A06D",
-				"F4BF60642BF059EC564147FD",
-				"F44A3C2E1C61FC8FC39A2AFA",
-				"7A8B396291E9D00F4EF6065A",
-				"76138EBF01A5DEA3F6CCED0B",
-				"361A9707E486D2BAF94F3A64",
-				"B98F0DC9493E59403E010F3A",
-				"74B0AB4F771CC10802993870",
-				"0F383CAF1F369FAB80830F99",
-				"58F3AC2799B61059F4E2F3BA",
-				"CE3C2FF4A779B5209CEF604D",
-				"7D12242113F3402CACBA4B0A",
-				"D1ACC097C6BBA6EC000E2CF9",
-				"A8FC24A582C2037D551B0697",
-				"10C3022827534A869A24BB42",
-				"D99AEB34B547632746B1B991",
-				"0A73F7030B6E35EA7C6A926E",
-				"82131C329AEDFF8F54785923",
-				"8F8D827365C90D3E391C6D8E",
-				"870DDBBE994CE80C5FA37A4A",
-				"2C15445969F8AD08DC10EBB1",
-				"3CD42FE090232060C7EE599D",
-				"C1F25E9F20C99C0956CE1BDF",
-				"1D65DDAC0A2F0E488770DAE1",
-				"E104D424C477AF3497DEA307",
-				"709E6F64DC4BE7C5298F844A",
-				"26C2BED6C570C95F5243C556",
-				"AA9AA27340D303D9CF305CCB",
-				"2047DA1749B439430FFA7C2D",
-				"798A4D29F9FD9FA31CDE4AD8",
-				"8C7A93D4203FACE9ABA20001",
-				"C98EADAE0AFAA655934BFA10",
-				"EFE8A117B3E4EC9AC40A0835",
-				"15F2A60A9D3DD85163F857BB",
-				"F4FEF62F90840B2318303C89",
-				"2E4F3B7F73EA13BD74FF1774",
-				"47D642AC530AFBDD720B939A",
-				"7162C5CAE4FCA7F0809F1C16",
-				"20272530CE64D4C8D2E566EE",
-				"4F513DF64352B6AAC37AD636",
-				"DD3A249383E106E3A5B47005",
-				"1FBEC5F04CD36A072CBDFF0B",
-				"15E3698CEFA60393EBD88312",
-				"E4B721BED49A77B828A4CCF0");
-			isa = PBXSourcesBuildPhase;
-			name = "Build Sources";
-		};
-		C374004D45E01156F931B37D = {
-			isa = PBXFrameworkReference;
-			name = "QtOpenGL.framework";
-			path = "/Library/Frameworks/QtOpenGL.framework";
-			refType = 0;
-		};
-		450A0D11527AF164AEFE7377 = {
-			fileRef = "C374004D45E01156F931B37D";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		9B36DA7E32F0304E780E7972 = {
-			isa = PBXFrameworkReference;
-			name = "QtGui.framework";
-			path = "/Library/Frameworks/QtGui.framework";
-			refType = 0;
-		};
-		501667F26B3C1FF6767A7C12 = {
-			fileRef = "9B36DA7E32F0304E780E7972";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7BC2E65A5E699A5E5D834CA2 = {
-			isa = PBXFrameworkReference;
-			name = "QtCore.framework";
-			path = "/Library/Frameworks/QtCore.framework";
-			refType = 0;
-		};
-		069D05B0128AE5DC7EE31738 = {
-			fileRef = "7BC2E65A5E699A5E5D834CA2";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		DA18A6831232F53228631AD1 = {
-			isa = PBXFrameworkReference;
-			name = "OpenGL.framework";
-			path = "/System/Library/Frameworks/OpenGL.framework";
-			refType = 0;
-		};
-		BCEF71E1EDFB18DA77DC750B = {
-			fileRef = "DA18A6831232F53228631AD1";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		C6766F86E49E9C8701C8E637 = {
-			isa = PBXFrameworkReference;
-			name = "AGL.framework";
-			path = "/System/Library/Frameworks/AGL.framework";
-			refType = 0;
-		};
-		0C6D4628EE0B0D1479A20551 = {
-			fileRef = "C6766F86E49E9C8701C8E637";
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		ED1E82605DD74B483AF3C982 = {
-			children = (
-				"C374004D45E01156F931B37D",
-				"9B36DA7E32F0304E780E7972",
-				"7BC2E65A5E699A5E5D834CA2",
-				"DA18A6831232F53228631AD1",
-				"C6766F86E49E9C8701C8E637");
-			isa = PBXGroup;
-			name = "External Frameworks and Libraries";
-			path = "";
-			refType = 4;
-		};
-		2A1043669E6E5A7426EA502A = {
-			buildActionMask = 2147483647;
-			files = (
-				"450A0D11527AF164AEFE7377",
-				"501667F26B3C1FF6767A7C12",
-				"069D05B0128AE5DC7EE31738",
-				"BCEF71E1EDFB18DA77DC750B",
-				"0C6D4628EE0B0D1479A20551");
+				836C9A5E147145E600E421CB /* cuviewer.app in Project Copy */,
+			);
+			name = "Project Copy";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0203B878A6E1E2E93C12034C /* draw_sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_sphere.cpp; path = cuviewdoc/draw_sphere.cpp; sourceTree = "<group>"; };
+		04351BE90B4FC2907329BF1A /* ui_printpreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_printpreview.h; sourceTree = "<group>"; };
+		043CFFCD0275CF806C6B7618 /* cuvcommonstructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuvcommonstructs.h; path = include/cuvcommonstructs.h; sourceTree = "<group>"; };
+		0C81AB28DEC703193B2B8313 /* viewersettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewersettings.h; sourceTree = "<group>"; };
+		0E38A4AD8BF7BAA400D1CD2F /* draw_sphoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_sphoid.cpp; path = cuviewdoc/draw_sphoid.cpp; sourceTree = "<group>"; };
+		0EAE6BAB43DACFA986924F5B /* glrenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glrenderer.h; path = cuviewdoc/glrenderer.h; sourceTree = "<group>"; };
+		0ECB297F54627F0995A63467 /* cuviewdoc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cuviewdoc.cpp; path = cuviewdoc/cuviewdoc.cpp; sourceTree = "<group>"; };
+		118FCBAABA162BA17933C789 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1615A18A82455E7CA8A8EE3C /* cuvtags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuvtags.h; path = include/cuvtags.h; sourceTree = "<group>"; };
+		188B6FB5E82399FC5CB69802 /* moc_viewersettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_viewersettings.cpp; sourceTree = "<group>"; };
+		1ACC2D1B2B149FEA7010F0C6 /* sceneentity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sceneentity.cpp; path = cuviewdoc/sceneentity.cpp; sourceTree = "<group>"; };
+		1B9B2F2D5B61D65DD2661A8E /* ui_getimagesize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_getimagesize.h; sourceTree = "<group>"; };
+		1C4417D7CC66215ADB639528 /* displaylistscene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = displaylistscene.h; path = cuviewdoc/displaylistscene.h; sourceTree = "<group>"; };
+		23A12D294C35DE209B2AD673 /* moviedialog.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = moviedialog.ui; sourceTree = "<group>"; };
+		273A6034CB751754568EA056 /* moc_globalpreferences.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_globalpreferences.cpp; sourceTree = "<group>"; };
+		27594C621E702237A4E20CF8 /* viewersettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewersettings.cpp; sourceTree = "<group>"; };
+		28467D66BEB9D6D4C69F4581 /* script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = script.h; sourceTree = "<group>"; };
+		29834053D461501391C90C68 /* pixmaplabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixmaplabel.h; sourceTree = "<group>"; };
+		29A8868787C983C25FEE5528 /* qrc_glshaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_glshaders.cpp; sourceTree = "<group>"; };
+		30EBAFE0D3C3F13ECA46AEE7 /* moviedialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moviedialog.h; sourceTree = "<group>"; };
+		323A4FB145C650EA534D96CC /* moc_cuviewdoc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_cuviewdoc.cpp; sourceTree = "<group>"; };
+		336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_mainwindow.cpp; sourceTree = "<group>"; };
+		33DEF0A4988E3A1EE413F9FF /* pixmaplabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pixmaplabel.cpp; sourceTree = "<group>"; };
+		36150AD6591CD16F9C296936 /* cuvdatahandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cuvdatahandler.cpp; path = cuviewdoc/cuvdatahandler.cpp; sourceTree = "<group>"; };
+		375123A56E2E4BB27DD1CB90 /* lessalloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lessalloc.h; path = include/lessalloc.h; sourceTree = "<group>"; };
+		3CDF27B041FE1F2D2E06D52E /* qrc_htmlFiles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_htmlFiles.cpp; sourceTree = "<group>"; };
+		3EE623AB78C6A9206E270998 /* paletteview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = paletteview.h; sourceTree = "<group>"; };
+		3F8F0D1104AAE3C3CCD9C806 /* printpreview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = printpreview.cpp; sourceTree = "<group>"; };
+		4014219B7681577BC82BB491 /* draw_tria.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_tria.cpp; path = cuviewdoc/draw_tria.cpp; sourceTree = "<group>"; };
+		40FCEA26392903D9D2D69061 /* cuviewdoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuviewdoc.h; path = cuviewdoc/cuviewdoc.h; sourceTree = "<group>"; };
+		479DBFD51D780DE7D86E535A /* draw_quadri.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_quadri.cpp; path = cuviewdoc/draw_quadri.cpp; sourceTree = "<group>"; };
+		4A9A6A7E5D1B06E591D53156 /* autoexport.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = autoexport.ui; sourceTree = "<group>"; };
+		4AC71EB5C4CD4C258D558FE1 /* imageprocessing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imageprocessing.h; sourceTree = "<group>"; };
+		4CE2A6A8783A086674E631FC /* binpalettes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = binpalettes.h; sourceTree = "<group>"; };
+		4E3AB0E36A594E69CDAE45EB /* autoexport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = autoexport.cpp; sourceTree = "<group>"; };
+		4F752D6BB4A5AE44860BC64C /* globalpreferences.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = globalpreferences.cpp; sourceTree = "<group>"; };
+		5505FBE7E376EA2713588D32 /* getimagesize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = getimagesize.cpp; sourceTree = "<group>"; };
+		55708F1CDDEB2DB1F69EF0CA /* entityscene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = entityscene.cpp; path = cuviewdoc/entityscene.cpp; sourceTree = "<group>"; };
+		59CD4F9263E55318D7ABB6BE /* moc_glrenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_glrenderer.cpp; sourceTree = "<group>"; };
+		5A94EA870D093ED397311341 /* drawablescene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = drawablescene.h; path = cuviewdoc/drawablescene.h; sourceTree = "<group>"; };
+		61ACFEDAA04B35D03E6A2A50 /* glshaders.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = glshaders.qrc; sourceTree = "<group>"; };
+		6B62213495B32505D737C0E9 /* draw_text.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_text.cpp; path = cuviewdoc/draw_text.cpp; sourceTree = "<group>"; };
+		6C3809F3EAFABBA2FCAE7A27 /* glrenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = glrenderer.cpp; path = cuviewdoc/glrenderer.cpp; sourceTree = "<group>"; };
+		74321A947AD3A0F5FF194EB2 /* moc_printpreview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_printpreview.cpp; sourceTree = "<group>"; };
+		76E707E0DD0C96657DEABF6E /* showscene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = showscene.cpp; sourceTree = "<group>"; };
+		782C30F73B870B599FAB5F0A /* moc_showscene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_showscene.cpp; sourceTree = "<group>"; };
+		7850C326E6D3BA00F603277B /* draw_line.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_line.cpp; path = cuviewdoc/draw_line.cpp; sourceTree = "<group>"; };
+		799D37889D1CBC4B19E25EE3 /* viewersettings.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = viewersettings.ui; sourceTree = "<group>"; };
+		7A53AF8D8A86F2B7703B47A6 /* cuvvector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cuvvector.cpp; path = include/cuvvector.cpp; sourceTree = "<group>"; };
+		7AB51513DE1759874568D11A /* draw_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = draw_point.cpp; path = cuviewdoc/draw_point.cpp; sourceTree = "<group>"; };
+		7AD8BCE9D1E0939B92FCEC7E /* cuviewer.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = cuviewer.pro; sourceTree = "<group>"; };
+		7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
+		7E853AE0E46046837550D5E0 /* showscene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = showscene.h; sourceTree = "<group>"; };
+		836C9A5B147145E600E421CB /* cuviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cuviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8458ADCEDC17D046942185CB /* script.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = script.cpp; sourceTree = "<group>"; };
+		85E01D040996E4B4811C478B /* moc_moviedialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_moviedialog.cpp; sourceTree = "<group>"; };
+		86ADD011432BE838C9E91C59 /* moc_cuvdatahandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_cuvdatahandler.cpp; sourceTree = "<group>"; };
+		8ED80A96032A99F6AB328584 /* images.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = images.qrc; sourceTree = "<group>"; };
+		928317DD4257A06615538127 /* ui_showscene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_showscene.h; sourceTree = "<group>"; };
+		9804ACD0514EBC184BA205F0 /* moc_autoexport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_autoexport.cpp; sourceTree = "<group>"; };
+		9B36DA7E32F0304E780E7972 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<absolute>"; };
+		9CF82C910C1F420D93370C43 /* getimagesize.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = getimagesize.ui; sourceTree = "<group>"; };
+		9EF0F84725EEE0A8385AC2D2 /* globalpreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globalpreferences.h; sourceTree = "<group>"; };
+		9F3E43F4B09D4A87C80BFBD7 /* globalpreferences.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = globalpreferences.ui; sourceTree = "<group>"; };
+		A2F82EBECE0F7900EFDB4134 /* cuvvector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuvvector.h; path = include/cuvvector.h; sourceTree = "<group>"; };
+		AB241F823D3821A41AAC4BDE /* mainwindow.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = mainwindow.ui; sourceTree = "<group>"; };
+		ACB76DDFD3D71F333870F13A /* ui_autoexport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_autoexport.h; sourceTree = "<group>"; };
+		ADCA4584528210E7A236C209 /* moviedialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moviedialog.cpp; sourceTree = "<group>"; };
+		AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_images.cpp; sourceTree = "<group>"; };
+		AFB98B37FF0012B837A2131C /* ui_mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_mainwindow.h; sourceTree = "<group>"; };
+		B17C6083214BF37362F0451C /* changeablescene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = changeablescene.h; path = cuviewdoc/changeablescene.h; sourceTree = "<group>"; };
+		B617BE036C1A801963B6EF84 /* entityscene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = entityscene.h; path = cuviewdoc/entityscene.h; sourceTree = "<group>"; };
+		B95D71128A56E304CF2B7620 /* printpreview.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = printpreview.ui; sourceTree = "<group>"; };
+		C065A0C4008372A9D595A8E7 /* cuvdatautils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuvdatautils.h; path = include/cuvdatautils.h; sourceTree = "<group>"; };
+		C0E112E876DADE40080A9321 /* moc_getimagesize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_getimagesize.cpp; sourceTree = "<group>"; };
+		C372C466F35514D2A00F5789 /* autoexport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = autoexport.h; sourceTree = "<group>"; };
+		C374004D45E01156F931B37D /* QtOpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGL.framework; path = /Library/Frameworks/QtOpenGL.framework; sourceTree = "<absolute>"; };
+		C63FA392C61F27B1B13369C1 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<group>"; };
+		C6766F86E49E9C8701C8E637 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
+		CAAC1B351042DD6C482F6C45 /* ui_moviedialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_moviedialog.h; sourceTree = "<group>"; };
+		D1EFC2E7C32FD804288A5E3E /* imageprocessing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageprocessing.cpp; sourceTree = "<group>"; };
+		D314BE77BE81D94E4B3B9DAB /* moc_binpalettes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_binpalettes.cpp; sourceTree = "<group>"; };
+		D47AE44419C69FB1394CE5FF /* paletteview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = paletteview.cpp; sourceTree = "<group>"; };
+		D64D26B967E8D7C4C19A0F7B /* moc_imageprocessing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_imageprocessing.cpp; sourceTree = "<group>"; };
+		DA18A6831232F53228631AD1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		DC43A7ACB12AF7100F6FDC2B /* showscene.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = showscene.ui; sourceTree = "<group>"; };
+		DE7834C83F6E50DE612A2701 /* ui_globalpreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_globalpreferences.h; sourceTree = "<group>"; };
+		DF7C32C250EB7EC8B56EAD06 /* moc_paletteview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_paletteview.cpp; sourceTree = "<group>"; };
+		E0D977A372CF9E09499E26A4 /* htmlFiles.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = htmlFiles.qrc; sourceTree = "<group>"; };
+		E58F17E990C6B7D1A3BE0BCF /* getimagesize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = getimagesize.h; sourceTree = "<group>"; };
+		E884A6022398F2664CEF7825 /* binpalettes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = binpalettes.cpp; sourceTree = "<group>"; };
+		EA177DE95BF7D3EF58EE43F7 /* mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow.cpp; sourceTree = "<group>"; };
+		EB1FE5B767E92C9507AA6575 /* cuvdatahandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cuvdatahandler.h; path = cuviewdoc/cuvdatahandler.h; sourceTree = "<group>"; };
+		EB7364053870250347D716DF /* viewdata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewdata.h; sourceTree = "<group>"; };
+		EC9B221F0B8E4EDD6647865D /* printpreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = printpreview.h; sourceTree = "<group>"; };
+		F21ECBE74723448A18E15AC7 /* displaylistscene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = displaylistscene.cpp; path = cuviewdoc/displaylistscene.cpp; sourceTree = "<group>"; };
+		F281A32A0AF1796161245F1A /* sceneentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sceneentity.h; path = cuviewdoc/sceneentity.h; sourceTree = "<group>"; };
+		F530E24F4248853EB19DC931 /* ui_viewersettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_viewersettings.h; sourceTree = "<group>"; };
+		FFD51BBC46A331EE3D7B908A /* moc_pixmaplabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_pixmaplabel.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450A0D11527AF164AEFE7377 /* QtOpenGL.framework in Frameworks & Libraries */,
+				501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */,
+				069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */,
+				BCEF71E1EDFB18DA77DC750B /* OpenGL.framework in Frameworks & Libraries */,
+				0C6D4628EE0B0D1479A20551 /* AGL.framework in Frameworks & Libraries */,
+			);
 			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3787F99312C85FF0073FD7BA = {
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05596AB53D8D521C69802C27 /* cuviewer */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				52C235EBF1C9B07808119459 /* Sources [RCC] */,
+				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				836C9A5C147145E600E421CB /* Products */,
+			);
+			name = cuviewer;
+			sourceTree = "<group>";
+		};
+		3B5C31E0476CF26CC94CDADA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				375123A56E2E4BB27DD1CB90 /* lessalloc.h */,
+				A2F82EBECE0F7900EFDB4134 /* cuvvector.h */,
+				1615A18A82455E7CA8A8EE3C /* cuvtags.h */,
+				C065A0C4008372A9D595A8E7 /* cuvdatautils.h */,
+				043CFFCD0275CF806C6B7618 /* cuvcommonstructs.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */,
+				188B6FB5E82399FC5CB69802 /* moc_viewersettings.cpp */,
+				DF7C32C250EB7EC8B56EAD06 /* moc_paletteview.cpp */,
+				D64D26B967E8D7C4C19A0F7B /* moc_imageprocessing.cpp */,
+				D314BE77BE81D94E4B3B9DAB /* moc_binpalettes.cpp */,
+				59CD4F9263E55318D7ABB6BE /* moc_glrenderer.cpp */,
+				323A4FB145C650EA534D96CC /* moc_cuviewdoc.cpp */,
+				86ADD011432BE838C9E91C59 /* moc_cuvdatahandler.cpp */,
+				74321A947AD3A0F5FF194EB2 /* moc_printpreview.cpp */,
+				FFD51BBC46A331EE3D7B908A /* moc_pixmaplabel.cpp */,
+				782C30F73B870B599FAB5F0A /* moc_showscene.cpp */,
+				273A6034CB751754568EA056 /* moc_globalpreferences.cpp */,
+				C0E112E876DADE40080A9321 /* moc_getimagesize.cpp */,
+				85E01D040996E4B4811C478B /* moc_moviedialog.cpp */,
+				9804ACD0514EBC184BA205F0 /* moc_autoexport.cpp */,
+				AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */,
+				29A8868787C983C25FEE5528 /* qrc_glshaders.cpp */,
+				3CDF27B041FE1F2D2E06D52E /* qrc_htmlFiles.cpp */,
+				AFB98B37FF0012B837A2131C /* ui_mainwindow.h */,
+				F530E24F4248853EB19DC931 /* ui_viewersettings.h */,
+				04351BE90B4FC2907329BF1A /* ui_printpreview.h */,
+				928317DD4257A06615538127 /* ui_showscene.h */,
+				DE7834C83F6E50DE612A2701 /* ui_globalpreferences.h */,
+				1B9B2F2D5B61D65DD2661A8E /* ui_getimagesize.h */,
+				CAAC1B351042DD6C482F6C45 /* ui_moviedialog.h */,
+				ACB76DDFD3D71F333870F13A /* ui_autoexport.h */,
+			);
+			name = "Temporary Sources";
+			sourceTree = "<group>";
+		};
+		4F0DF760062C343C4C01827F /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7A53AF8D8A86F2B7703B47A6 /* cuvvector.cpp */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		52C235EBF1C9B07808119459 /* Sources [RCC] */ = {
+			isa = PBXGroup;
+			children = (
+				8ED80A96032A99F6AB328584 /* images.qrc */,
+				61ACFEDAA04B35D03E6A2A50 /* glshaders.qrc */,
+				E0D977A372CF9E09499E26A4 /* htmlFiles.qrc */,
+			);
+			name = "Sources [RCC]";
+			sourceTree = "<group>";
+		};
+		55D67B18A28EA5F427C73E32 /* cuviewdoc */ = {
+			isa = PBXGroup;
+			children = (
+				F281A32A0AF1796161245F1A /* sceneentity.h */,
+				0EAE6BAB43DACFA986924F5B /* glrenderer.h */,
+				B617BE036C1A801963B6EF84 /* entityscene.h */,
+				5A94EA870D093ED397311341 /* drawablescene.h */,
+				1C4417D7CC66215ADB639528 /* displaylistscene.h */,
+				40FCEA26392903D9D2D69061 /* cuviewdoc.h */,
+				EB1FE5B767E92C9507AA6575 /* cuvdatahandler.h */,
+				B17C6083214BF37362F0451C /* changeablescene.h */,
+			);
+			name = cuviewdoc;
+			sourceTree = "<group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				7AD8BCE9D1E0939B92FCEC7E /* cuviewer.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<group>";
+		};
+		836C9A5C147145E600E421CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				836C9A5B147145E600E421CB /* cuviewer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				C63FA392C61F27B1B13369C1 /* mainwindow.h */,
+				0C81AB28DEC703193B2B8313 /* viewersettings.h */,
+				3EE623AB78C6A9206E270998 /* paletteview.h */,
+				EB7364053870250347D716DF /* viewdata.h */,
+				4AC71EB5C4CD4C258D558FE1 /* imageprocessing.h */,
+				4CE2A6A8783A086674E631FC /* binpalettes.h */,
+				55D67B18A28EA5F427C73E32 /* cuviewdoc */,
+				3B5C31E0476CF26CC94CDADA /* include */,
+				EC9B221F0B8E4EDD6647865D /* printpreview.h */,
+				29834053D461501391C90C68 /* pixmaplabel.h */,
+				7E853AE0E46046837550D5E0 /* showscene.h */,
+				9EF0F84725EEE0A8385AC2D2 /* globalpreferences.h */,
+				E58F17E990C6B7D1A3BE0BCF /* getimagesize.h */,
+				30EBAFE0D3C3F13ECA46AEE7 /* moviedialog.h */,
+				28467D66BEB9D6D4C69F4581 /* script.h */,
+				C372C466F35514D2A00F5789 /* autoexport.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		DC93BB8C751B238A8E5F09C6 /* cuviewdoc */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC2D1B2B149FEA7010F0C6 /* sceneentity.cpp */,
+				6C3809F3EAFABBA2FCAE7A27 /* glrenderer.cpp */,
+				55708F1CDDEB2DB1F69EF0CA /* entityscene.cpp */,
+				4014219B7681577BC82BB491 /* draw_tria.cpp */,
+				6B62213495B32505D737C0E9 /* draw_text.cpp */,
+				0E38A4AD8BF7BAA400D1CD2F /* draw_sphoid.cpp */,
+				0203B878A6E1E2E93C12034C /* draw_sphere.cpp */,
+				479DBFD51D780DE7D86E535A /* draw_quadri.cpp */,
+				7AB51513DE1759874568D11A /* draw_point.cpp */,
+				7850C326E6D3BA00F603277B /* draw_line.cpp */,
+				F21ECBE74723448A18E15AC7 /* displaylistscene.cpp */,
+				0ECB297F54627F0995A63467 /* cuviewdoc.cpp */,
+				36150AD6591CD16F9C296936 /* cuvdatahandler.cpp */,
+			);
+			name = cuviewdoc;
+			sourceTree = "<group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				C374004D45E01156F931B37D /* QtOpenGL.framework */,
+				9B36DA7E32F0304E780E7972 /* QtGui.framework */,
+				7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */,
+				DA18A6831232F53228631AD1 /* OpenGL.framework */,
+				C6766F86E49E9C8701C8E637 /* AGL.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		EEC299C65D5017EB9DD513B0 /* Sources [UIC] */ = {
+			isa = PBXGroup;
+			children = (
+				AB241F823D3821A41AAC4BDE /* mainwindow.ui */,
+				799D37889D1CBC4B19E25EE3 /* viewersettings.ui */,
+				B95D71128A56E304CF2B7620 /* printpreview.ui */,
+				DC43A7ACB12AF7100F6FDC2B /* showscene.ui */,
+				9F3E43F4B09D4A87C80BFBD7 /* globalpreferences.ui */,
+				9CF82C910C1F420D93370C43 /* getimagesize.ui */,
+				23A12D294C35DE209B2AD673 /* moviedialog.ui */,
+				4A9A6A7E5D1B06E591D53156 /* autoexport.ui */,
+			);
+			name = "Sources [UIC]";
+			sourceTree = "<group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				118FCBAABA162BA17933C789 /* main.cpp */,
+				EA177DE95BF7D3EF58EE43F7 /* mainwindow.cpp */,
+				27594C621E702237A4E20CF8 /* viewersettings.cpp */,
+				D47AE44419C69FB1394CE5FF /* paletteview.cpp */,
+				E884A6022398F2664CEF7825 /* binpalettes.cpp */,
+				D1EFC2E7C32FD804288A5E3E /* imageprocessing.cpp */,
+				DC93BB8C751B238A8E5F09C6 /* cuviewdoc */,
+				4F0DF760062C343C4C01827F /* include */,
+				3F8F0D1104AAE3C3CCD9C806 /* printpreview.cpp */,
+				33DEF0A4988E3A1EE413F9FF /* pixmaplabel.cpp */,
+				76E707E0DD0C96657DEABF6E /* showscene.cpp */,
+				4F752D6BB4A5AE44860BC64C /* globalpreferences.cpp */,
+				5505FBE7E376EA2713588D32 /* getimagesize.cpp */,
+				ADCA4584528210E7A236C209 /* moviedialog.cpp */,
+				8458ADCEDC17D046942185CB /* script.cpp */,
+				4E3AB0E36A594E69CDAE45EB /* autoexport.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BADA9F4ECD2F7BBDABC133DF /* cuviewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836C9A721471460400E421CB /* Build configuration list for PBXNativeTarget "cuviewer" */;
+			buildPhases = (
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cuviewer;
+			productName = cuviewer;
+			productReference = 836C9A5B147145E600E421CB /* cuviewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "cuviewer" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 05596AB53D8D521C69802C27 /* cuviewer */;
+			productRefGroup = 836C9A5C147145E600E421CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BADA9F4ECD2F7BBDABC133DF /* cuviewer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
-		};
-		F6069D5A5DA8AA28EDB8B3C6 = {
-			name = "Project Copy";
-			buildActionMask = 2147483647;
-			dstPath = "/Users/tjssmy/source/ospice/cuviewer2";
-			dstSubfolderSpec = 0;
-			files = (
-"07E0DFA73EB56DCB9E28CDD9");
-			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07E0DFA73EB56DCB9E28CDD9 = {
-			fileRef = "DDFC7C4DCFB83C8A60BCB2BC";
-			isa = PBXBuildFile;
-			settings = {
-			};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/tjssmy/source/ospice/cuviewer2 -f 'cuviewer.xcodeproj/qt_preprocess.mak'";
 		};
-		05596AB53D8D521C69802C27 = {
-			children = (
-				"FB61758D0F0FDA4BA867C3D5",
-				"46E892BBB6BB6952967E0561",
-				"883D7615C4D2DE3FA1218F12",
-				"7CABE3C80E79AD2B307756D2",
-				"52C235EBF1C9B07808119459",
-				"EEC299C65D5017EB9DD513B0",
-				"ED1E82605DD74B483AF3C982");
-			isa = PBXGroup;
-			name = "cuviewer";
-			path = "";
-			refType = 4;
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/tjssmy/source/ospice/cuviewer2 -f 'cuviewer.xcodeproj/qt_makeqmake.mak'";
 		};
-		DDFC7C4DCFB83C8A60BCB2BC = {
-			isa = PBXFileReference;
-			explicitFileType = "wrapper.application";
-			path = "cuviewer.app";
-			refType = 3;
-			sourceTree = BUILT_PRODUCTS_DIR;
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B093CA6F071B023A473CED0 /* main.cpp in Build Sources */,
+				462C0F34BBEF2375A9469BB5 /* mainwindow.cpp in Build Sources */,
+				9DF3AD8164F445541BC8A06D /* viewersettings.cpp in Build Sources */,
+				F4BF60642BF059EC564147FD /* paletteview.cpp in Build Sources */,
+				F44A3C2E1C61FC8FC39A2AFA /* imageprocessing.cpp in Build Sources */,
+				7A8B396291E9D00F4EF6065A /* binpalettes.cpp in Build Sources */,
+				76138EBF01A5DEA3F6CCED0B /* sceneentity.cpp in Build Sources */,
+				361A9707E486D2BAF94F3A64 /* glrenderer.cpp in Build Sources */,
+				B98F0DC9493E59403E010F3A /* entityscene.cpp in Build Sources */,
+				74B0AB4F771CC10802993870 /* draw_tria.cpp in Build Sources */,
+				0F383CAF1F369FAB80830F99 /* draw_text.cpp in Build Sources */,
+				58F3AC2799B61059F4E2F3BA /* draw_sphoid.cpp in Build Sources */,
+				CE3C2FF4A779B5209CEF604D /* draw_sphere.cpp in Build Sources */,
+				7D12242113F3402CACBA4B0A /* draw_quadri.cpp in Build Sources */,
+				D1ACC097C6BBA6EC000E2CF9 /* draw_point.cpp in Build Sources */,
+				A8FC24A582C2037D551B0697 /* draw_line.cpp in Build Sources */,
+				10C3022827534A869A24BB42 /* displaylistscene.cpp in Build Sources */,
+				D99AEB34B547632746B1B991 /* cuviewdoc.cpp in Build Sources */,
+				0A73F7030B6E35EA7C6A926E /* cuvdatahandler.cpp in Build Sources */,
+				82131C329AEDFF8F54785923 /* cuvvector.cpp in Build Sources */,
+				8F8D827365C90D3E391C6D8E /* printpreview.cpp in Build Sources */,
+				870DDBBE994CE80C5FA37A4A /* pixmaplabel.cpp in Build Sources */,
+				2C15445969F8AD08DC10EBB1 /* showscene.cpp in Build Sources */,
+				3CD42FE090232060C7EE599D /* globalpreferences.cpp in Build Sources */,
+				C1F25E9F20C99C0956CE1BDF /* getimagesize.cpp in Build Sources */,
+				1D65DDAC0A2F0E488770DAE1 /* moviedialog.cpp in Build Sources */,
+				E104D424C477AF3497DEA307 /* script.cpp in Build Sources */,
+				709E6F64DC4BE7C5298F844A /* autoexport.cpp in Build Sources */,
+				26C2BED6C570C95F5243C556 /* moc_mainwindow.cpp in Build Sources */,
+				AA9AA27340D303D9CF305CCB /* moc_viewersettings.cpp in Build Sources */,
+				2047DA1749B439430FFA7C2D /* moc_paletteview.cpp in Build Sources */,
+				798A4D29F9FD9FA31CDE4AD8 /* moc_imageprocessing.cpp in Build Sources */,
+				8C7A93D4203FACE9ABA20001 /* moc_binpalettes.cpp in Build Sources */,
+				C98EADAE0AFAA655934BFA10 /* moc_glrenderer.cpp in Build Sources */,
+				EFE8A117B3E4EC9AC40A0835 /* moc_cuviewdoc.cpp in Build Sources */,
+				15F2A60A9D3DD85163F857BB /* moc_cuvdatahandler.cpp in Build Sources */,
+				F4FEF62F90840B2318303C89 /* moc_printpreview.cpp in Build Sources */,
+				2E4F3B7F73EA13BD74FF1774 /* moc_pixmaplabel.cpp in Build Sources */,
+				47D642AC530AFBDD720B939A /* moc_showscene.cpp in Build Sources */,
+				7162C5CAE4FCA7F0809F1C16 /* moc_globalpreferences.cpp in Build Sources */,
+				20272530CE64D4C8D2E566EE /* moc_getimagesize.cpp in Build Sources */,
+				4F513DF64352B6AAC37AD636 /* moc_moviedialog.cpp in Build Sources */,
+				DD3A249383E106E3A5B47005 /* moc_autoexport.cpp in Build Sources */,
+				1FBEC5F04CD36A072CBDFF0B /* qrc_images.cpp in Build Sources */,
+				15E3698CEFA60393EBD88312 /* qrc_glshaders.cpp in Build Sources */,
+				E4B721BED49A77B828A4CCF0 /* qrc_htmlFiles.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		068F80C7519D0528FB08E821 = {
-			children = (
-				"DDFC7C4DCFB83C8A60BCB2BC");
-			isa = PBXGroup;
-			name = "Products";
-			refType = 4;
-		};
-		BADA9F4ECD2F7BBDABC133DF = {
-			buildPhases = (
-				"D7BA7D76DAB5DD13389D6332",
-				"A0A52A2ADF7A1E2A99738674",
-				"F6069D5A5DA8AA28EDB8B3C6",
-				"C29B8785722055ED95EF7B57",
-				"2A1043669E6E5A7426EA502A",
-				"3787F99312C85FF0073FD7BA");
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		836C9A6D147145E600E421CB /* Debug */ = {
+			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"/Library/Frameworks/QtCore.framework/Versions/4/Headers",
-					"/usr/include/QtCore",
-					"/Library/Frameworks/QtGui.framework/Versions/4/Headers",
-					"/usr/include/QtGui",
-					"/Library/Frameworks/QtOpenGL.framework/Versions/4/Headers",
-					"/usr/include/QtOpenGL",
-					"/usr/include",
-					"/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers",
-					"/System/Library/Frameworks/AGL.framework/Headers",
-					".",
-					".",
-					"/usr/local/include",
-					"/System/Library/Frameworks/CarbonCore.framework/Headers",
-					"/usr/local/Qt4.7/mkspecs/macx-xcode");
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/Library/Frameworks/QtOpenGL.framework/Versions/4/Headers,
+					/usr/include/QtOpenGL,
+					/usr/include,
+					/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers,
+					/System/Library/Frameworks/AGL.framework/Headers,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.7/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
 				LIBRARY_SEARCH_PATHS = (
-					"/Library/Frameworks",
-					"/System/Library/Frameworks/");
-				OPTIMIZATION_CFLAGS = (
-					);
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-g",
@@ -1561,7 +576,8 @@
 					"-DQT_OPENGL_LIB",
 					"-DQT_GUI_LIB",
 					"-DQT_CORE_LIB",
-					"-DQT_SHARED");
+					"-DQT_SHARED",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-pipe",
 					"-g",
@@ -1570,115 +586,190 @@
 					"-DQT_OPENGL_LIB",
 					"-DQT_GUI_LIB",
 					"-DQT_CORE_LIB",
-					"-DQT_SHARED");
-				LEXFLAGS = "";
-				YACCFLAGS = "-d";
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-F/Library/Frameworks",
+				);
 				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = cuviewer;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = "";
-				PREBINDING = NO;
-				INFOPLIST_FILE = "Info.plist";
-				BUILD_ROOT = "/Users/tjssmy/source/ospice/cuviewer2";
+				YACCFLAGS = "-d";
+			};
+			name = Debug;
+		};
+		836C9A6E147145E600E421CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/Library/Frameworks/QtOpenGL.framework/Versions/4/Headers,
+					/usr/include/QtOpenGL,
+					/usr/include,
+					/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers,
+					/System/Library/Frameworks/AGL.framework/Headers,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.7/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_OPENGL_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_OPENGL_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
 				OTHER_LDFLAGS = (
-						"-headerpad_max_install_names",
-						"-L/Library/Frameworks",
-						"-F/Library/Frameworks");
-				DYLIB_CURRENT_VERSION = "1.0.0";
-				DYLIB_COMPATIBILITY_VERSION = "1.0";
-				MACOSX_DEPLOYMENT_TARGET = "10.4";
-				PRODUCT_NAME = "cuviewer";
-			};
-			conditionalBuildSettings = {
-			};
-			dependencies = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-F/Library/Frameworks",
 				);
-			productReference = "DDFC7C4DCFB83C8A60BCB2BC";
-			shouldUseHeadermap = 1;
-			isa = PBXNativeTarget;
-			productType = "com.apple.product-type.application";
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
-<plist version=\"0.9\">
-<dict>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-    <key>CFBundleGetInfoString</key>
-	<string>Created by Qt/QMake</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleExecutable</key>
-	<string>cuviewer</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.cuviewer</string>
-	<key>NOTE</key>
-	<string>This file was generated by Qt/QMake.</string>
-</dict>
-</plist>
-";
-			name = "cuviewer";
-			productName = "cuviewer";
-			startupPath = "<<ProjectDirectory>>";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = cuviewer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Release;
 		};
-		8DB1DD96F65B1BF1FFC506E0 = {
+		836C9A6F147145E600E421CB /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = "NO";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
-				GCC_OPTIMIZATION_LEVEL = "0";
-			};
-			name = "Debug";
-		};
-		2C641C3335766025DD51B7BD = {
-			buildRules = (
+				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/Library/Frameworks/QtOpenGL.framework/Versions/4/Headers,
+					/usr/include/QtOpenGL,
+					/usr/include,
+					/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers,
+					/System/Library/Frameworks/AGL.framework/Headers,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.7/mkspecs/macx-xcode",
 				);
-			buildSettings = {
-				COPY_PHASE_STRIP = "NO";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "YES";
-				GCC_OPTIMIZATION_LEVEL = "0";
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_OPENGL_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-DQT_OPENGL_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-F/Library/Frameworks",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = cuviewer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
 			};
-			isa = "PBXBuildStyle";
-			name = "Debug";
+			name = Default;
 		};
-		95E1EB2E5DDD587BE5B3E548 = {
+		8DB1DD96F65B1BF1FFC506E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = "YES";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 			};
-			name = "Release";
+			name = Debug;
 		};
-		26DE8D2AEA4B3714B41E931F = {
-			buildRules = (
-				);
+		95E1EB2E5DDD587BE5B3E548 /* Release */ = {
+			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = "YES";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = "NO";
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 			};
-			isa = "PBXBuildStyle";
-			name = "Release";
+			name = Release;
 		};
-		2A951308CDB28F104D0A4BD2 = {
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "cuviewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"8DB1DD96F65B1BF1FFC506E0",
-				"95E1EB2E5DDD587BE5B3E548");
+				8DB1DD96F65B1BF1FFC506E0 /* Debug */,
+				95E1EB2E5DDD587BE5B3E548 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationIsName = "Debug";
+			defaultConfigurationName = Release;
 		};
-		91B15E841AA80083484172DE = {
-			buildStyles = (
-				"2C641C3335766025DD51B7BD",
-				"26DE8D2AEA4B3714B41E931F");
-			hasScannedForEncodings = 1;
-			isa = PBXProject;
-			mainGroup = "05596AB53D8D521C69802C27";
-			buildConfigurationList = "2A951308CDB28F104D0A4BD2";
-			projectDirPath = "";
-			targets = (
-				"BADA9F4ECD2F7BBDABC133DF");
+		836C9A721471460400E421CB /* Build configuration list for PBXNativeTarget "cuviewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836C9A6D147145E600E421CB /* Debug */,
+				836C9A6E147145E600E421CB /* Release */,
+				836C9A6F147145E600E421CB /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
 		};
+/* End XCConfigurationList section */
 	};
-	rootObject = "91B15E841AA80083484172DE";
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
 }

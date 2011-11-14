@@ -17,11 +17,25 @@ void createApp()
   MainWindow *mainwindow = new MainWindow();
   mainwindow->setWindowTitle("Carleton University Viewer");
 
-  if (!scriptfile.isEmpty()){
-    //Only first file executes scriptfile
-    mainwindow->loadSeparately(*files);
-  }
+//  if (!scriptfile.isEmpty()){
+//    //Only first file executes scriptfile
+//    mainwindow->loadSeparately(*files);
+//  }
 
+	if (!scriptfile.isEmpty()){
+
+		
+		mainwindow->slotSetScriptFile(scriptfile, scriptload);
+		
+	}
+	
+	//Only first file executes scriptfile
+	
+	mainwindow->loadSeparately(*files);
+	
+
+
+	
   if (useDefaultStyle){
     qApp->setStyle(new QWindowsStyle());
   }
