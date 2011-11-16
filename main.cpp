@@ -8,7 +8,7 @@
 #include "mainwindow.h"
 #include "config.h"
 
-bool useNativeStyle; //Program will use native look-and-feel if this is set.
+bool useNativeStyle; //Use native look-and-feel if set, otherwise use Windows style.
 bool scriptload;
 QStringList* files;
 QString scriptfile, imagefile, moviefile;
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     if(QString(argv[i]) == "-lowcolor")
       QApplication::setColorSpec(QApplication::NormalColor);
     if(QString(argv[i]) == "-style")
-      useDefaultStyle=false;
+      useNativeStyle=false;
   }
 
   QApplication app(argc, argv);
