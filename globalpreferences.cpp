@@ -8,9 +8,10 @@
 #include <qfile.h>
 #include <QImageWriter>
 #include <QTextStream>
+#include <QFileDialog>
 
 #include "config.h"
-/*
+/**
  *  Constructs a GlobalPreferences as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
  *
@@ -115,4 +116,9 @@ void GlobalPreferences::slotOk()
 
   delete file;
   accept();
+}
+
+void GlobalPreferences::changeDocPath(){
+  QString dirPath(QFileDialog::getExistingDirectory());
+  docPathLineEdit->setText(dirPath);
 }

@@ -810,7 +810,7 @@ void MainWindow::slotAbout()
   */
 void MainWindow::slotHelpContents()
 {
-  QUrl url(prefdata.docPath + "/index.html");
+  QUrl url("file:///" + prefdata.docPath + "/index.html");
   qDebug("Opening url: %s", qPrintable(url.toString()));
   if (!QDesktopServices::openUrl(url)){
     QMessageBox msgbox;
@@ -1248,7 +1248,7 @@ PrefData* MainWindow::getPreferences(){
       ts >> pad >> value; // showSplashScreen
       pd->showSplashScreen = value;
       ts >> pad >> str; //doc_path
-      pd->docPath = ts.readLine().trimmed();
+      pd->docPath = str.trimmed();
       //value.toString();
       ts >> pad >> value; //update display
       pd->updateRelease = value;
@@ -1726,7 +1726,9 @@ void MainWindow::slotLoadPreset()
   QStringList templist = script.getFilenameList();
   QStringList tomergelist;
   QStringList::Iterator it = templist.begin();
-  if (filedata.cuvfile!=*it)
+  qDebug("%s", qPrintable( templist.at(0) ));
+  qDebug("%s", qPrintable(filedata.cuvfile));
+  if (filedata.cuvfile != *it)
     qWarning("slotloadpreset: warning scriptfile does not have the original cuvfiles");
   for (++it; it != templist.end(); ++it ){ //omit first cuvfile
     tomergelist+=*it;
