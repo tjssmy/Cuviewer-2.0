@@ -120,5 +120,7 @@ void GlobalPreferences::slotOk()
 
 void GlobalPreferences::changeDocPath(){
   QString dirPath(QFileDialog::getExistingDirectory());
-  docPathLineEdit->setText(dirPath);
+  if (!dirPath.isEmpty()){
+    docPathLineEdit->setText(dirPath);
+  }
 }

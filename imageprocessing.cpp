@@ -6,25 +6,21 @@
   * 
   */
 
-//#include <qaction.h>
-//#include <qbuttongroup.h>
-//#include <qcheckbox.h>
-//#include <qfile.h>
-//#include <qfiledialog.h>
-//#include <qimage.h>
-//#include <qspinbox.h>
-//#include <qstring.h>
-//#include <qstringlist.h>
-//#include <qpushbutton.h>
-//#include <qtoolbutton.h>
-//#include <qstatusbar.h>
-//#include <qpainter.h>
-//// #include <q3paintdevicemetrics.h>
-//#include <qtimer.h>
-//#include <QPixmap>
-
-#include <QtGui>
-#include <QtCore>
+#include <qaction.h>
+#include <qbuttongroup.h>
+#include <qcheckbox.h>
+#include <qfile.h>
+#include <qfiledialog.h>
+#include <qimage.h>
+#include <qspinbox.h>
+#include <qstring.h>
+#include <qstringlist.h>
+#include <qpushbutton.h>
+#include <qtoolbutton.h>
+#include <qstatusbar.h>
+#include <qpainter.h>
+#include <qtimer.h>
+#include <QPixmap>
 
 #include <QImageWriter>
 
@@ -48,7 +44,8 @@ ImageProcessing::ImageProcessing(QWidget* parentWidget, ViewerSettings *viewerse
 {
   parent = parentWidget;
   vs = viewersettings;
-  timer = NULL;
+//  timer = NULL;
+  exportDelay = 0; //Used for autoexporting images
   cuviewDoc = NULL;
   imageFormat = 0;
   filterlist = "Images (";
@@ -129,11 +126,11 @@ QStringList ImageProcessing::getSupportedFormats()
 void ImageProcessing::autoExportImage( bool c )
 {
    if(!c||!cuviewDoc){ //shut off autoexport
-     ((QMainWindow*)parent)->statusBar()->showMessage(QString("autoexport is off"));
-     if(timer){
-       timer->stop();
-       timer->disconnect();
-     }
+     ((QMainWindow*)parent)->statusBar()->showMessage("Autoexport is off");
+//     if(timer){
+//       timer->stop();
+//       timer->disconnect();
+//     }
 //     filedata.autoimagefile = "";
      ((MainWindow*)parent)->autoExportImageAction->blockSignals(true);
      ((MainWindow*)parent)->autoExportImageAction->setChecked(false);
@@ -157,6 +154,7 @@ void ImageProcessing::autoExportImage( bool c )
 
      if ( absfilename.isEmpty() ){
        //Switch autoexport check to off.
+       qDebug("Autoimage file name is empty");
        ((MainWindow*)parent)->autoExportImageAction->blockSignals(TRUE);
        ((MainWindow*)parent)->autoExportImageAction->setChecked(FALSE);
        ((MainWindow*)parent)->autoExportImageAction->blockSignals(FALSE);
@@ -164,15 +162,15 @@ void ImageProcessing::autoExportImage( bool c )
      }
      autoimagefile = absfilename;
      if (!(autoimagefile.mid(autoimagefile.lastIndexOf('/'),autoimagefile.length())).contains('.')){
-       //Append image format to string if string originally didn't contain an extension.
-       autoimagefile += '.'+format;
+       //Append image format to string if string originally didn't contain extension.
+       autoimagefile += '.' + format;
      }
      //Bring up dialog asking: create webpage? refresh time?
      AutoExport ae(parent);
      ae.show();
-     int refreshTime, exportDelay;
+     int refreshTime;
      bool createWebpage;
-     if (ae.exec()==QDialog::Accepted){
+     if (ae.exec() == QDialog::Accepted){
        refreshTime = ae.refreshTime->value();
        exportDelay = ae.exportDelay->value();
        createWebpage = ae.createWebpage->isChecked();
@@ -194,7 +192,7 @@ void ImageProcessing::autoExportImage( bool c )
        QFile * htmlfile = new QFile(abshtmlfilename);
        htmlfile->remove();
        htmlfile->setFileName(abshtmlfilename);
-       qDebug( "writing html file: %s",qPrintable(abshtmlfilename));
+       qDebug( "Writing HTML file: %s",qPrintable(abshtmlfilename));
        if(htmlfile->open(QIODevice::ReadWrite)){
        QTextStream ts(htmlfile);
        ts << QString("<html><head>\n<script language=\"JavaScript\"><!-- \nfunction refreshIt() { \nif (!document.images) return; \ndocument.images['%1'].src = '%2.%3?' + Math.random(); \nsetTimeout(\'refreshIt()\',%4); \n } \n//--></script>\n</head> \n<body onLoad=\" setTimeout(\'refreshIt()\',%5)\"> \n<img src=\"%6.%7\" name=\"%8\"> <pre>%9</pre></body> \n</html>\n")
@@ -211,25 +209,35 @@ void ImageProcessing::autoExportImage( bool c )
        }
      }
 
-     //setup timer
-     if(!timer){
-       timer = new QTimer(parent); //timer
-       connect(timer, SIGNAL(timeout()), SLOT(autoExportImage()));
-     }
-     timer->start(exportDelay);
+//     //setup timer
+//     if(!timer){
+//       timer = new QTimer(parent); //timer
+//       connect(timer, SIGNAL(timeout()), SLOT(autoExportImage()));
+//     }
+//     timer->start(exportDelay);
    }
+
+   QTimer::singleShot(exportDelay, this, SLOT(autoExportImage()));
 
    if(QFile::exists(autoimagefile)){
      QFile::remove(autoimagefile); //remove file.
    }
-   qDebug("autoexport image to %s",qPrintable(autoimagefile));
+   qDebug("Autoexport image to %s",qPrintable(autoimagefile));
 
    // set preview mode to false
    getPixmap(false).save( autoimagefile, qPrintable(format) );
 }
 
 void ImageProcessing::autoExportImage(){
-  autoExportImage(true);
+  if(QFile::exists(autoimagefile)){
+    QFile::remove(autoimagefile); //remove file.
+  }
+  qDebug("Autoexport image to %s",qPrintable(autoimagefile));
+
+  // set preview mode to false
+  getPixmap(false).save( autoimagefile );
+
+  QTimer::singleShot(exportDelay, this, SLOT(autoExportImage()));
 }
 
 //actived from file->"export image at size ..."

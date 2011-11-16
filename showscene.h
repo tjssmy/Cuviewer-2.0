@@ -15,6 +15,9 @@ public:
     ShowScene(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
     ~ShowScene();
 
+private slots:
+    virtual void setDirectoryPath();
+
 protected slots:
     virtual void languageChange();
 

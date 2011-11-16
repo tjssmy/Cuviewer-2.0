@@ -1858,12 +1858,13 @@ void MainWindow::gotoViewpoint( int key )
 void MainWindow::showScenes()
 {
   if (showSceneDialog){
-    prefdata.ssd_x=showSceneDialog->x();
-    prefdata.ssd_y=showSceneDialog->y();
-    prefdata.ssd_dx=showSceneDialog->width();
-    prefdata.ssd_dy=showSceneDialog->height();
+    //Save position and size of ShowScene window before closing it.
+    prefdata.ssd_x = showSceneDialog->x();
+    prefdata.ssd_y = showSceneDialog->y();
+    prefdata.ssd_dx = showSceneDialog->width();
+    prefdata.ssd_dy = showSceneDialog->height();
     showSceneDialog->close();
-    showSceneDialog=NULL;
+    showSceneDialog = NULL;
   }
   else if (cuviewDoc) {
     qDebug("Opening ShowScene dialog");
@@ -2132,16 +2133,21 @@ void MainWindow::forwardPlayScene()
   //redraw, export image, play next scene
   cuviewDoc->redrawDoc();
   if (showSceneDialog->scexportCheck->isChecked()) {
-//    //Remove directory path from file name
-//    QString fileName = filedata.cuvfile.mid(filedata.cuvfile.lastIndexOf('/')+1);
-//    //Remove file extension
-//    fileName = fileName.left(fileName.lastIndexOf('.'));
-//    //Append scene number with preferred image format
-//    fileName = fileName + QString().sprintf("%04i", currentscene+1) + "." +
-//                ip->supportedFormats.at(getPreferences()->saveImageFormat);
-//    fileName = fileName.toLower();
-//    ip->setImageFile(fileName);
-//    ip->exportImage();
+    QString dirPath = showSceneDialog->imgDirectoryLineEdit->text().trimmed();
+    if (!dirPath.isEmpty()){
+      //Remove directory path from file name
+      QString fileName = filedata.cuvfile.mid(filedata.cuvfile.lastIndexOf('/')+1);
+      //Remove file extension
+      fileName = fileName.left(fileName.lastIndexOf('.'));
+      //Append scene number with preferred image format
+      fileName = fileName + QString().sprintf("%04i", currentscene+1) + "." +
+                  ip->supportedFormats.at(getPreferences()->saveImageFormat);
+      fileName = fileName.toLower();
+      ip->setImageFile(dirPath + "/" + fileName);
+      ip->exportImage();
+    } else{ //No directory path given
+      qDebug("Directory path is not set. Cannot export image.");
+    }
   }
   QTimer::singleShot(timeout,this, SLOT(forwardPlayScene()));
 }
