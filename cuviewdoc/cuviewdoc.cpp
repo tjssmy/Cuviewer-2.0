@@ -313,8 +313,7 @@ bool CUViewDoc::initializeData()
 	int glInitState;
 	
 	if (glRenderer)
-	{
-    qDebug("CUViewDoc::initializeData 1");
+  {
 		glInitState = glRenderer->getInitError();
 		if (glInitState & GLRenderer::GErrorRGBABuff)
 			showWarningMessage("Could not get a RGBA buffer; incorrect results may occur.");
@@ -328,10 +327,8 @@ bool CUViewDoc::initializeData()
 	else
 	{
 		showCriticalMessage("Could not obtain a valid GL rendering context.");
-	}
-  qDebug("CUViewDoc::initializeData 2");
-	initError = dataHandler->initializeData();
-  qDebug("CUViewDoc::initializeData 3");
+  }
+  initError = dataHandler->initializeData();
 	switch (initError)
 	{
 	  case CUVDataHandler::INoError:
@@ -359,8 +356,7 @@ bool CUViewDoc::initializeData()
 		
 	  default:
 		break;
-	}
-  qDebug("CUViewDoc::initializeData 4");
+  }
 	return (initError == CUVDataHandler::INoError);
 }
 

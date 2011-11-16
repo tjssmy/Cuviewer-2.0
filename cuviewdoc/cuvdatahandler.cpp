@@ -77,22 +77,18 @@ bool CUVDataHandler::getDataOrder()
 // puts version into fileVersion
 CUVDataHandler::InitError CUVDataHandler::getVersion()
 {
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 1");
 	cuv_tag tempTag;
   QByteArray version(SHORT_VERSION_STRING);
 #ifdef Q_WS_WIN
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 2");
     //next line crashes in solaris
 	char * ccompVersion = new char(version.length()+1);
 #else
     //nextline doesn't work in win32
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 3");
 	char ccompVersion[version.length()+1];
 #endif
   QByteArray compVersion;
 	int pos = -1;
 
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 4");
 	// check the BEGIN tag
 	if ( !getCUVTag(deviceIn, tempTag) )
 	{
@@ -103,7 +99,6 @@ CUVDataHandler::InitError CUVDataHandler::getVersion()
 		return IErrorInFileFormat;
 	}
 
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 5");
 #ifdef Q_WS_WIN
 //this is a hack that works, and I don't have a clue how it works in windows
 	new LessAlloc<sphoid>; //need this here, I don't know why!!
@@ -121,29 +116,22 @@ CUVDataHandler::InitError CUVDataHandler::getVersion()
 	QString ccv(ccompVersion);
   compVersion = ccv.toLatin1();
 #else
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 10");
 	//for some reason, the next line under windows changes ccompversion in the QCString = operator
 	compVersion = ccompVersion;
 #endif
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 11");
 	if (compVersion != version)
 	{
 		return IErrorInFileFormat;
 	}
 
-  qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 12");
 	// good, the text stuff matches, now lets get the version #....
 	do
 	{
-		pos++;
-    qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 13");
-    qDebug(ccompVersion);
+    pos++;
     if ( deviceIn->read(ccompVersion+pos, sizeof(*ccompVersion)) != (int)sizeof(*ccompVersion) )
     {
       return IErrorGettingVersion;
     }
-    qDebug("CUVDataHandler::InitError CUVDataHandler::getVersion 13b");
-    qDebug("While %i", (int)(pos < (int) version.length()) && ((cuv_tag) ccompVersion[pos] != (cuv_tag) END_VERSION));
 	} while ( (pos < (int) version.length()) && ((cuv_tag) ccompVersion[pos] != (cuv_tag) END_VERSION) );
 
 	if ( ((cuv_tag) ccompVersion[pos] != (cuv_tag) END_VERSION) || (pos == 0) ) // oops, something went wrong
@@ -165,35 +153,28 @@ CUVDataHandler::InitError CUVDataHandler::getVersion()
 CUVDataHandler::InitError CUVDataHandler::initializeData() 
 {
 	InitError returnValue;
-	cuv_tag tag;
-  qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 1");
+  cuv_tag tag;
+
 	if (deviceIn == NULL)
     if (!deviceIn->isOpen() || (!deviceIn->isReadable()) ||
     deviceIn->atEnd() ) // check to make sure it can be used
-		return IErrorOpening;
-qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 2");
+    return IErrorOpening;
 	if (!getDataOrder())
-		return IErrorInitializing;
-qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 3");
+    return IErrorInitializing;
 	if ( !getCUVTag(deviceIn, tag) )
-		return IErrorInitializing;
-qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 4");
-	returnValue = getVersion(); // will eat BEGIN and END tags (or return an error)
-qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 5");
+    return IErrorInitializing;
+  returnValue = getVersion(); // will eat BEGIN and END tags (or return an error)
 	if (returnValue)
 	{
 		return returnValue; // propogate the error out
-	}
-qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 6");
+  }
 	if (fileVersion > 360) // check for unsupported file version
 	{
 		return IErrorWrongVersion;
-	}
-  qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 7");
+  }
 #ifndef Q_WS_WIN
 //  #  warning "Need to make program stable when dataInitialized != true..."
 #endif
-  qDebug("CUVDataHandler::InitError CUVDataHandler::initializeData() 8");
 	dataInitialized = true;
 	return INoError; // all version testing OK; version # in fileVersion
 }

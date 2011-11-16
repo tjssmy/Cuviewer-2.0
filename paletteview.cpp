@@ -80,11 +80,11 @@ void PaletteView::setBackgroundColor(const QColor& backgroundcolor)
   QColor textcolor;
   if(0<=v && v<=128){
     textcolor = Qt::white;
-    qDebug("text white");
+//    qDebug("text white");
   }
   else {
     textcolor = Qt::black;
-    qDebug("text black");
+//    qDebug("text black");
   }
   
   QPalette p = palette();
@@ -118,6 +118,7 @@ void PaletteView::paintPalette(QPaintDevice* paintDevice,int width,int height, i
   int dy;
   
   for(int i=0;i<(int)bwp->count-4;i++){
+    //QPaintDevice cannot take more than two painters, so only one was used.
 //    cbins.setBrush( QColor( bwp->toPalette[3*i   + 9],
 //                            bwp->toPalette[3*i+1 + 9],
 //                            bwp->toPalette[3*i+2 + 9] ) );

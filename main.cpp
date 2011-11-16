@@ -8,7 +8,8 @@
 #include "mainwindow.h"
 #include "config.h"
 
-bool useDefaultStyle,scriptload;
+bool useNativeStyle; //Program will use native look-and-feel if this is set.
+bool scriptload;
 QStringList* files;
 QString scriptfile, imagefile, moviefile;
 
@@ -17,26 +18,13 @@ void createApp()
   MainWindow *mainwindow = new MainWindow();
   mainwindow->setWindowTitle("Carleton University Viewer");
 
-//  if (!scriptfile.isEmpty()){
-//    //Only first file executes scriptfile
-//    mainwindow->loadSeparately(*files);
-//  }
+  if (!scriptfile.isEmpty()){
+    mainwindow->slotSetScriptFile(scriptfile, scriptload);
+  }
+  //Only first file executes scriptfile
+  mainwindow->loadSeparately(*files);
 
-	if (!scriptfile.isEmpty()){
-
-		
-		mainwindow->slotSetScriptFile(scriptfile, scriptload);
-		
-	}
-	
-	//Only first file executes scriptfile
-	
-	mainwindow->loadSeparately(*files);
-	
-
-
-	
-  if (useDefaultStyle){
+  if (!useNativeStyle){
     qApp->setStyle(new QWindowsStyle());
   }
   mainwindow->show();
@@ -52,7 +40,7 @@ void createApp()
 
 int main(int argc, char *argv[])
 {
-  useDefaultStyle=false;
+  useNativeStyle=true;
   scriptload=true;
   files = new QStringList;
 
@@ -74,37 +62,39 @@ int main(int argc, char *argv[])
 
   //after Qt parses command line, removes options it recognizes, we then parse the command line
   for (int i=1 ; i < qApp->arguments().size() ; i++) {
+    QString argument = qApp->arguments().at(i);
+
     //Look for options starting with '-'
-    if (qApp->arguments().at(i).at(0) == '-') {
-      if ( QString(qApp->arguments().at(i)) == "-v" ||
-           QString(qApp->arguments().at(i)) == "--version" ||
-           QString(qApp->arguments().at(i)) == "-version" )
+    if (argument.at(0) == '-') {
+      if ( QString(argument) == "-v" ||
+           QString(argument) == "--version" ||
+           QString(argument) == "-version" )
       {
         stdOutStream << qApp->tr(VERSION_MESSAGE);
         return 0;
       }
-      else if(QString(qApp->arguments().at(i)) == "-s"){ //script
+      else if(QString(argument) == "-s"){ //script
         scriptfile = QString(qApp->arguments().at(++i));
       }
-      else if(QString(qApp->arguments().at(i)) == "-noload"){ //scriptload
+      else if(QString(argument) == "-noload"){ //scriptload
         scriptload=false;
       }
-      else if(QString(qApp->arguments().at(i)) == "-e"){ //export image
+      else if(QString(argument) == "-e"){ //export image
         imagefile = QString(qApp->arguments()[++i]);
       }
-      else if(QString(qApp->arguments().at(i)) == "-m"){ //export movie
+      else if(QString(argument) == "-m"){ //export movie
         moviefile = QString(qApp->arguments()[++i]);
       }
       else{
         stdOutStream << qApp->tr("Unrecognized Option: ");
-        stdOutStream << qApp->arguments().at(i);
+        stdOutStream << argument;
         stdOutStream << "\a\n\n";
         stdOutStream << qApp->tr(HELP_MESSAGE);
         return -1;
       }
     }
     else{ //treat it as a file to open...
-      files->push_back(QString(qApp->arguments().at(i)));
+      files->push_back(QString(argument));
     }
   }
 
