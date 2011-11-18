@@ -186,12 +186,6 @@
    <addaction name="helpMenu"/>
   </widget>
   <widget class="QDockWidget" name="viewerSettingsDockWidget">
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
    <property name="minimumSize">
     <size>
      <width>80</width>
@@ -215,6 +209,24 @@
    </property>
    <property name="name" stdset="0">
     <cstring>blankAction</cstring>
+   </property>
+  </action>
+  <action name="autoExportImageAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/images/timeedit.png</normaloff>:/images/images/timeedit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Auto Export Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Auto Export Image</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
   <actiongroup name="viewerSettingsActionGroup">
@@ -1111,24 +1123,6 @@
     </property>
     <property name="name" stdset="0">
      <cstring>closeWindowAction</cstring>
-    </property>
-   </action>
-   <action name="autoExportImageAction">
-    <property name="checkable">
-     <bool>true</bool>
-    </property>
-    <property name="icon">
-     <iconset resource="images.qrc">
-      <normaloff>:/images/images/timeedit.png</normaloff>:/images/images/timeedit.png</iconset>
-    </property>
-    <property name="iconText">
-     <string>Auto Export Image</string>
-    </property>
-    <property name="shortcut">
-     <string>Ctrl+A</string>
-    </property>
-    <property name="name" stdset="0">
-     <cstring>autoExportImageAction</cstring>
     </property>
    </action>
    <action name="closeFileAction">

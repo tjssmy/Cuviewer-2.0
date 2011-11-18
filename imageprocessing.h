@@ -66,8 +66,7 @@ private slots:
   CUViewDoc * cuviewDoc;
   QWidget * parent;
   ViewerSettings *vs;
-//  QTimer * timer;
-  int exportDelay;
+  QTimer * timer;
   int imageFormat;
   QString autoimagefile;
   QString imagefile;

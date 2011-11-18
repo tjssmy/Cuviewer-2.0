@@ -44,8 +44,7 @@ ImageProcessing::ImageProcessing(QWidget* parentWidget, ViewerSettings *viewerse
 {
   parent = parentWidget;
   vs = viewersettings;
-//  timer = NULL;
-  exportDelay = 0; //Used for autoexporting images
+  timer = NULL;
   cuviewDoc = NULL;
   imageFormat = 0;
   filterlist = "Images (";
@@ -127,10 +126,10 @@ void ImageProcessing::autoExportImage( bool c )
 {
    if(!c||!cuviewDoc){ //shut off autoexport
      ((QMainWindow*)parent)->statusBar()->showMessage("Autoexport is off");
-//     if(timer){
-//       timer->stop();
-//       timer->disconnect();
-//     }
+     if(timer){
+       timer->stop();
+       timer->disconnect();
+     }
 //     filedata.autoimagefile = "";
      ((MainWindow*)parent)->autoExportImageAction->blockSignals(true);
      ((MainWindow*)parent)->autoExportImageAction->setChecked(false);
@@ -161,16 +160,17 @@ void ImageProcessing::autoExportImage( bool c )
        return;
      }
      autoimagefile = absfilename;
-     if (!(autoimagefile.mid(autoimagefile.lastIndexOf('/'),autoimagefile.length())).contains('.')){
+     if (!(autoimagefile.mid(autoimagefile.lastIndexOf('/'),
+                             autoimagefile.length())).contains('.')){
        //Append image format to string if string originally didn't contain extension.
        autoimagefile += '.' + format;
      }
      //Bring up dialog asking: create webpage? refresh time?
      AutoExport ae(parent);
      ae.show();
-     int refreshTime;
+     int refreshTime, exportDelay;
      bool createWebpage;
-     if (ae.exec() == QDialog::Accepted){
+     if (ae.exec()==QDialog::Accepted){
        refreshTime = ae.refreshTime->value();
        exportDelay = ae.exportDelay->value();
        createWebpage = ae.createWebpage->isChecked();
@@ -209,15 +209,13 @@ void ImageProcessing::autoExportImage( bool c )
        }
      }
 
-//     //setup timer
-//     if(!timer){
-//       timer = new QTimer(parent); //timer
-//       connect(timer, SIGNAL(timeout()), SLOT(autoExportImage()));
-//     }
-//     timer->start(exportDelay);
+     //setup timer
+     if(!timer){
+       timer = new QTimer(parent); //timer
+       connect(timer, SIGNAL(timeout()), SLOT(autoExportImage()));
+     }
+     timer->start(exportDelay);
    }
-
-   QTimer::singleShot(exportDelay, this, SLOT(autoExportImage()));
 
    if(QFile::exists(autoimagefile)){
      QFile::remove(autoimagefile); //remove file.
@@ -233,11 +231,7 @@ void ImageProcessing::autoExportImage(){
     QFile::remove(autoimagefile); //remove file.
   }
   qDebug("Autoexport image to %s",qPrintable(autoimagefile));
-
-  // set preview mode to false
-  getPixmap(false).save( autoimagefile );
-
-  QTimer::singleShot(exportDelay, this, SLOT(autoExportImage()));
+  getPixmap(false).save(autoimagefile);
 }
 
 //actived from file->"export image at size ..."
@@ -335,22 +329,22 @@ void ImageProcessing::exportImage(QPixmap pm){
 // obsolete and was used only in imageprocessing.cpp anyways
 //QString ImageProcessing::getFormat(QString filename, QString currentfilter)
 //{
-////  QComboBox * filtercb = ((MainWindow*)parent)->saveImageFormat;
-////  int count = filtercb->count();
+//  QComboBox * filtercb = ((MainWindow*)parent)->saveImageFormat;
+//  int count = filtercb->count();
 
-////  bool gotformat=FALSE;
-////  for(int i=0;i<count;i++){
-////    gotformat=filename.contains(QString("."+filtercb->text(i)),Qt::CaseSensitive/*case-sensitive*/);
-////    if( !gotformat && filtercb->text(i).contains(QString("jpeg"),Qt::CaseSensitive/*case-sensitive*/) )
-////      gotformat=filename.contains(QString(".jpg"),Qt::CaseSensitive/*case-sensitive*/);
-////    if (gotformat)
-////      return filtercb->text(i);
-////  }
+//  bool gotformat=FALSE;
+//  for(int i=0;i<count;i++){
+//    gotformat=filename.contains(QString("."+filtercb->text(i)),Qt::CaseSensitive/*case-sensitive*/);
+//    if( !gotformat && filtercb->text(i).contains(QString("jpeg"),Qt::CaseSensitive/*case-sensitive*/) )
+//      gotformat=filename.contains(QString(".jpg"),Qt::CaseSensitive/*case-sensitive*/);
+//    if (gotformat)
+//      return filtercb->text(i);
+//  }
 
-////  if(currentfilter.contains(QString("image files"),Qt::CaseSensitive/*case-sensitive*/))
-////    return filtercb->currentText(); //goto default (selected in mainwidow toolbar)
+//  if(currentfilter.contains(QString("image files"),Qt::CaseSensitive/*case-sensitive*/))
+//    return filtercb->currentText(); //goto default (selected in mainwidow toolbar)
 
-////  return currentfilter.right(2); //cut off "*.", to get format
+//  return currentfilter.right(2); //cut off "*.", to get format
 //}
 
 /**
