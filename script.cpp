@@ -23,9 +23,9 @@
   */
 Script::Script(QFile * file,CUViewDoc * cvd)
 {
-	scriptfile = file;
-	cuviewDoc = cvd;
-	allowLoad = true;
+  scriptfile = file;
+  cuviewDoc = cvd;
+  allowLoad = true;
 }
 
 Script::~Script()
@@ -44,13 +44,14 @@ QStringList Script::getFilenameList()
 
 void Script::setFilenameList(QStringList filelist)
 {
-  filenamelist=filelist;
+  filenamelist = filelist;
 }
 
 /**
     @brief Writes the script to a file
 
-    The writeScript method writes all settings related to the cuviewDoc to a file.
+    The writeScript method writes all settings related to the
+    cuviewDoc to a file given by scriptfile.
 
     The settings written to the file are listed below in the order which it was written:
      - Camera position
@@ -74,130 +75,131 @@ void Script::writeScript()
 {
 //write everything to scriptfile
   QString filename = scriptfile->fileName();
-	scriptfile->remove();
+  scriptfile->remove();
   scriptfile->setFileName(filename);
   qDebug( "writing script file: %s", qPrintable(scriptfile->fileName()));
-	if(scriptfile->open(QIODevice::ReadWrite)){
-		GLfloat* toFill = new GLfloat[3];
-		
+  if(scriptfile->open(QIODevice::ReadWrite)){
+    GLfloat* toFill = new GLfloat[3];
+
     QTextStream ts(scriptfile);
-		ts << QString("script data for cuviewer, do not edit.\n");
-		cuviewDoc->cameraPos(toFill);
-		ts << QString("camera_position_xyz %1 %2 %3\n")
-			.arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
-		cuviewDoc->cameraAim(toFill);
-		ts << QString("camera_aim_xyz %1 %2 %3\n")
-			.arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
-		cuviewDoc->cameraUp(toFill);
-		ts << QString("camera_up_xyz %1 %2 %3\n")
-			.arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
-		cuviewDoc->outlineColor(toFill);
-		ts << QString("outlinecolor_rbg %1 %2 %3\n")
-			.arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
-		
-		ts << QString("outline %1\n").arg((int)cuviewDoc->outline());
-		ts << QString("twosided %1\n").arg((int)cuviewDoc->twoSided());
-		ts << QString("aa %1\n").arg((int)cuviewDoc->antialias());
-		ts << QString("view %1\n").arg((int)cuviewDoc->perspective());
-		ts << QString("smoothshaded %1\n").arg((int)cuviewDoc->smoothShaded());
-		ts << QString("transparency %1\n").arg((int)cuviewDoc->transparency());
-//		ts << QString("fog %1\n").arg((int)cuviewDoc->fog());
-		ts << QString("gamma %1\n").arg((int)cuviewDoc->gamma());
-		ts << QString("wireframe %1\n").arg((int)cuviewDoc->wireframe());
-		ts << QString("opaquewf %1\n").arg((int)cuviewDoc->opaqueWireframe());
-		ts << QString("lighting %1\n").arg((int)cuviewDoc->lighting());
-		ts << QString("diffuse %1\n").arg((int)cuviewDoc->light());
-		ts << QString("binWindow %1\n").arg((int)cuviewDoc->binWindow());
-		
-		ts << QString("linewidth %1\n").arg((int)cuviewDoc->lineWidth());
-		ts << QString("spheretess %1\n").arg((int)cuviewDoc->sphereTess());
-		ts << QString("clipping %1\n").arg((double)cuviewDoc->clipPerspNear());
-		ts << QString("fov %1\n").arg((float)cuviewDoc->fov());
-		ts << QString("ambientv %1\n").arg((float)cuviewDoc->ambient());
-		ts << QString("diffusev %1\n").arg((float)cuviewDoc->diffuse());
-		ts << QString("background %1\n").arg((float)cuviewDoc->background());
-		ts << QString("gammav %1\n").arg((float)cuviewDoc->gammaLevel());
-		ts << QString("binwindowindex %1\n").arg((int)cuviewDoc->binWindowIndex());
+    ts << QString("script data for cuviewer, do not edit.\n");
+    cuviewDoc->cameraPos(toFill);
+    ts << QString("camera_position_xyz %1 %2 %3\n")
+      .arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
+    cuviewDoc->cameraAim(toFill);
+    ts << QString("camera_aim_xyz %1 %2 %3\n")
+      .arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
+    cuviewDoc->cameraUp(toFill);
+    ts << QString("camera_up_xyz %1 %2 %3\n")
+      .arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
+    cuviewDoc->outlineColor(toFill);
+    ts << QString("outlinecolor_rbg %1 %2 %3\n")
+      .arg((float)toFill[0]).arg((float)toFill[1]).arg((float)toFill[2]);
 
-		ts << "loadfilelist " << QString::number(filenamelist.count()) << "\n";
-		for ( QStringList::Iterator it = filenamelist.begin(); 
-		      it != filenamelist.end(); ++it ) {
-		  ts << *it << "\n";
-		}
+    ts << QString("outline %1\n").arg((int)cuviewDoc->outline());
+    ts << QString("twosided %1\n").arg((int)cuviewDoc->twoSided());
+    ts << QString("aa %1\n").arg((int)cuviewDoc->antialias());
+    ts << QString("view %1\n").arg((int)cuviewDoc->perspective());
+    ts << QString("smoothshaded %1\n").arg((int)cuviewDoc->smoothShaded());
+    ts << QString("transparency %1\n").arg((int)cuviewDoc->transparency());
+//    ts << QString("fog %1\n").arg((int)cuviewDoc->fog());
+    ts << QString("gamma %1\n").arg((int)cuviewDoc->gamma());
+    ts << QString("wireframe %1\n").arg((int)cuviewDoc->wireframe());
+    ts << QString("opaquewf %1\n").arg((int)cuviewDoc->opaqueWireframe());
+    ts << QString("lighting %1\n").arg((int)cuviewDoc->lighting());
+    ts << QString("diffuse %1\n").arg((int)cuviewDoc->light());
+    ts << QString("binWindow %1\n").arg((int)cuviewDoc->binWindow());
 
-		int translateCount=0,scaleCount=0,rotateCount=0 ,tileCount=0;
+    ts << QString("linewidth %1\n").arg((int)cuviewDoc->lineWidth());
+    ts << QString("spheretess %1\n").arg((int)cuviewDoc->sphereTess());
+    ts << QString("clipping %1\n").arg((double)cuviewDoc->clipPerspNear());
+    ts << QString("fov %1\n").arg((float)cuviewDoc->fov());
+    ts << QString("ambientv %1\n").arg((float)cuviewDoc->ambient());
+    ts << QString("diffusev %1\n").arg((float)cuviewDoc->diffuse());
+    ts << QString("background %1\n").arg((float)cuviewDoc->background());
+    ts << QString("gammav %1\n").arg((float)cuviewDoc->gammaLevel());
+    ts << QString("binwindowindex %1\n").arg((int)cuviewDoc->binWindowIndex());
 
-		for(int i=0;i<cuviewDoc->scenes();i++){
-		  if(cuviewDoc->hasTiles(i))
-		    ++tileCount;
-		  if(cuviewDoc->hasTranslated(i))
-		    ++translateCount;
-		  if(cuviewDoc->hasScaled(i))
-		    ++scaleCount;
-		  if(cuviewDoc->hasRotated(i))
-		    ++rotateCount;
-		}
+    ts << "loadfilelist " << QString::number(filenamelist.count()) << "\n";
+    for ( QStringList::Iterator it = filenamelist.begin();
+          it != filenamelist.end(); ++it )
+    {
+      ts << *it << "\n";
+    }
 
-		int toFilli[3];
-		ts << QString("tile_count_index_xyz %1 ").arg(tileCount);
-		for(int i=0;i<cuviewDoc->scenes();i++)
-		  if(cuviewDoc->hasTiles(i)){
-		    cuviewDoc->getTiles(i,toFilli,toFill);
-		    ts << QString("%1 %2 %3 %4 %5 %6 %7 ").arg((int)i)
-		      .arg(toFilli[0]).arg(toFilli[1]).arg(toFilli[2])
-		      .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
-		  }
-		ts << "\n";
+    int translateCount=0,scaleCount=0,rotateCount=0 ,tileCount=0;
 
-		ts << QString("translate_count_index_xyz %1 ").arg(translateCount);
-		for(int i=0;i<cuviewDoc->scenes();i++)
-		  if(cuviewDoc->hasTranslated(i)){
-		    cuviewDoc->getTranslatef(i,toFill);
-		    ts << QString("%1 %2 %3 %4 ").arg((int)i)
-		      .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
-		  }
-		ts << "\n";
+    for(int i=0;i<cuviewDoc->scenes();i++){
+      if(cuviewDoc->hasTiles(i))
+        ++tileCount;
+      if(cuviewDoc->hasTranslated(i))
+        ++translateCount;
+      if(cuviewDoc->hasScaled(i))
+        ++scaleCount;
+      if(cuviewDoc->hasRotated(i))
+        ++rotateCount;
+    }
 
-		ts << QString("scale_count_index_xyz %1 ").arg(scaleCount);
-		for(int i=0;i<cuviewDoc->scenes();i++)
-		  if(cuviewDoc->hasScaled(i)){
-		    cuviewDoc->getScalef(i,toFill);
-		    ts << QString("%1 %2 %3 %4 ").arg((int)i)
-		      .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
-		  }
-		ts << "\n";
+    int toFilli[3];
+    ts << QString("tile_count_index_xyz %1 ").arg(tileCount);
+    for(int i=0;i<cuviewDoc->scenes();i++)
+      if(cuviewDoc->hasTiles(i)){
+        cuviewDoc->getTiles(i,toFilli,toFill);
+        ts << QString("%1 %2 %3 %4 %5 %6 %7 ").arg((int)i)
+          .arg(toFilli[0]).arg(toFilli[1]).arg(toFilli[2])
+          .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
+      }
+    ts << "\n";
 
-		ts << QString("rotate_count_index_xyz %1 ").arg(rotateCount);
-		for(int i=0;i<cuviewDoc->scenes();i++)
-		  if(cuviewDoc->hasRotated(i)){
-		    cuviewDoc->getRotatef(i,toFill);
-		    ts << QString("%1 %2 %3 %4 ").arg((int)i)
-		      .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
-		  }
-		ts << "\n";
+    ts << QString("translate_count_index_xyz %1 ").arg(translateCount);
+    for(int i=0;i<cuviewDoc->scenes();i++)
+      if(cuviewDoc->hasTranslated(i)){
+        cuviewDoc->getTranslatef(i,toFill);
+        ts << QString("%1 %2 %3 %4 ").arg((int)i)
+          .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
+      }
+    ts << "\n";
 
-		ts << QString("scene_count_visibility %1 ")
+    ts << QString("scale_count_index_xyz %1 ").arg(scaleCount);
+    for(int i=0;i<cuviewDoc->scenes();i++)
+      if(cuviewDoc->hasScaled(i)){
+        cuviewDoc->getScalef(i,toFill);
+        ts << QString("%1 %2 %3 %4 ").arg((int)i)
+          .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
+      }
+    ts << "\n";
+
+    ts << QString("rotate_count_index_xyz %1 ").arg(rotateCount);
+    for(int i=0;i<cuviewDoc->scenes();i++)
+      if(cuviewDoc->hasRotated(i)){
+        cuviewDoc->getRotatef(i,toFill);
+        ts << QString("%1 %2 %3 %4 ").arg((int)i)
+          .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
+      }
+    ts << "\n";
+
+    ts << QString("scene_count_visibility %1 ")
               .arg((int)cuviewDoc->scenes());
     for(int i=0;i<cuviewDoc->scenes();i++){
       ts << " " << QString::number((int)cuviewDoc->isVisible(i));
     }
-		ts << "\n";
+    ts << "\n";
 
-		ts << QString("light_sources %1 ")
-		  .arg((int)cuviewDoc->getLightSources());
-		for(int i=0;i<cuviewDoc->getLightSources();i++){
-		  cuviewDoc->getTranslateLight(i,toFill);
-		  ts << QString(" %1 %2 %3 %4 ").arg(cuviewDoc->specular())
-		    .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]-1);
-		}
-		ts << "\n";
+    ts << QString("light_sources %1 ")
+      .arg((int)cuviewDoc->getLightSources());
+    for(int i=0;i<cuviewDoc->getLightSources();i++){
+      cuviewDoc->getTranslateLight(i,toFill);
+      ts << QString(" %1 %2 %3 %4 ").arg(cuviewDoc->specular())
+        .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]-1);
+    }
+    ts << "\n";
 
-		ts << QString("window_size %1 %2")
-		  .arg((int)  ((QWidget*)cuviewDoc->parent())->width())
-		  .arg((int)  ((QWidget*)cuviewDoc->parent())->height());
-		
-		delete toFill;
-	}
+    ts << QString("window_size %1 %2")
+      .arg((int)  ((QWidget*)cuviewDoc->parent())->width())
+      .arg((int)  ((QWidget*)cuviewDoc->parent())->height());
+
+    delete toFill;
+  }
 }
 
 /**
@@ -215,19 +217,19 @@ void Script::readScript()
       QString pad;
       double value,value1,value2;
       ts.readLine();
-      if(scriptfile->atEnd()){
-        qDebug("script file reached end to soon");
+      if(ts.atEnd()){
+        qDebug("Error: Script file reached end too soon");
         return;
       }
-			
+
       //Read all cuviewDoc settings.
       ts >> pad >> toFill[0] >> toFill[1] >> toFill[2];
       cuviewDoc->cameraTranslate(toFill,true);
-			
+
       ts >> pad >> toFill[0] >> toFill[1] >> toFill[2];
       ts >> pad >> toFill2[0] >> toFill2[1] >> toFill2[2];
       cuviewDoc->setCameraAimAndUp(toFill,toFill2);
-			
+
       ts >> pad >> toFill[0] >> toFill[1] >> toFill[2];
       cuviewDoc->setOutlineColor(toFill);
       ts >> pad >> value;
@@ -242,8 +244,8 @@ void Script::readScript()
       cuviewDoc->setSmoothShaded((bool)value);
       ts >> pad >> value;
       cuviewDoc->setTransparency((bool)value);
-      //			ts >> pad >> value.asInt();
-      //			cuviewDoc->setFog(value.toBool());
+      //      ts >> pad >> value.asInt();
+      //      cuviewDoc->setFog(value.toBool());
       ts >> pad >> value;
       cuviewDoc->setGamma((bool)value);
       ts >> pad >> value;
@@ -292,12 +294,12 @@ void Script::readScript()
           return;
         for(int i=0;i<count;i++){
           temp = ts.readLine();
-          if(allowLoad)  filenamelist += temp;
+          if (allowLoad)  filenamelist += temp;
         }
 
         count=0; //reset count
       } 
-	  
+
       int toFilli[3];
       //read tiles
       cuviewDoc->setEditMode(true);

@@ -100,7 +100,7 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
   printer = NULL;
   timer = NULL; //movie, autoexport image
   filesOnStartup = FALSE; //ie. at prompt: cuviewer somefile.cuv, see main.cpp
-  QScrollArea* scrollArea = new QScrollArea(viewerSettingsDockWidget);
+  QScrollArea * scrollArea = new QScrollArea(viewerSettingsDockWidget);
   vs = new ViewerSettings(scrollArea); //gui
   ip = new ImageProcessing(this, vs); //image export, print, movie
   showSceneDialog = NULL;
@@ -109,7 +109,9 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
   //add viewersettings widget to mainwindow through scrollArea widget
   viewerSettingsDockWidget->setWidget(scrollArea);
   scrollArea->resize(vs->size()); //Stretches scroll area to avoid any scroll bars
+  scrollArea->setMaximumSize(vs->size());
   scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   scrollArea->setWidget(vs);
   scrollArea->show();
   vs->show();
@@ -623,8 +625,9 @@ void MainWindow::load( QString * loadthisfile ) {
     }
 
     glformat = new QGLFormat(glflags);
-    glformat->setVersion(3,2);
-    glformat->setProfile(QGLFormat::CoreProfile);
+    // thai - uncomment the 2 commented lines below for help with updating to OpenGL 3.x and up
+//    glformat->setVersion(3,2);
+//    glformat->setProfile(QGLFormat::CoreProfile);
     cuviewDoc = new CUViewDoc(glformat, fileIn, this);
 #ifdef Q_WS_WIN
     //BUG NOTE: hey why is this here?, this is a hack to fix some memmory allocation problems
@@ -737,7 +740,14 @@ void MainWindow::loadFileOpenMerge()
     fileOpenMerge(0);
 }
 
-//reload current file
+/**
+    @brief Reloads the current cuviewDoc
+
+    The reload method saves all of the current cuviewDoc's settings to a
+    temporary script file before loading the cuviewDoc with all the
+    settings still intact. Once the cuviewDoc has loaded then the temporary
+    script file is removed.
+  */
 void MainWindow::reload()
 {
   if (!cuviewDoc)
@@ -762,18 +772,21 @@ void MainWindow::reload()
   file->close(); //finish writing script
 
   filedata.mergedFiles.clear();
-  cuviewDoc->hide();
+//  cuviewDoc->hide();
   setCentralWidget( 0 );
   cuviewDoc->close();
   cuviewDoc = NULL;
+
   load(&(filedata.cuvfile)); //loads filedata.scriptfile
   file->remove();  //then it's okay to remove the temporary file.
-  filedata.scriptfile="";
-  prefdata.startupscriptfile="";
+
+
+  filedata.scriptfile = "";
+  prefdata.startupscriptfile = "";
 }
 
 /** @fn slotOpen
-    @brief Opens a CUViewDoc file.
+    @brief Opens a cuviewDoc file.
   */
 void MainWindow::slotOpen()
 {
@@ -784,7 +797,8 @@ void MainWindow::slotOpen()
 }
 
 /**
-    @brief Opens a message displaying a description of the original author and the program.
+    @brief Opens a message displaying a description of the original author
+           and the program.
   */
 void MainWindow::slotAbout()
 {
@@ -847,7 +861,7 @@ void MainWindow::quickHelp()
     The slotClose method closes the CUViewDoc file and writes to a file called
     "cuviewer" all of the workspace settings for the CUViewer program.
     Workspace settings saved to file are
-      - whether Viewer Settings dock is shown or hidden
+      - boolean value indicating whether Viewer Settings dock is shown or hidden
       - position and size of the MainWindow
       - position and size of the ShowScene dialog
 
@@ -880,7 +894,8 @@ void MainWindow::slotClose() //closes window
                   .arg(x()).arg(y()).arg(width()).arg(height());
 #endif
     if (prefdata.ssd_x<0 || prefdata.ssd_y<0 ||
-       prefdata.ssd_dx<0 ||prefdata.ssd_dy<0){
+        prefdata.ssd_dx<0 || prefdata.ssd_dy<0)
+    {
       //use defaults
       prefdata.ssd_x=0;
       prefdata.ssd_y=0;
@@ -1682,7 +1697,7 @@ void MainWindow::slotSavePreset()
   startfolder.saveview = qfd.directory().path();
 
   if (filename.isEmpty()){
-    qWarning("didn't save script file");
+    qWarning("Did not save script file");
     return;
   }
   filedata.scriptfile = filename;
@@ -1705,31 +1720,31 @@ void MainWindow::slotLoadPreset()
 
   if (filedata.scriptfile.isEmpty()){
     //Get file from user
-    QFileDialog qfd(this, "Load script file", startfolder.script, "Script files (*)");
+    QFileDialog qfd(this, "Load script file", startfolder.script,
+                    "Script files (*)");
     if (qfd.exec()){
       filedata.scriptfile = qfd.selectedFiles().at(0); //Select only 1 file.
     }
     startfolder.script = qfd.directory().path();
   }
+
   QFile * file = new QFile(filedata.scriptfile);
   if (!file->exists()){
-    qWarning("didn't load script file");
+    qWarning("Did not load script file");
     filedata.scriptfile="";
     return;
   }
 
   Script script(file, cuviewDoc);
-  script.setFileLoad(prefdata.scriptload);
+//  script.setFileLoad(prefdata.scriptload);
   script.readScript();
 
   //Check if script needs some objects from other files to be merged
   QStringList templist = script.getFilenameList();
   QStringList tomergelist;
   QStringList::Iterator it = templist.begin();
-  qDebug("%s", qPrintable( templist.at(0) ));
-  qDebug("%s", qPrintable(filedata.cuvfile));
   if (filedata.cuvfile != *it)
-    qWarning("slotloadpreset: warning scriptfile does not have the original cuvfiles");
+    qWarning("slotLoadPreset: warning scriptfile does not have the original cuvfiles");
   for (++it; it != templist.end(); ++it ){ //omit first cuvfile
     tomergelist+=*it;
   }
