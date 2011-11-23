@@ -38,7 +38,7 @@
 		7A8B396291E9D00F4EF6065A /* binpalettes.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = E884A6022398F2664CEF7825 /* binpalettes.cpp */; settings = {ATTRIBUTES = (); }; };
 		7D12242113F3402CACBA4B0A /* draw_quadri.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 479DBFD51D780DE7D86E535A /* draw_quadri.cpp */; settings = {ATTRIBUTES = (); }; };
 		82131C329AEDFF8F54785923 /* cuvvector.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 7A53AF8D8A86F2B7703B47A6 /* cuvvector.cpp */; settings = {ATTRIBUTES = (); }; };
-		836C9A5E147145E600E421CB /* cuviewer.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 836C9A5B147145E600E421CB /* cuviewer.app */; };
+		83E082DA147B072C00269986 /* cuviewer.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 83E082D7147B072C00269986 /* cuviewer.app */; };
 		870DDBBE994CE80C5FA37A4A /* pixmaplabel.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 33DEF0A4988E3A1EE413F9FF /* pixmaplabel.cpp */; settings = {ATTRIBUTES = (); }; };
 		8C7A93D4203FACE9ABA20001 /* moc_binpalettes.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D314BE77BE81D94E4B3B9DAB /* moc_binpalettes.cpp */; settings = {ATTRIBUTES = (); }; };
 		8F8D827365C90D3E391C6D8E /* printpreview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 3F8F0D1104AAE3C3CCD9C806 /* printpreview.cpp */; settings = {ATTRIBUTES = (); }; };
@@ -68,7 +68,7 @@
 			dstPath = /Users/tjssmy/source/ospice/cuviewer2;
 			dstSubfolderSpec = 0;
 			files = (
-				836C9A5E147145E600E421CB /* cuviewer.app in Project Copy */,
+				83E082DA147B072C00269986 /* cuviewer.app in Project Copy */,
 			);
 			name = "Project Copy";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,7 +129,7 @@
 		7AD8BCE9D1E0939B92FCEC7E /* cuviewer.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = cuviewer.pro; sourceTree = "<group>"; };
 		7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
 		7E853AE0E46046837550D5E0 /* showscene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = showscene.h; sourceTree = "<group>"; };
-		836C9A5B147145E600E421CB /* cuviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cuviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E082D7147B072C00269986 /* cuviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cuviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8458ADCEDC17D046942185CB /* script.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = script.cpp; sourceTree = "<group>"; };
 		85E01D040996E4B4811C478B /* moc_moviedialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_moviedialog.cpp; sourceTree = "<group>"; };
 		86ADD011432BE838C9E91C59 /* moc_cuvdatahandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_cuvdatahandler.cpp; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				52C235EBF1C9B07808119459 /* Sources [RCC] */,
 				EEC299C65D5017EB9DD513B0 /* Sources [UIC] */,
 				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
-				836C9A5C147145E600E421CB /* Products */,
+				83E082D8147B072C00269986 /* Products */,
 			);
 			name = cuviewer;
 			sourceTree = "<group>";
@@ -295,10 +295,10 @@
 			name = "Sources [qmake]";
 			sourceTree = "<group>";
 		};
-		836C9A5C147145E600E421CB /* Products */ = {
+		83E082D8147B072C00269986 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				836C9A5B147145E600E421CB /* cuviewer.app */,
+				83E082D7147B072C00269986 /* cuviewer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,8 +380,8 @@
 				EA177DE95BF7D3EF58EE43F7 /* mainwindow.cpp */,
 				27594C621E702237A4E20CF8 /* viewersettings.cpp */,
 				D47AE44419C69FB1394CE5FF /* paletteview.cpp */,
-				E884A6022398F2664CEF7825 /* binpalettes.cpp */,
 				D1EFC2E7C32FD804288A5E3E /* imageprocessing.cpp */,
+				E884A6022398F2664CEF7825 /* binpalettes.cpp */,
 				DC93BB8C751B238A8E5F09C6 /* cuviewdoc */,
 				4F0DF760062C343C4C01827F /* include */,
 				3F8F0D1104AAE3C3CCD9C806 /* printpreview.cpp */,
@@ -401,7 +401,7 @@
 /* Begin PBXNativeTarget section */
 		BADA9F4ECD2F7BBDABC133DF /* cuviewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 836C9A721471460400E421CB /* Build configuration list for PBXNativeTarget "cuviewer" */;
+			buildConfigurationList = 83E082E6147B075000269986 /* Build configuration list for PBXNativeTarget "cuviewer" */;
 			buildPhases = (
 				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
 				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
@@ -416,7 +416,7 @@
 			);
 			name = cuviewer;
 			productName = cuviewer;
-			productReference = 836C9A5B147145E600E421CB /* cuviewer.app */;
+			productReference = 83E082D7147B072C00269986 /* cuviewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -435,7 +435,7 @@
 				German,
 			);
 			mainGroup = 05596AB53D8D521C69802C27 /* cuviewer */;
-			productRefGroup = 836C9A5C147145E600E421CB /* Products */;
+			productRefGroup = 83E082D8147B072C00269986 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -536,7 +536,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		836C9A6D147145E600E421CB /* Debug */ = {
+		83E082DF147B072C00269986 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
@@ -602,7 +602,7 @@
 			};
 			name = Debug;
 		};
-		836C9A6E147145E600E421CB /* Release */ = {
+		83E082E0147B072C00269986 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
@@ -667,7 +667,7 @@
 			};
 			name = Release;
 		};
-		836C9A6F147145E600E421CB /* Default */ = {
+		83E082E1147B072C00269986 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = /Users/tjssmy/source/ospice/cuviewer2;
@@ -759,12 +759,12 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		836C9A721471460400E421CB /* Build configuration list for PBXNativeTarget "cuviewer" */ = {
+		83E082E6147B075000269986 /* Build configuration list for PBXNativeTarget "cuviewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				836C9A6D147145E600E421CB /* Debug */,
-				836C9A6E147145E600E421CB /* Release */,
-				836C9A6F147145E600E421CB /* Default */,
+				83E082DF147B072C00269986 /* Debug */,
+				83E082E0147B072C00269986 /* Release */,
+				83E082E1147B072C00269986 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
