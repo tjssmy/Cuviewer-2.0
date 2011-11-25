@@ -94,6 +94,7 @@ void MainWindow::languageChange()
   */
 void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cpp.
 {
+  isFirstTimeLoading = true;
   timeout=500; //for movie, autoexport image.
 //the opengl wrapper (a subclassed qmainwindow, with qglwidget as it's centralwidget)
   cuviewDoc = NULL;
@@ -152,7 +153,7 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
     }
   }
   else {
-    qDebug("File doesn't exist. Settings not loaded.");
+    qDebug("Workspace settings file doesn't exist. Settings not loaded.");
   }
 
   connectSlots();
@@ -685,6 +686,24 @@ void MainWindow::load( QString * loadthisfile ) {
       updateScenes();
       if (prefdata.startUpRefresh)
         QTimer::singleShot(250,cuviewDoc, SLOT(redrawDoc()));
+
+      //Load up previous cuviewDoc settings if it exists
+      if (isFirstTimeLoading){
+        QFile *file = new QFile(QDir::homePath() + "/.cuviewer/" + nameOfFile);
+        if (file->exists()){
+          int ret =  QMessageBox::question(this,
+           "Previous cuviewDoc settings found",
+           "You worked with this cuviewDoc before. Would you like to load the previous cuviewDoc settings?",
+           QMessageBox::Yes | QMessageBox::No,
+           QMessageBox::No);
+          if (ret == QMessageBox::Yes){
+            Script script(file, cuviewDoc);
+            script.readScript();
+          }
+        }
+        isFirstTimeLoading = false;
+        file->close();
+      }
     }
     else{ //Initializing data failed.
       qDebug("Initializing data failed");
@@ -865,8 +884,11 @@ void MainWindow::quickHelp()
       - position and size of the MainWindow
       - position and size of the ShowScene dialog
 
+    The method also saves all current settings of the cuviewDoc to a file called
+    "cuvdocsettings". If the file exists then it overwrites it
+
     This method is called when the Close action is selected or when
-    'Ctrl + W' or 'Ctrl + Q' is pressed (Cmd+W and Cmd+Q for Mac).
+    'Ctrl + W' or 'Ctrl + Q' is pressed (Cmd+W or Cmd+Q for Mac).
   */
 void MainWindow::slotClose() //closes window
 {
@@ -878,7 +900,7 @@ void MainWindow::slotClose() //closes window
   }
   QFile *file = new QFile(QDir::homePath()+"/.cuviewer/cuviewer");
   if (file->exists())
-      file->remove();
+    file->remove();
   file->setFileName(QDir::homePath()+"/.cuviewer/cuviewer");
   if (file->open(QIODevice::ReadWrite)){
     QTextStream ts(file);
@@ -907,6 +929,8 @@ void MainWindow::slotClose() //closes window
       .arg(prefdata.ssd_y)
       .arg(prefdata.ssd_dx)
       .arg(prefdata.ssd_dy);
+
+    ts.setDevice(0);
   }
   else{
     qWarning("can't save general preferences to file");
@@ -924,6 +948,14 @@ void MainWindow::closeFile()
   if (filesOnStartup)
     return;
 #endif
+  //Write current cuviewDoc settings
+  QString nameOfFile = filedata.cuvfile.mid(filedata.cuvfile.lastIndexOf('/')+1);
+  QFile *file = new QFile(QDir::homePath() + "/.cuviewer/" + nameOfFile);
+  Script script(file, cuviewDoc);
+  script.writeScript();
+  file->close();
+  delete file;
+
   prefdata.startupscriptfile="";
   setWindowTitle("Carleton University Viewer");
   delete cuviewDoc;
@@ -965,7 +997,7 @@ void MainWindow::slotCreateMovie()
   }
 
   //Open a file dialog asking for filename
-  QFileDialog qfd(this, "Open movie script file",
+  QFileDialog qfd(this, "Create movie script file",
                   startfolder.moviescript, "Movie Scripts (*)");
   qfd.setAcceptMode(QFileDialog::AcceptSave);
   QString filename;
@@ -1009,8 +1041,13 @@ void MainWindow::slotCreateMovie()
 }
 
 /**
-    @brief Reads a movie script file
+    @brief Reads a movie scriptfile called filename
 
+    The slotReadMovieFile method reads a scriptfile called filename and sets
+    all cuviewDoc settings according to the script.
+
+    If the script was written to export images then the method will export
+    each frame as to the same directory as the scriptfile.
   */
 void MainWindow::slotReadMovieFile( QString filename )
 {
@@ -1022,12 +1059,11 @@ void MainWindow::slotReadMovieFile( QString filename )
 
   Script s(file,cuviewDoc);
   s.readScript();
-  QStringList templist = s.getFilenameList(), tomergelist;
+  QStringList templist = s.getFilenameList();
+  QStringList tomergelist;
   QStringList::Iterator it = templist.begin();
-  qDebug("%s", qPrintable(filedata.cuvfile));
-  qDebug("%s", qPrintable(*it));
   if (filedata.cuvfile!=*it){
-    qWarning("warning scriptfile does not have the original cuvfiles");
+    qWarning("Warning: Scriptfile does not have the original cuvfiles");
   }
   for (++it; it != templist.end(); ++it ){ //omit first cuvfile
     tomergelist+=*it;
@@ -1035,21 +1071,40 @@ void MainWindow::slotReadMovieFile( QString filename )
   loadAllInOne(s.getFilenameList());
   setViewerSettingsActions();
 
+  if (!file->open(QIODevice::ReadOnly)){
+    return;
+  }
   GLfloat toFill[3];
   GLfloat toFill2[3];
   QString pad;
   double value; //Used to store bool and int as well.
   QString str;
   moviestream.setDevice(file);
-  int frame=0;
+  int frame = 0;
   while(!moviestream.atEnd()){
     moviestream >> pad;
     if (pad.contains("export")){
       //export image
-      qDebug("frame %i",frame);
-      slotExportImageFile( file->fileName() +
+      qDebug("Exporting frame %i",frame);
+      filedata.imagefile = file->fileName() +
                            QString::number(frame).rightJustified(6,'0') +
-                           "." + prefdata.imageFormat );
+                           "." + prefdata.imageFormat;
+      ip->setImageFile(filedata.imagefile);
+      ip->setExportSize(width(),height());
+      int value = vs->paletteIndexSpinBox->value();
+      bp->setPaletteIndex(value);
+      ip->exportImage();
+      /* Line below was commented out because it used a QTimer to export the
+          frame images. The problem with using a QTimer to export the frame
+          images is that the time which it exports the frame is longer than
+          the time that the program goes to the next frame. What happens then
+          is that it only exports the last frame n times, where n is the total
+          amount of frames in the movie file because ip->exportImage() only
+          saves an image of the current state of the cuviewDoc when it is
+          called. - Thai*/
+//      slotExportImageFile( file->fileName() +
+//                           QString::number(frame).rightJustified(6,'0') +
+//                           "." + prefdata.imageFormat );
       ++frame;
     }else if (pad.contains("camera_position")){
       moviestream >> toFill[0] >> toFill[1] >> toFill[2];
@@ -1158,7 +1213,7 @@ void MainWindow::slotReadMovieFile( QString filename )
 }
 
 /**
-    @brief Writes camera settings everytime this method is called.
+    @brief Writes the current camera settings to moviestream.
 
     The slotWriteMovieFrame method writes camera settings such as camera
     position, camera aim, and camera up to the movie script file. The method
@@ -1166,7 +1221,7 @@ void MainWindow::slotReadMovieFile( QString filename )
     depleted.
 
     This method is called periodically. The period which it is called is
-    determined by
+    determined in slotCreateMovie.
   */
 void MainWindow::slotWriteMovieFrame()
 {
@@ -1177,20 +1232,21 @@ void MainWindow::slotWriteMovieFrame()
 
   if (moviedata.exportImages){
     moviestream << QString("export\n");
-    cuviewDoc->cameraPos(toFill);
   }
   if (moviedata.recordMovement){
+    cuviewDoc->cameraPos(toFill);
     moviestream << QString("camera_position %1 %2 %3\n")
-                      .arg(toFill[0], toFill[1], toFill[2]);
+                   .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
     cuviewDoc->cameraAim(toFill);
     moviestream << QString("camera_aim %1 %2 %3\n")
-                      .arg(toFill[0], toFill[1], toFill[2]);
+                   .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
     cuviewDoc->cameraUp(toFill);
     moviestream << QString("camera_up %1 %2 %3\n")
-                      .arg(toFill[0], toFill[1], toFill[2]);
+                   .arg(toFill[0]).arg(toFill[1]).arg(toFill[2]);
   }
   if (!moviedata.movieframes){
     qDebug("Finished recording movie");
+    statusBar()->showMessage("Finished recording movie");
     timer->stop();
     timer->disconnect(); //don't use anymore
     moviefile->close();
@@ -1200,7 +1256,8 @@ void MainWindow::slotWriteMovieFrame()
 }
 
 /**
-    @brief Opens the GlobalPreferences window with all settings loaded.
+    @brief Opens the GlobalPreferences window with all settings shown on the
+            respective widgets.
   */
 void MainWindow::slotGlobalPrefs()
 {
@@ -1736,7 +1793,7 @@ void MainWindow::slotLoadPreset()
   }
 
   Script script(file, cuviewDoc);
-//  script.setFileLoad(prefdata.scriptload);
+// thai; script.setFileLoad(prefdata.scriptload);
   script.readScript();
 
   //Check if script needs some objects from other files to be merged

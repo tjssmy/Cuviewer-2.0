@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <qvariant.h>
+#include <QScrollArea>
 
 #include <QMainWindow>
 #include <QTextStream>
@@ -154,6 +155,8 @@ protected:
 protected slots:
     virtual void languageChange();
 
+private:
+    bool isFirstTimeLoading; //Checks if the loaded cuviewDoc is the first time loading it in the program
 };
 
 #endif // MAINWINDOW_H

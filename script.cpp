@@ -197,6 +197,7 @@ void Script::writeScript()
     ts << QString("window_size %1 %2")
       .arg((int)  ((QWidget*)cuviewDoc->parent())->width())
       .arg((int)  ((QWidget*)cuviewDoc->parent())->height());
+    ts << "\n";
 
     delete toFill;
   }
@@ -383,6 +384,8 @@ void Script::readScript()
       int height = (int)value;
       ((QWidget*)cuviewDoc->parent())->resize(width,height);
 
+      ts.setDevice(0);
+      scriptfile->close();
       delete toFill;
       delete toFill2;
     }

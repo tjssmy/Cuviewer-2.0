@@ -36,6 +36,7 @@ void createApp()
   if (!moviefile.isEmpty()){
     mainwindow->slotReadMovieFile(moviefile);
   }
+
 }
 
 int main(int argc, char *argv[])
