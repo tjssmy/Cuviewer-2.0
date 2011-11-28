@@ -699,6 +699,7 @@ void MainWindow::load( QString * loadthisfile ) {
           if (ret == QMessageBox::Yes){
             Script script(file, cuviewDoc);
             script.readScript();
+            setViewerSettingsActions();
           }
         }
         isFirstTimeLoading = false;
