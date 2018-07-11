@@ -2,6 +2,7 @@
     <qresource prefix="/cuviewhtml">
         <file>cuviewhtml/bump.png</file>
         <file>cuviewhtml/COPYING.html</file>
+        <file>cuviewhtml/createcuv-0.1.tgz</file>
         <file>cuviewhtml/cu_viewer.png</file>
         <file>cuviewhtml/dev.png</file>
         <file>cuviewhtml/fileformat.html</file>

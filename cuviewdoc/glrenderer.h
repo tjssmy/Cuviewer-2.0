@@ -26,11 +26,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QWheelEvent>
+#include <QtOpenGL>
 
 #ifdef Q_OS_MAC
 #include <OpenGL/gl.h>
 #else
 #include <GL/gl.h>
+#include <GL/glu.h>
 #endif
 
 #include "../include/cuvtags.h"
@@ -44,6 +46,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #define MAX_SPECULAR_AMT 25
 #define BYTE_ALIGNMENT 4U
 #define IMAGE_CACHE_THRESHOLD 500U // ms
+
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 class QMouseEvent;
 class EntityScene;
@@ -134,7 +139,7 @@ class GLRenderer: public QGLWidget
   void cameraFix();
 
   public:
-  GLRenderer(QGLFormat * glformat, QWidget *parent = 0, const char *name = 0, const QGLWidget *shareWidget = 0, Qt::WFlags f = 0);
+  GLRenderer(QGLFormat * glformat, QWidget *parent = 0, const char *name = 0, const QGLWidget *shareWidget = 0, Qt::WindowFlags f = 0);
    ~GLRenderer();
   virtual void keyPressEvent(QKeyEvent *keyEvent);
   virtual void mousePressEvent(QMouseEvent *mouseEvent);

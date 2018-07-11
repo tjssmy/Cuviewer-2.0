@@ -131,9 +131,9 @@ void ImageProcessing::autoExportImage( bool c )
        timer->disconnect();
      }
 //     filedata.autoimagefile = "";
-     ((MainWindow*)parent)->autoExportImageAction->blockSignals(true);
-     ((MainWindow*)parent)->autoExportImageAction->setChecked(false);
-     ((MainWindow*)parent)->autoExportImageAction->blockSignals(false);
+     ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(true);
+     ((MainWindow*)parent)->ui->autoExportImageAction->setChecked(false);
+     ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(false);
      return;
    }
 
@@ -154,9 +154,9 @@ void ImageProcessing::autoExportImage( bool c )
      if ( absfilename.isEmpty() ){
        //Switch autoexport check to off.
        qDebug("Autoimage file name is empty");
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(TRUE);
-       ((MainWindow*)parent)->autoExportImageAction->setChecked(FALSE);
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(FALSE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(TRUE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->setChecked(FALSE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(FALSE);
        return;
      }
      autoimagefile = absfilename;
@@ -177,9 +177,9 @@ void ImageProcessing::autoExportImage( bool c )
      }else {
        //Remove any values stored and uncheck action.
        autoimagefile.clear();
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(TRUE);
-       ((MainWindow*)parent)->autoExportImageAction->setChecked(FALSE);
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(FALSE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(TRUE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->setChecked(FALSE);
+       ((MainWindow*)parent)->ui->autoExportImageAction->blockSignals(FALSE);
        return;
      }
 
@@ -301,7 +301,7 @@ void ImageProcessing::exportImage(QPixmap pm){
 
     //Setup list to select preferred image format
     //Adding 1 to imageFormat to skip the "Images(*.bmp *.jpg ...etc)" text
-    qfd.selectFilter( qfd.filters().at(imageFormat + 1) );
+    //qfd.selectFilter( qfd.filters().at(imageFormat + 1) );
 
     if(qfd.exec()){
       filename = qfd.selectedFiles().at(0); //Get name of file.

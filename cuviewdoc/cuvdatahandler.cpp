@@ -79,7 +79,7 @@ CUVDataHandler::InitError CUVDataHandler::getVersion()
 {
 	cuv_tag tempTag;
   QByteArray version(SHORT_VERSION_STRING);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //next line crashes in solaris
 	char * ccompVersion = new char(version.length()+1);
 #else

@@ -147,6 +147,7 @@ inline bool getRawUTF16String(QIODevice *ioDeviceIn, QString &toFill,
       return false;
     }
 #endif
+  return false;
 }
 
 #endif

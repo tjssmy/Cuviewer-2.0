@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <qmainwindow.h>
 #include <qdatastream.h>
 #include <qmessagebox.h>
+#include <QVBoxLayout>
 //Added by qt3to4:
 #include <QFrame>
 #include "../include/cuvtags.h"

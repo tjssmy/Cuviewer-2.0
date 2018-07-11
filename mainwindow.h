@@ -3,6 +3,7 @@
 
 #include <qvariant.h>
 #include <QScrollArea>
+#include <QPrinter>
 
 #include <QMainWindow>
 #include <QTextStream>
@@ -14,19 +15,16 @@
 #include "viewersettings.h"
 #include "config.h"
 #include "helpwindow.h"
+
 #include "ui_mainwindow.h"
 
 namespace Ui {
-    class MainWindow;
-} // namespace Ui
+class MainWindow;
+}
 
-class MainWindow : public QMainWindow, public Ui::MainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
-public:
-    MainWindow(QWidget* parent = 0);
-    ~MainWindow();
 
 public slots:
     virtual void init();
@@ -108,10 +106,6 @@ public slots:
     virtual void gotoViewpoint( int key );
     virtual void showScenes();
     virtual void updateScenes();
-    virtual void setSceneVisible();
-    virtual void setDrawAxis( bool toggle );
-    virtual void setEditMode( bool edit );
-    virtual void setSceneEditing();
     virtual void reversePlayScene();
     virtual void forwardPlayScene();
     virtual void reverseStep();
@@ -121,6 +115,10 @@ public slots:
     virtual void endScene();
     virtual void transformScene();
     virtual void rotateScene();
+    virtual void setSceneVisible();
+    virtual void setDrawAxis( bool toggle );
+    virtual void setEditMode( bool edit );
+    virtual void setSceneEditing();
     virtual void setLightEditing();
     virtual void setSpecular( int value );
     virtual void resetLightPosition();
@@ -154,6 +152,12 @@ protected:
 
 protected slots:
     virtual void languageChange();
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+    Ui::MainWindow *ui;
+
 
 private:
     bool isFirstTimeLoading; //Checks if the loaded cuviewDoc is the first time loading it in the program

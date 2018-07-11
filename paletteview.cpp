@@ -37,9 +37,9 @@ PaletteView::PaletteView( QWidget *parent)
 
 PaletteView::~PaletteView()
 {
-  delete bwp->fromPaletteStart;
-  delete bwp->fromPaletteEnd;
-  delete bwp->toPalette;
+  //delete bwp->fromPaletteStart;
+  //delete bwp->fromPaletteEnd;
+  //delete bwp->toPalette;
 }
 
 void PaletteView::setBinPalette(const bin_window_palette* bin)

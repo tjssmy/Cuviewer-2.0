@@ -1,9 +1,12 @@
-#include <QtGui/QApplication>
+#include "mainwindow.h"
+#include <QApplication>
 #include <QTextStream>
-#include <QWindowsStyle>
+#include <QStyle>
 #include <QString>
 #include <QStringList>
 #include <QFile>
+#include <QStyle>
+#include <QStyleFactory>
 
 #include "mainwindow.h"
 #include "config.h"
@@ -25,7 +28,7 @@ void createApp()
   mainwindow->loadSeparately(*files);
 
   if (!useNativeStyle){
-    qApp->setStyle(new QWindowsStyle());
+    qApp->setStyle("windows");
   }
   mainwindow->show();
 

@@ -1,24 +1,24 @@
 <RCC>
     <qresource prefix="/images">
         <file>images/adjustsize.png</file>
-        <file>images/movie.png</file>
-        <file>images/windowsicon.png</file>
-        <file>images/wirebox.png</file>
-        <file>images/fileopen.png</file>
-        <file>images/redo.png</file>
         <file>images/book.png</file>
+        <file>images/editlower.png</file>
+        <file>images/editvlayoutsplit.png</file>
+        <file>images/fileopen.png</file>
         <file>images/filesave.png</file>
-        <file>images/print.png</file>
-        <file>images/pixlabel.png</file>
-        <file>images/timeedit.png</file>
         <file>images/help.png</file>
         <file>images/home.png</file>
+        <file>images/image.png</file>
         <file>images/label.png</file>
         <file>images/listbox.png</file>
-        <file>images/image.png</file>
-        <file>images/editlower.png</file>
-        <file>images/ordertool.png</file>
+        <file>images/movie.png</file>
         <file>images/no.png</file>
-        <file>images/editvlayoutsplit.png</file>
+        <file>images/ordertool.png</file>
+        <file>images/pixlabel.png</file>
+        <file>images/print.png</file>
+        <file>images/redo.png</file>
+        <file>images/timeedit.png</file>
+        <file>images/windowsicon.png</file>
+        <file>images/wirebox.png</file>
     </qresource>
 </RCC>

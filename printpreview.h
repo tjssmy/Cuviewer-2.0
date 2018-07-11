@@ -5,22 +5,18 @@
 
 #include <qvariant.h>
 
-
-#include <Qt3Support/Q3ButtonGroup>
-#include <Qt3Support/Q3GroupBox>
-#include <Qt3Support/Q3MimeSourceFactory>
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QDialog>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QSpinBox>
 #include "paletteview.h"
 #include "pixmaplabel.h"
 #include <QtGui/QImage>

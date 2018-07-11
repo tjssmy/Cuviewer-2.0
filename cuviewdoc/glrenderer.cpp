@@ -16,7 +16,7 @@ program; see the file COPYING. If not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #  include <math.h>
 #else
 #include <cmath>
@@ -37,6 +37,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <qmap.h>
 #include <qtimer.h>
 #include <qstring.h>
+#include <QGLWidget>
+#include <QDesktopWidget>
+
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 #include "../include/cuvtags.h"
 #include "glrenderer.h"
@@ -61,7 +66,7 @@ using namespace Qt;
     @brief Constructs a GLRenderer object.
   */
 GLRenderer::GLRenderer(QGLFormat * glformat, QWidget *parent, 
-             const char *name, const QGLWidget *shareWidget, Qt::WFlags f)
+             const char *name, const QGLWidget *shareWidget, Qt::WindowFlags f)
   : QGLWidget(*glformat, parent, shareWidget, f)
 {
   dispListRefs = new QMap<GLuint, unsigned long>();
@@ -883,7 +888,7 @@ void GLRenderer::resizeGL(int w, int h)
   }
   else
   {
-    QWidget *desktop = QApplication::desktop();
+    QDesktopWidget *desktop = QApplication::desktop();
     int desktopWidth = desktop->width();
     int desktopHeight = desktop->height();
 
@@ -2716,7 +2721,7 @@ void GLRenderer::pollForGlError()
 
   while ((err = glGetError()) != (GLenum)GL_NO_ERROR)
   {
-    qWarning("OpenGL Error: %s", gluErrorString(err));
+    qWarning("OpenGL Error: %s", err);
 
 //      if ((err == (GLenum)GL_OUT_OF_MEMORY) || (err == (GLenum)GLU_OUT_OF_MEMORY))
 //      {

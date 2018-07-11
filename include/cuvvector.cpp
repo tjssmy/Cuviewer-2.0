@@ -17,6 +17,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
 #include "cuvvector.h"
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 /*
   For formula refer to Rodrigues' rotation formula (See Wikipedia article on rotation matrix)

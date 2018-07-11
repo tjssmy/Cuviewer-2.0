@@ -1,6 +1,3 @@
-/**
-
-  */
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -10,7 +7,7 @@
 #include <qstringlist.h>
 #include <qspinbox.h>
 #include <QScrollArea>
-#include <qprinter.h>
+#include <QPrinter>
 #include <qpixmap.h>
 #include <qpainter.h>
 #include <qmessagebox.h>
@@ -33,8 +30,9 @@
 #include <QPaintDevice>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QDebug>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #  include <math.h>
 #  include <process.h>
 #else
@@ -59,15 +57,16 @@
 #include "script.h"
 #include "printpreview.h"
 
+
 /**
    Constructs a MainWindow as a child of 'parent', with the
    name 'name' and widget flags set to 'f'.
  */
-MainWindow::MainWindow(QWidget* parent)
-  : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
-    setupUi(this);
-
+    ui->setupUi(this);
     (void)statusBar();
     init();
 }
@@ -77,7 +76,7 @@ MainWindow::MainWindow(QWidget* parent)
  */
 MainWindow::~MainWindow()
 {
-  destroy();
+    destroy();
 }
 
 /**
@@ -86,7 +85,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::languageChange()
 {
-  retranslateUi(this);
+  ui->retranslateUi(this);
 }
 
 /**
@@ -95,20 +94,21 @@ void MainWindow::languageChange()
 void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cpp.
 {
   isFirstTimeLoading = true;
-  timeout=500; //for movie, autoexport image.
-//the opengl wrapper (a subclassed qmainwindow, with qglwidget as it's centralwidget)
+  //For movie, autoexport image.
+  timeout=500;
+  //The opengl wrapper (a subclassed qmainwindow, with qglwidget as it's centralwidget)
   cuviewDoc = NULL;
   printer = NULL;
   timer = NULL; //movie, autoexport image
   filesOnStartup = FALSE; //ie. at prompt: cuviewer somefile.cuv, see main.cpp
-  QScrollArea * scrollArea = new QScrollArea(viewerSettingsDockWidget);
+  QScrollArea * scrollArea = new QScrollArea(ui->viewerSettingsDockWidget);
   vs = new ViewerSettings(scrollArea); //gui
   ip = new ImageProcessing(this, vs); //image export, print, movie
   showSceneDialog = NULL;
   currentscene = -2; //this increments twice during initialization
 
   //add viewersettings widget to mainwindow through scrollArea widget
-  viewerSettingsDockWidget->setWidget(scrollArea);
+  ui->viewerSettingsDockWidget->setWidget(scrollArea);
   scrollArea->resize(vs->size()); //Stretches scroll area to avoid any scroll bars
   scrollArea->setMaximumSize(vs->size());
   scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -155,7 +155,6 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
   else {
     qDebug("Workspace settings file doesn't exist. Settings not loaded.");
   }
-
   connectSlots();
 }
 
@@ -174,24 +173,24 @@ void MainWindow::setViewerSettingsActions()
   if (!cuviewDoc)
     return;
 
-  outline->setChecked(cuviewDoc->outline());
-  twoSided->setChecked(cuviewDoc->twoSided());
-  shading->setChecked(cuviewDoc->smoothShaded());
-  antialiasing->setChecked(cuviewDoc->antialias());
-  transparency->setChecked(cuviewDoc->transparency());
-  perspective->setChecked(cuviewDoc->perspective());
-  fog->setChecked(cuviewDoc->fog());
-  gamma->setChecked(cuviewDoc->gamma());
+  ui->outline->setChecked(cuviewDoc->outline());
+  ui->twoSided->setChecked(cuviewDoc->twoSided());
+  ui->shading->setChecked(cuviewDoc->smoothShaded());
+  ui->antialiasing->setChecked(cuviewDoc->antialias());
+  ui->transparency->setChecked(cuviewDoc->transparency());
+  ui->perspective->setChecked(cuviewDoc->perspective());
+  ui->fog->setChecked(cuviewDoc->fog());
+  ui->gamma->setChecked(cuviewDoc->gamma());
 
-  wireframe->setChecked(cuviewDoc->wireframe());
-  opaquewireframe->setChecked(cuviewDoc->opaqueWireframe());
-  lighting->setChecked(cuviewDoc->lighting());
-  diffuse->setChecked(cuviewDoc->light());
-  binnedPalette->setChecked(cuviewDoc->binWindow());
+  ui->wireframe->setChecked(cuviewDoc->wireframe());
+  ui->opaquewireframe->setChecked(cuviewDoc->opaqueWireframe());
+  ui->lighting->setChecked(cuviewDoc->lighting());
+  ui->diffuse->setChecked(cuviewDoc->light());
+  ui->binnedPalette->setChecked(cuviewDoc->binWindow());
 
-  showBoundingBoxAction->setChecked(cuviewDoc->boxWhileMoving());
-  showBoxAlwaysAction->setChecked(cuviewDoc->drawBoxAlways());
-  drawAxisAction->setChecked(cuviewDoc->drawAxis());
+  ui->showBoundingBoxAction->setChecked(cuviewDoc->boxWhileMoving());
+  ui->showBoxAlwaysAction->setChecked(cuviewDoc->drawBoxAlways());
+  ui->drawAxisAction->setChecked(cuviewDoc->drawAxis());
 
   setClippingValue((int)(cuviewDoc->clipPerspNear()*20));
   setFOVValue((int)cuviewDoc->fov());
@@ -215,137 +214,76 @@ mainwindow.ui (go through qt designer or by hand).
 void MainWindow::connectSlots()
 {
   //SIGNAL(clicked())
-  connect(vs->outlineColor,SIGNAL(clicked()),
-      this,SLOT(slotOutlineColor()));
-  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),
-      bp,SLOT(setPaletteIndex(int)));
+  connect(vs->outlineColor,SIGNAL(clicked()),this,SLOT(slotOutlineColor()));
+  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),bp,SLOT(setPaletteIndex(int)));
 
   //SIGNAL(toggled(bool))
-  connect(vs->outlineCheck,SIGNAL(toggled(bool)),
-      outline,SLOT(setChecked(bool)));
-  connect(vs->twoSidedCheck,SIGNAL(toggled(bool)),
-      twoSided,SLOT(setChecked(bool)));
-  connect(vs->shadingCheck,SIGNAL(toggled(bool)),
-      shading,SLOT(setChecked(bool)));
-  connect(vs->antialiasingCheck,SIGNAL(toggled(bool)),
-      antialiasing,SLOT(setChecked(bool)));
-  connect(vs->transparencyCheck,SIGNAL(toggled(bool)),
-      transparency,SLOT(setChecked(bool)));
-  connect(vs->perspectiveCheck,SIGNAL(toggled(bool)),
-      perspective,SLOT(setChecked(bool)));
-  connect(vs->fogCheck,SIGNAL(toggled(bool)),
-      fog,SLOT(setChecked(bool)));
-  connect(vs->gammaCheck,SIGNAL(toggled(bool)),
-      gamma,SLOT(setChecked(bool)));
-  connect(vs->wireframeCheck,SIGNAL(toggled(bool)),
-      wireframe,SLOT(setChecked(bool)));
-  connect(vs->opaquewireframeCheck,SIGNAL(toggled(bool)),
-      opaquewireframe,SLOT(setChecked(bool)));
-  connect(vs->lightingCheck,SIGNAL(toggled(bool)),
-      lighting,SLOT(setChecked(bool)));
-  connect(vs->diffuseCheck,SIGNAL(toggled(bool)),
-      diffuse,SLOT(setChecked(bool)));
-  connect(vs->binnedPaletteCheck,SIGNAL(toggled(bool)),
-      binnedPalette,SLOT(setChecked(bool)));
-  connect(vs->binnedPaletteCheck,SIGNAL(toggled(bool)),
-      paletteExportImage,SLOT(setChecked(bool)));
+  connect(vs->outlineCheck,SIGNAL(toggled(bool)),ui->outline,SLOT(setChecked(bool)));
+  connect(vs->twoSidedCheck,SIGNAL(toggled(bool)),ui->twoSided,SLOT(setChecked(bool)));
+  connect(vs->shadingCheck,SIGNAL(toggled(bool)),ui->shading,SLOT(setChecked(bool)));
+  connect(vs->antialiasingCheck,SIGNAL(toggled(bool)),ui->antialiasing,SLOT(setChecked(bool)));
+  connect(vs->transparencyCheck,SIGNAL(toggled(bool)),ui->transparency,SLOT(setChecked(bool)));
+  connect(vs->perspectiveCheck,SIGNAL(toggled(bool)), ui->perspective,SLOT(setChecked(bool)));
+  connect(vs->fogCheck,SIGNAL(toggled(bool)),ui->fog,SLOT(setChecked(bool)));
+  connect(vs->gammaCheck,SIGNAL(toggled(bool)),ui->gamma,SLOT(setChecked(bool)));
+  connect(vs->wireframeCheck,SIGNAL(toggled(bool)),ui->wireframe,SLOT(setChecked(bool)));
+  connect(vs->opaquewireframeCheck,SIGNAL(toggled(bool)),ui->opaquewireframe,SLOT(setChecked(bool)));
+  connect(vs->lightingCheck,SIGNAL(toggled(bool)),ui->lighting,SLOT(setChecked(bool)));
+  connect(vs->diffuseCheck,SIGNAL(toggled(bool)),ui->diffuse,SLOT(setChecked(bool)));
+  connect(vs->binnedPaletteCheck,SIGNAL(toggled(bool)),ui->binnedPalette,SLOT(setChecked(bool)));
+  connect(vs->binnedPaletteCheck,SIGNAL(toggled(bool)),ui->paletteExportImage,SLOT(setChecked(bool)));
+  connect(ui->paletteExportImage,SIGNAL(toggled(bool)),vs->paletteExportImageCheckBox,SLOT(setChecked(bool)));
+  connect(vs->paletteExportImageCheckBox,SIGNAL(toggled(bool)),ui->paletteExportImage,SLOT(setChecked(bool)));
 
-  connect(paletteExportImage,SIGNAL(toggled(bool)),
-    vs->paletteExportImageCheckBox,SLOT(setChecked(bool)));
-  connect(vs->paletteExportImageCheckBox,SIGNAL(toggled(bool)),
-    paletteExportImage,SLOT(setChecked(bool)));
+  connect(ui->binnedPaletteColor,SIGNAL(activated()),vs->bwBinPalette,SLOT(toggle())); //QToolButton
+  connect(ui->binnedPaletteColor,SIGNAL(activated()),bp,SLOT(setPalette()));
 
-  connect(binnedPaletteColor,SIGNAL(activated()),
-    vs->bwBinPalette,SLOT(toggle())); //QToolButton
-  connect(binnedPaletteColor,SIGNAL(activated()),
-      bp,SLOT(setPalette()));
-
-  connect(vs->bpStartValueSpinBox,SIGNAL(valueChanged(int)),
-      bp,SLOT(setStartPaletteValue(int)));
-  connect(vs->bpEndValueSpinBox,SIGNAL(valueChanged(int)),
-      bp,SLOT(setEndPaletteValue(int)));
-  connect(vs->bpStart,SIGNAL(sliderReleased()),
-      bp,SLOT(setBinPaletteStart()));
-  connect(vs->bpEnd,SIGNAL(sliderReleased()),
-      bp,SLOT(setBinPaletteEnd()));
-  connect(vs->bwBinPalette,SIGNAL(clicked()),
-      bp,SLOT(setPalette()));
-  connect(vs->colorBinPalette,SIGNAL(clicked()),
-      bp,SLOT(setPalette()));
-  connect(vs->prevBinPaletteTB,SIGNAL(clicked()),
-      vs->paletteIndexSpinBox,SLOT(stepDown()));
-  connect(vs->nextBinPaletteTB,SIGNAL(clicked()),
-      vs->paletteIndexSpinBox,SLOT(stepUp()));
-
-  connect( viewerSettingsDockWidget,SIGNAL(visibilityChanged(bool)),
-     this,SLOT(slotViewerSettings(bool)));
+  connect(vs->bpStartValueSpinBox,SIGNAL(valueChanged(int)),bp,SLOT(setStartPaletteValue(int)));
+  connect(vs->bpEndValueSpinBox,SIGNAL(valueChanged(int)),bp,SLOT(setEndPaletteValue(int)));
+  connect(vs->bpStart,SIGNAL(sliderReleased()),bp,SLOT(setBinPaletteStart()));
+  connect(vs->bpEnd,SIGNAL(sliderReleased()),bp,SLOT(setBinPaletteEnd()));
+  connect(vs->bwBinPalette,SIGNAL(clicked()),bp,SLOT(setPalette()));
+  connect(vs->colorBinPalette,SIGNAL(clicked()),bp,SLOT(setPalette()));
+  connect(vs->prevBinPaletteTB,SIGNAL(clicked()),vs->paletteIndexSpinBox,SLOT(stepDown()));
+  connect(vs->nextBinPaletteTB,SIGNAL(clicked()),vs->paletteIndexSpinBox,SLOT(stepUp()));
+  connect(ui->viewerSettingsDockWidget,SIGNAL(visibilityChanged(bool)),this,SLOT(slotViewerSettings(bool)));
   //SIGNAL(valueChanged(int))
-  connect(vs->outlineValue,SIGNAL(valueChanged(int)),
-      this,SLOT(setOutlineValue(int)));
-  connect(vs->presetNumber,SIGNAL(valueChanged(int)),
-      this,SLOT(gotoViewpoint(int)));
-  connect(vs->zeroClippingPlaneButton,SIGNAL(clicked()),
-      this,SLOT(setZeroClipping()));
-  connect(vs->clippingSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setClippingValue(int)));
-  connect(vs->fogSlider,SIGNAL(valueChanged(int)),
-    this,SLOT(setFogValue(int)));
-  connect(vs->gammaSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setGammaValue(int)));
-  connect(vs->fovSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setFOVValue(int)));
-  connect(vs->sphereTessSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setTesselValue(int)));
-  connect(vs->ambientSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setAmbientValue(int)));
-  connect(vs->diffuseSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setDiffuseValue(int)));
-  connect(vs->backgroundSlider,SIGNAL(valueChanged(int)),
-      this,SLOT(setBackgroundValue(int)));
-  connect(vs->blackBackgroundButton,SIGNAL(clicked()),
-      this,SLOT(setBackgroundBlack()));
-  connect(vs->whiteBackgroundButton,SIGNAL(clicked()),
-      this,SLOT(setBackgroundWhite()));
-  connect(vs->resetPositionPushButton,SIGNAL(clicked()),
-    this,SLOT(resetLightPosition()));
-  connect(vs->fixedSourceCheckBox,SIGNAL(toggled(bool)),
-    this,SLOT(setFixedLight(bool)));
-  connect(vs->editLightListBox,SIGNAL(itemSelectionChanged()),
-    this,SLOT(setLightEditing()));
+  connect(vs->outlineValue,SIGNAL(valueChanged(int)),this,SLOT(setOutlineValue(int)));
+  connect(vs->presetNumber,SIGNAL(valueChanged(int)),this,SLOT(gotoViewpoint(int)));
+  connect(vs->zeroClippingPlaneButton,SIGNAL(clicked()),this,SLOT(setZeroClipping()));
+  connect(vs->clippingSlider,SIGNAL(valueChanged(int)),this,SLOT(setClippingValue(int)));
+  connect(vs->fogSlider,SIGNAL(valueChanged(int)),this,SLOT(setFogValue(int)));
+  connect(vs->gammaSlider,SIGNAL(valueChanged(int)),this,SLOT(setGammaValue(int)));
+  connect(vs->fovSlider,SIGNAL(valueChanged(int)),this,SLOT(setFOVValue(int)));
+  connect(vs->sphereTessSlider,SIGNAL(valueChanged(int)),this,SLOT(setTesselValue(int)));
+  connect(vs->ambientSlider,SIGNAL(valueChanged(int)),this,SLOT(setAmbientValue(int)));
+  connect(vs->diffuseSlider,SIGNAL(valueChanged(int)),this,SLOT(setDiffuseValue(int)));
+  connect(vs->backgroundSlider,SIGNAL(valueChanged(int)),this,SLOT(setBackgroundValue(int)));
+  connect(vs->blackBackgroundButton,SIGNAL(clicked()),this,SLOT(setBackgroundBlack()));
+  connect(vs->whiteBackgroundButton,SIGNAL(clicked()),this,SLOT(setBackgroundWhite()));
+  connect(vs->resetPositionPushButton,SIGNAL(clicked()),this,SLOT(resetLightPosition()));
+  connect(vs->fixedSourceCheckBox,SIGNAL(toggled(bool)),this,SLOT(setFixedLight(bool)));
+  connect(vs->editLightListBox,SIGNAL(itemSelectionChanged()),this,SLOT(setLightEditing()));
 
-  connect(vs->lightSourceDial,SIGNAL(valueChanged(int)),
-    this,SLOT(setLightPosition()));
-  connect(vs->lightPitch,SIGNAL(valueChanged(int)),
-    this,SLOT(setLightPosition()));
-  connect(vs->lightColor,SIGNAL(clicked()),
-      this,SLOT(slotLightColor()));
+  connect(vs->lightSourceDial,SIGNAL(valueChanged(int)),this,SLOT(setLightPosition()));
+  connect(vs->lightPitch,SIGNAL(valueChanged(int)),this,SLOT(setLightPosition()));
+  connect(vs->lightColor,SIGNAL(clicked()),this,SLOT(slotLightColor()));
 
-  connect(vs->specularSlider,
-    SIGNAL(valueChanged(int)),SLOT(setSpecular(int)));
+  connect(vs->specularSlider,SIGNAL(valueChanged(int)),SLOT(setSpecular(int)));
 
-  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),
-    vs->paletteView,SLOT(repaint()));
-  connect(cyclebinpalettenext,SIGNAL(activated()),
-    vs->paletteIndexSpinBox,SLOT(stepUp()));
-  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),
-    vs->paletteView,SLOT(repaint()));
-  connect(cyclebinpaletteprev,SIGNAL(activated()),
-    vs->paletteIndexSpinBox,SLOT(stepDown()));
+  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),vs->paletteView,SLOT(repaint()));
+  connect(ui->cyclebinpalettenext,SIGNAL(activated()),vs->paletteIndexSpinBox,SLOT(stepUp()));
+  connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),vs->paletteView,SLOT(repaint()));
+  connect(ui->cyclebinpaletteprev,SIGNAL(activated()),vs->paletteIndexSpinBox,SLOT(stepDown()));
 
-  connect(vs->forwardPlayEndButton,SIGNAL(clicked()),
-    SLOT(forwardPlayEnd()));
-  connect(vs->reversePlayEndButton,SIGNAL(clicked()),
-    SLOT(reversePlayEnd()));
+  connect(vs->forwardPlayEndButton,SIGNAL(clicked()),SLOT(forwardPlayEnd()));
+  connect(vs->reversePlayEndButton,SIGNAL(clicked()),SLOT(reversePlayEnd()));
 
-  connect(vs->stopPlayEndButton,SIGNAL(clicked()),
-    SLOT(stopPlay()));
+  connect(vs->stopPlayEndButton,SIGNAL(clicked()),SLOT(stopPlay()));
 
-  connect(exportImageAction, SIGNAL(activated()),
-    ip,SLOT(exportImage()));
-  connect(exportImageAtSize, SIGNAL(activated()),
-    ip,SLOT(exportImageGetSize()));
-  connect(autoExportImageAction, SIGNAL(toggled(bool)),
-    ip,SLOT(autoExportImage(bool)));
+  connect(ui->exportImageAction, SIGNAL(activated()),ip,SLOT(exportImage()));
+  connect(ui->exportImageAtSize, SIGNAL(activated()),ip,SLOT(exportImageGetSize()));
+  connect(ui->autoExportImageAction, SIGNAL(toggled(bool)),ip,SLOT(autoExportImage(bool)));
 }
 
 /**
@@ -499,6 +437,40 @@ bool MainWindow::filePrintSetup()
   return false;
 }
 
+void MainWindow::setOutlineColor( QColor c )
+{
+  GLfloat newColor[3] = { (GLfloat)c.red()/255.0, (GLfloat)c.green()/255.0, (GLfloat)c.blue()/255.0 };
+  GLfloat oldColor[3];
+  if (cuviewDoc) {
+    cuviewDoc->outlineColor(oldColor);
+    if (c!=QColor((int)oldColor[0]*255,(int)oldColor[1]*255,(int)oldColor[2]*255)){
+      if (moviestream.device())
+      moviestream << QString("outlinecolor %1 %2 %3\n").arg(c.red())
+                      .arg(c.green()).arg(c.blue());
+      cuviewDoc->setOutlineColor(newColor);
+      cuviewDoc->redrawDoc();
+    }
+  }
+}
+
+void MainWindow::setBoundingBox( bool c )
+{
+  ui->showBoundingBoxAction->setChecked(c);
+  if (cuviewDoc && cuviewDoc->boxWhileMoving() != c){
+    cuviewDoc->setBoxWhileMoving( c );
+    cuviewDoc->redrawDoc();
+  }
+}
+
+void MainWindow::setDrawBoundingBoxAlways( bool c )
+{
+  ui->showBoxAlwaysAction->setChecked(c);
+  if (cuviewDoc && cuviewDoc->drawBoxAlways() != c) {
+    cuviewDoc->setDrawBoxAlways( c );
+    cuviewDoc->redrawDoc();
+  }
+}
+
 //load list of filenames in separate views
 //used on cuviewer application startup only
 /**
@@ -532,10 +504,11 @@ void MainWindow::loadAllInOne( QStringList files ){
       statusBar()->showMessage(QString("Error loading cuvfile from script"));
     }
     else{
-      if (cuviewDoc)
+      if (cuviewDoc){
         fileOpenMerge(& files[i] );
-      else
+      }else{
         load( & files[i] );
+      }
     }
   }
 }
@@ -775,7 +748,7 @@ void MainWindow::reload()
 
   //getpid() a unistd.h command, in win32 from process.h
   //winId() is from QWidget
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   filedata.scriptfile = QString("cuviewertemp%1-%2")
                         .arg(getpid()).arg((int)winId());
 #else
@@ -908,7 +881,7 @@ void MainWindow::slotClose() //closes window
     ts << QString("Workspace information for cuviewer, do not edit.\n");
     //Write 1 if ViewerSettings dock hidden, otherwise write 0
     ts << QString("vs_dock_hidden %1\n")
-            .arg((int)viewerSettingsDockWidget->isHidden());
+            .arg((int)ui->viewerSettingsDockWidget->isHidden());
 #ifdef SOLARIS
     ts << QString("mainwindow_size %1 %2 %3 %4\n")
                   .arg(x()-6).arg(y()-29).arg(width()).arg(height());
@@ -1337,7 +1310,7 @@ PrefData* MainWindow::getPreferences(){
       pd->mouseButtons = value;
       ts >> pad >> str; //image_format
       QString format = str;
-      int i = ip->supportedFormats.indexOf(format.toAscii());
+      int i = ip->supportedFormats.indexOf(format. toLatin1());
       pd->saveImageFormat = i;
       ts >> pad >> value; //direct_rendering
       pd->directRendering = value;
@@ -1395,7 +1368,7 @@ void MainWindow::setPrefData( PrefData * pd )
   prefdata.drawAxis = pd->drawAxis;
   prefdata.drawAxisOrigin = pd->drawAxisOrigin;
   if (cuviewDoc){
-    drawAxisAction->setChecked(cuviewDoc->drawAxis());
+    ui->drawAxisAction->setChecked(cuviewDoc->drawAxis());
     cuviewDoc->setDrawAxis( prefdata.drawAxis );
     cuviewDoc->setDrawAxisOrigin( prefdata.drawAxisOrigin );
   }
@@ -1414,44 +1387,10 @@ void MainWindow::setPrefData( PrefData * pd )
     cuviewDoc->setThreeButtonMouse( prefdata.mouseButtons==3 );
 }
 
-void MainWindow::setOutlineColor( QColor c )
-{
-  GLfloat newColor[3] = { (GLfloat)c.red()/255.0, (GLfloat)c.green()/255.0, (GLfloat)c.blue()/255.0 };
-  GLfloat oldColor[3];
-  if (cuviewDoc) {
-    cuviewDoc->outlineColor(oldColor);
-    if (c!=QColor((int)oldColor[0]*255,(int)oldColor[1]*255,(int)oldColor[2]*255)){
-      if (moviestream.device())
-      moviestream << QString("outlinecolor %1 %2 %3\n").arg(c.red())
-                      .arg(c.green()).arg(c.blue());
-      cuviewDoc->setOutlineColor(newColor);
-      cuviewDoc->redrawDoc();
-    }
-  }
-}
-
-void MainWindow::setBoundingBox( bool c )
-{
-  showBoundingBoxAction->setChecked(c);
-  if (cuviewDoc && cuviewDoc->boxWhileMoving() != c){
-    cuviewDoc->setBoxWhileMoving( c );
-    cuviewDoc->redrawDoc();
-  }
-}
-
-void MainWindow::setDrawBoundingBoxAlways( bool c )
-{
-  showBoxAlwaysAction->setChecked(c);
-  if (cuviewDoc && cuviewDoc->drawBoxAlways() != c) {
-    cuviewDoc->setDrawBoxAlways( c );
-    cuviewDoc->redrawDoc();
-  }
-}
-
 void MainWindow::setOutlineChecked( bool c )
 {
   vs->outlineCheck->setChecked(c);
-  outline->setChecked(c);
+  ui->outline->setChecked(c);
   if (cuviewDoc && cuviewDoc->outline() != c) {
     if (moviestream.device())
       moviestream << QString("outline %1\n").arg((int)cuviewDoc->outline());
@@ -1459,10 +1398,11 @@ void MainWindow::setOutlineChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setTwoSidedChecked( bool c )
 {
   vs->twoSidedCheck->setChecked(c);
-  twoSided->setChecked(c);
+  ui->twoSided->setChecked(c);
   if (cuviewDoc && cuviewDoc->twoSided() != c) {
     if (moviestream.device())
       moviestream << QString("twosided %1\n").arg((int)cuviewDoc->twoSided());
@@ -1470,10 +1410,11 @@ void MainWindow::setTwoSidedChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setShadingChecked( bool c )
 {
   vs->shadingCheck->setChecked(c);
-  shading->setChecked(c);
+  ui->shading->setChecked(c);
   if (cuviewDoc && cuviewDoc->smoothShaded() != c) {
     if (moviestream.device())
       moviestream << QString("smoothshaded %1\n").arg((int)cuviewDoc->smoothShaded());
@@ -1481,10 +1422,11 @@ void MainWindow::setShadingChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setAntialiasingChecked( bool c )
 {
   vs->antialiasingCheck->setChecked(c);
-  antialiasing->setChecked(c);
+  ui->antialiasing->setChecked(c);
   if (cuviewDoc && cuviewDoc->antialias() != c) {
     if (moviestream.device())
       moviestream << QString("aa %1\n").arg((int)cuviewDoc->antialias());
@@ -1492,10 +1434,11 @@ void MainWindow::setAntialiasingChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setWireframeChecked( bool c )
 {
   vs->wireframeCheck->setChecked(c);
-  wireframe->setChecked(c);
+  ui->wireframe->setChecked(c);
   if (cuviewDoc && cuviewDoc->wireframe() != c) {
     if (moviestream.device())
       moviestream << QString("wireframe %1\n").arg((int)cuviewDoc->wireframe());
@@ -1503,10 +1446,11 @@ void MainWindow::setWireframeChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setOpaqueWireframeChecked( bool c )
 {
   vs->opaquewireframeCheck->setChecked(c);
-  opaquewireframe->setChecked(c);
+  ui->opaquewireframe->setChecked(c);
   if (cuviewDoc && cuviewDoc->opaqueWireframe() != c) {
     if (moviestream.device())
       moviestream << QString("opaquewf %1\n").arg((int)cuviewDoc->opaqueWireframe());
@@ -1514,10 +1458,11 @@ void MainWindow::setOpaqueWireframeChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setPerspectiveChecked( bool c )
 {
   vs->perspectiveCheck->setChecked(c);
-  perspective->setChecked(c);
+  ui->perspective->setChecked(c);
   if (cuviewDoc && cuviewDoc->perspective() != c) {
     if (moviestream.device())
       moviestream << QString("view %1\n").arg((int)cuviewDoc->perspective());
@@ -1525,10 +1470,11 @@ void MainWindow::setPerspectiveChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setTransparencyChecked( bool c )
 {
   vs->transparencyCheck->setChecked(c);
-  transparency->setChecked(c);
+  ui->transparency->setChecked(c);
   if (cuviewDoc && cuviewDoc->transparency() != c) {
     if (moviestream.device())
       moviestream << QString("transparency %1\n").arg((int)cuviewDoc->transparency());
@@ -1536,19 +1482,21 @@ void MainWindow::setTransparencyChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setFogChecked( bool c )
 {
   vs->fogCheck->setChecked(c);
-  fog->setChecked(c);
+  ui->fog->setChecked(c);
   if (cuviewDoc && cuviewDoc->fog() != c) {
     cuviewDoc->setFog(c);
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setGammaChecked( bool c )
 {
   vs->gammaCheck->setChecked(c);
-  gamma->setChecked(c);
+  ui->gamma->setChecked(c);
   if (cuviewDoc && cuviewDoc->gamma() != c) {
     if (moviestream.device())
       moviestream << QString("gamma %1\n").arg((int)cuviewDoc->gamma());
@@ -1556,10 +1504,11 @@ void MainWindow::setGammaChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setLightingChecked( bool c )
 {
   vs->lightingCheck->setChecked(c);
-  lighting->setChecked(c);
+  ui->lighting->setChecked(c);
   if (cuviewDoc && cuviewDoc->lighting() != c) {
     if (moviestream.device())
       moviestream << QString("lighting %1\n").arg((int)cuviewDoc->lighting());
@@ -1567,10 +1516,11 @@ void MainWindow::setLightingChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setDiffuseChecked( bool c )
 {
   vs->diffuseCheck->setChecked(c);
-  diffuse->setChecked(c);
+  ui->diffuse->setChecked(c);
   if (cuviewDoc && cuviewDoc->light() != c) {
     if (moviestream.device())
       moviestream << QString("diffuse %1\n").arg((int)cuviewDoc->light());
@@ -1578,10 +1528,11 @@ void MainWindow::setDiffuseChecked( bool c )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setBinnedPaletteChecked( bool c )
 {
   vs->binnedPaletteCheck->setChecked(c);
-  binnedPalette->setChecked(c);
+  ui->binnedPalette->setChecked(c);
   if (cuviewDoc && cuviewDoc->binWindow() != c) {
     if (moviestream.device())
       moviestream << QString("binWindow %1\n").arg((int)cuviewDoc->binWindow());
@@ -1606,6 +1557,7 @@ void MainWindow::setClippingValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setFOVValue( int v )
 {
   vs->fovSlider->setValue(v);
@@ -1616,6 +1568,7 @@ void MainWindow::setFOVValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setOutlineValue( int v ) //for pratical purposes, use int
 {
   vs->outlineValue->setValue(v);
@@ -1626,6 +1579,7 @@ void MainWindow::setOutlineValue( int v ) //for pratical purposes, use int
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setTesselValue( int v )
 {
   vs->sphereTessSlider->setValue(v);
@@ -1636,6 +1590,7 @@ void MainWindow::setTesselValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setAmbientValue( int v )
 {
   vs->ambientSlider->setValue(v);
@@ -1646,6 +1601,7 @@ void MainWindow::setAmbientValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setDiffuseValue( int v )
 {
   vs->diffuseSlider->setValue(v);
@@ -1656,6 +1612,7 @@ void MainWindow::setDiffuseValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setBackgroundValue( int v )
 {
   vs->backgroundSlider->setValue(v);
@@ -1669,14 +1626,17 @@ void MainWindow::setBackgroundValue( int v )
     cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setBackgroundBlack() //convienient for setting background
 {
     setBackgroundValue(0);
 }
+
 void MainWindow::setBackgroundWhite() //convienient for setting background
 {
     setBackgroundValue(100);
 }
+
 void MainWindow::setFogValue( int v ){
   vs->fogSlider->setValue(v);
   if (cuviewDoc && (int)(cuviewDoc->fogLevel()*200) != v) {
@@ -1686,6 +1646,7 @@ void MainWindow::setFogValue( int v ){
   cuviewDoc->redrawDoc();
   }
 }
+
 void MainWindow::setGammaValue( int v ){
   vs->gammaSlider->setValue(v);
   if (cuviewDoc && cuviewDoc->gammaLevel() != v*0.1) {
@@ -1819,20 +1780,20 @@ void MainWindow::slotLoadPreset()
   */
 void MainWindow::slotViewerSettings( bool showMe )
 {
-  bool currentlyHiding = viewerSettingsDockWidget->isHidden();
+  bool currentlyHiding = ui->viewerSettingsDockWidget->isHidden();
   if (showMe){
     if (currentlyHiding){
-      viewerSettingsDockWidget->blockSignals(TRUE);
-      viewerSettingsDockWidget->show();
-      viewerSettingsDockWidget->blockSignals(FALSE);
+      ui->viewerSettingsDockWidget->blockSignals(TRUE);
+      ui->viewerSettingsDockWidget->show();
+      ui->viewerSettingsDockWidget->blockSignals(FALSE);
       statusBar()->showMessage("Viewer settings shown");
     }
   }
   else{
     if (!currentlyHiding) {
-      viewerSettingsDockWidget->blockSignals(TRUE);
-      viewerSettingsDockWidget->hide();
-      viewerSettingsDockWidget->blockSignals(FALSE);
+      ui->viewerSettingsDockWidget->blockSignals(TRUE);
+      ui->viewerSettingsDockWidget->hide();
+      ui->viewerSettingsDockWidget->blockSignals(FALSE);
       statusBar()->showMessage("Viewer settings hidden");
     }
   }
@@ -1840,10 +1801,10 @@ void MainWindow::slotViewerSettings( bool showMe )
   //Make sure toolbar icon is in the desired state.
   //Icon pressed down means tabs are shown.
   //Icon not pressed means tabs are hidden.
-  if (viewerSettings->isChecked()!=showMe){
-    viewerSettings->blockSignals(TRUE);
-    viewerSettings->setChecked(showMe);
-    viewerSettings->blockSignals(FALSE);
+  if (ui->viewerSettings->isChecked()!=showMe){
+    ui->viewerSettings->blockSignals(TRUE);
+    ui->viewerSettings->setChecked(showMe);
+    ui->viewerSettings->blockSignals(FALSE);
   }
 }
 
@@ -1895,15 +1856,25 @@ void MainWindow::setZeroClipping()
     @brief Changes view point to show the object's top front-right.
   */
 void MainWindow::goto1() { gotoViewpoint(1); }
+
 void MainWindow::goto2() { gotoViewpoint(2); }
+
 void MainWindow::goto3() { gotoViewpoint(3); }
+
 void MainWindow::goto4() { gotoViewpoint(4); }
+
 void MainWindow::goto5() { gotoViewpoint(5); }
+
 void MainWindow::goto6() { gotoViewpoint(6); }
+
 void MainWindow::goto7() { gotoViewpoint(7); }
+
 void MainWindow::goto8() { gotoViewpoint(8); }
+
 void MainWindow::goto9() { gotoViewpoint(9); }
+
 void MainWindow::goto0() { gotoViewpoint(0); }
+
 void MainWindow::gotoViewpoint( int key )
 {
   vs->presetNumber->blockSignals( TRUE );
@@ -1945,7 +1916,7 @@ void MainWindow::showScenes()
     updateScenes();
 
     showSceneDialog->editingCheckBox->blockSignals(TRUE);
-    showSceneDialog->editingCheckBox->setChecked(editModeAction->isChecked());
+    showSceneDialog->editingCheckBox->setChecked(ui->editModeAction->isChecked());
     showSceneDialog->editingCheckBox->blockSignals(FALSE);
 
     QFile file(QDir::home().path()+"/.cuviewer/cuviewer");
@@ -1983,7 +1954,7 @@ void MainWindow::showScenes()
             SIGNAL(returnPressed()),SLOT(endScene()));
 
     connect(showSceneDialog->editingCheckBox,
-            SIGNAL(toggled(bool)),editModeAction,SLOT(setOn(bool)));
+            SIGNAL(toggled(bool)),ui->editModeAction,SLOT(setOn(bool)));
     connect(showSceneDialog->applyTranslateButton,
             SIGNAL(clicked()),SLOT(transformScene()));
     connect(showSceneDialog->applyRotateButton,
@@ -2025,62 +1996,20 @@ void MainWindow::updateScenes()
     }
   }
   if (cuviewDoc)
-    editModeAction->setChecked(cuviewDoc->getEditMode());
+    ui->editModeAction->setChecked(cuviewDoc->getEditMode());
 }
 
-void MainWindow::setSceneVisible()
-{
-  if (!showSceneDialog)
-    return;
-
-  int i=0;
-  QListWidgetItem * lbi = showSceneDialog->visibleList->item(i);
-  while(lbi){
-    cuviewDoc->setSceneVisible(showSceneDialog->visibleList->row(lbi),
-                                            lbi->isSelected());
-    i++;
-    lbi = showSceneDialog->visibleList->item(i);
-  }
-
-  if (moviestream.device()){
-    moviestream << QString("scenes %1").arg((int)cuviewDoc->scenes());
-    for(int i=0;i<cuviewDoc->scenes();i++)
-      moviestream << " " << QString::number((int)cuviewDoc->isVisible(i));
-    moviestream << "\n";
-  }
-  cuviewDoc->redrawDoc();
+void MainWindow::startScene(){
+  QLineEdit * lineedit = showSceneDialog->scstartLineEdit;
+  if (lineedit->text().isEmpty())
+    lineedit->setText("1");
 }
 
-void MainWindow::setDrawAxis( bool toggle )
-{
-  if (cuviewDoc)
-    cuviewDoc->setDrawAxis( toggle );
-}
-
-void MainWindow::setEditMode( bool edit )
-{
-  if (showSceneDialog){
-    showSceneDialog->editingCheckBox->blockSignals(TRUE);
-    showSceneDialog->editingCheckBox->setChecked(edit);
-    showSceneDialog->editingCheckBox->blockSignals(FALSE);
-  }
-  if (cuviewDoc)
-    cuviewDoc->setEditMode(edit);
-}
-
-void MainWindow::setSceneEditing()
-{
-  if (!showSceneDialog)
-    return;
-
-  int i=0;
-  QListWidgetItem * lbi = showSceneDialog->visibleList->item(i);
-  while(lbi){
-    cuviewDoc->setSceneVisible(showSceneDialog->visibleList->row(lbi),
-                                            lbi->isSelected());
-    i++;
-    lbi = showSceneDialog->visibleList->item(i);
-  }
+void MainWindow::endScene(){
+  QLineEdit * lineedit = showSceneDialog->scendLineEdit;
+  int count = (int)(showSceneDialog->visibleList->count());
+  if (lineedit->text().isEmpty())
+    lineedit->setText(QString::number(count));
 }
 
 void MainWindow::reversePlayScene()
@@ -2316,17 +2245,6 @@ void MainWindow::stopPlayScene(){
     //don't set currentscene (functions as pause)
   }
 }
-void MainWindow::startScene(){
-  QLineEdit * lineedit = showSceneDialog->scstartLineEdit;
-  if (lineedit->text().isEmpty())
-    lineedit->setText("1");
-}
-void MainWindow::endScene(){
-  QLineEdit * lineedit = showSceneDialog->scendLineEdit;
-  int count = (int)(showSceneDialog->visibleList->count());
-  if (lineedit->text().isEmpty())
-    lineedit->setText(QString::number(count));
-}
 
 void MainWindow::transformScene(){
     if (cuviewDoc&&showSceneDialog){
@@ -2408,6 +2326,7 @@ void MainWindow::transformScene(){
     updateScenes();
   }
 }
+
 /**
     @brief Rotates all scenes selected for editing by an amount given by the user
 
@@ -2442,6 +2361,61 @@ void MainWindow::rotateScene()
     cuviewDoc->setEditMode(editmode);
     cuviewDoc->redrawDoc();
     updateScenes();
+  }
+}
+
+void MainWindow::setSceneVisible()
+{
+  if (!showSceneDialog)
+    return;
+
+  int i=0;
+  QListWidgetItem * lbi = showSceneDialog->visibleList->item(i);
+  while(lbi){
+    cuviewDoc->setSceneVisible(showSceneDialog->visibleList->row(lbi),
+                                            lbi->isSelected());
+    i++;
+    lbi = showSceneDialog->visibleList->item(i);
+  }
+
+  if (moviestream.device()){
+    moviestream << QString("scenes %1").arg((int)cuviewDoc->scenes());
+    for(int i=0;i<cuviewDoc->scenes();i++)
+      moviestream << " " << QString::number((int)cuviewDoc->isVisible(i));
+    moviestream << "\n";
+  }
+  cuviewDoc->redrawDoc();
+}
+
+void MainWindow::setDrawAxis( bool toggle )
+{
+  if (cuviewDoc)
+    cuviewDoc->setDrawAxis( toggle );
+}
+
+void MainWindow::setEditMode( bool edit )
+{
+  if (showSceneDialog){
+    showSceneDialog->editingCheckBox->blockSignals(TRUE);
+    showSceneDialog->editingCheckBox->setChecked(edit);
+    showSceneDialog->editingCheckBox->blockSignals(FALSE);
+  }
+  if (cuviewDoc)
+    cuviewDoc->setEditMode(edit);
+}
+
+void MainWindow::setSceneEditing()
+{
+  if (!showSceneDialog)
+    return;
+
+  int i=0;
+  QListWidgetItem * lbi = showSceneDialog->visibleList->item(i);
+  while(lbi){
+    cuviewDoc->setSceneVisible(showSceneDialog->visibleList->row(lbi),
+                                            lbi->isSelected());
+    i++;
+    lbi = showSceneDialog->visibleList->item(i);
   }
 }
 
@@ -2486,35 +2460,6 @@ void MainWindow::setSpecular( int value )
     cuviewDoc->redrawDoc();
   }
 }
-
-/* This chunk of code was commented out since version 3.6f for reasons unknown. - Thai */
-/*
-void MainWindow::translateLights()
-{
-  if (cuviewDoc){
-    QListBoxItem * lbi = vs->editLightListBox->firstItem();
-    bool editing, editmode=cuviewDoc->getEditMode(); int index;
-    cuviewDoc->setEditMode(true);
-    while(lbi){
-      if (lbi->isSelected()) {
-        //Editing
-        index = vs->editLightListBox->index(lbi);
-        editing = cuviewDoc->getEditLightMode(index);
-        cuviewDoc->setEditLightMode(index,true);
-        cuviewDoc->translateLight(index,
-                vs->translateXLight->text().toFloat(),
-                vs->translateYLight->text().toFloat(),
-                vs->translateZLight->text().toFloat());
-        vs->translateXLight->clear();
-        vs->translateYLight->clear();
-        vs->translateZLight->clear();
-        cuviewDoc->setEditLightMode(index,editing);
-        }
-      lbi = lbi->next();
-    }
-    cuviewDoc->setEditMode(editmode);
-  }
-}  */
 
 void MainWindow::resetLightPosition()
 {
