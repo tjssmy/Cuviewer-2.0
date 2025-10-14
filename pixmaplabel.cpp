@@ -11,7 +11,7 @@
 #include <QMouseEvent>
 #include "pixmaplabel.h"
 using namespace Qt;
-PixmapLabel::PixmapLabel(QWidget* parent, const char* name, Qt::WFlags f)
+PixmapLabel::PixmapLabel(QWidget* parent, const char* name, Qt::WindowFlags f)
   : QLabel (parent, f)
 {
   paletteView = 0;

@@ -19,7 +19,7 @@ class PixmapLabel : public QLabel {
 public:
     enum Selected {None, TopCenter, TopRight, RightCenter, BottomRight, 
 		   BottomCenter, BottomLeft, LeftCenter, TopLeft};
-    PixmapLabel(QWidget* parent=0, const char* name=0, Qt::WFlags f=0);
+    PixmapLabel(QWidget* parent=0, const char* name=0, Qt::WindowFlags f=0);
     ~PixmapLabel();
     void setPixmapLabel(QPixmap pm);
     void setPaletteView(PaletteView*);

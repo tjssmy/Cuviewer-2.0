@@ -4,10 +4,12 @@
 #
 #-------------------------------------------------
 
-QT += core gui opengl
+QT += core gui opengl widgets printsupport
 
 TARGET = cuviewer
 TEMPLATE = app
+
+CONFIG += c++11 sdk_no_version_check
 
 SOURCES += main.cpp\
            mainwindow.cpp \
@@ -82,8 +84,6 @@ RESOURCES += images.qrc \
 OTHER_FILES += \
     test.vert \
     test.frag
-
-
 
 
 

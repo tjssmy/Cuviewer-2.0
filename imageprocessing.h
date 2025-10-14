@@ -52,8 +52,8 @@ public slots:
   void exportImageGetSize();
   void exportImage();
   void exportImage(QPixmap pm);
-  QPixmap getPixmap( bool preview=TRUE );
-  QPixmap getPixmap( int x, int y, bool preview=TRUE );
+  QPixmap getPixmap( bool preview=true );
+  QPixmap getPixmap( int x, int y, bool preview=true );
   void setPaintPalette(bool paint);
   void setAutoImageFile(QString file); 
   void setImageFile(QString file);

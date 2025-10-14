@@ -35,7 +35,7 @@ EntityScene::EntityScene(GLRenderer *displayListWidget) : ChangeableScene(displa
 	dlw = displayListWidget;
 	totalScenes = 0;
 	sceneEntity = NULL;
-	extremsChanged = FALSE;
+	extremsChanged = false;
 	for(int i=0;i<MAX_SCENES;i++){
 	  tile[i]=0;
 	  tileXSceneCount[i]=1;
@@ -151,7 +151,7 @@ void EntityScene::translateScene(int scene,cuv_float x,cuv_float y, cuv_float z)
   if(scene>-1 && scene<totalScenes){
     if(editingMode||sceneEditing[scene]){
       sceneEntityList[scene]->translate(x,y,z);
-      extremsChanged = TRUE;
+      extremsChanged = true;
     }
   }
 }
@@ -161,7 +161,7 @@ void EntityScene::scaleScene(int scene,cuv_float s)
   if(scene>-1 && scene<totalScenes){
     if(editingMode||sceneEditing[scene]){
       sceneEntityList[scene]->scale(s);
-      extremsChanged = TRUE;
+      extremsChanged = true;
     }
   }
 }
@@ -171,7 +171,7 @@ void EntityScene::scaleScene(int scene,cuv_float x,cuv_float y, cuv_float z)
   if(scene>-1 && scene<totalScenes){
     if(editingMode||sceneEditing[scene]){
       sceneEntityList[scene]->scale(x,y,z);
-      extremsChanged = TRUE;
+      extremsChanged = true;
     }
   }
 }
@@ -180,7 +180,7 @@ void EntityScene::rotateScene(int scene,const cuv_float rot[4]){
   if(scene>-1 && scene<totalScenes){
     if(editingMode||sceneEditing[scene]){
       sceneEntityList[scene]->rotate(rot);
-      extremsChanged = TRUE;
+      extremsChanged = true;
     }
   }
 }
@@ -189,7 +189,7 @@ void EntityScene::rotateScene(int scene,cuv_float x,cuv_float y,cuv_float z){
   if(scene>-1 && scene<totalScenes){
     if(editingMode||sceneEditing[scene]){
       sceneEntityList[scene]->rotate(x,y,z);
-      extremsChanged = TRUE;
+      extremsChanged = true;
     }
   }
 }
@@ -230,7 +230,7 @@ void EntityScene::setSceneExtrems()
     for(int i=0;i<totalScenes;i++) 
 		//if(sceneEntityList[i]->isVisible())
       compareMinMax(sceneEntityList[i]->extrems());
-    extremsChanged = FALSE;
+    extremsChanged = false;
   }
 }
 
@@ -249,7 +249,7 @@ void EntityScene::setSceneVisible(int index,bool visible)
 bool EntityScene::isVisible(int index)
 {
 	if(index>totalScenes-1)
-		return FALSE;
+		return false;
 	return sceneVisible[index];
 }
 
@@ -323,7 +323,7 @@ void EntityScene::tileScenes(int index,int xCount,int yCount,int zCount,
     for(int j=1;j<=yCount;j++)
       for(int k=1;k<=zCount;k++)
 	if(!((i==1)&&(j==1)&&(k==1))){
-	  tile[totalScenes]=TRUE; //identify current scene as a tile.
+	  tile[totalScenes]=true; //identify current scene as a tile.
 	  addScene();
 	  //sceneEntity is the newly added scene
 	  sceneEntity->setEditEntity(true);
@@ -346,7 +346,7 @@ void EntityScene::tileScenes(int index,int xCount,int yCount,int zCount,
 	    if(translate)
 	      sceneEntity->translateUnits(i-1,j-1,k-1);
 	    */
-	  extremsChanged = TRUE;
+	  extremsChanged = true;
 	  sceneEntity->setEditEntity(false);
 	}
 }
@@ -354,7 +354,7 @@ void EntityScene::tileScenes(int index,int xCount,int yCount,int zCount,
 bool EntityScene::isEditing(int index)
 {
 	if(index>totalScenes-1)
-	  return FALSE;
+	  return false;
 	return sceneEntityList[index]->getEditEntity();
 }
 

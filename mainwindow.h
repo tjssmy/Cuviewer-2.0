@@ -6,6 +6,7 @@
 
 #include <QMainWindow>
 #include <QTextStream>
+#include <QPrinter>
 #include "binpalettes.h"
 #include "cuviewdoc/cuviewdoc.h"
 #include "imageprocessing.h"

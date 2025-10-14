@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QFrame>
+#include <QVBoxLayout>
 #include "../include/cuvtags.h"
 #include "cuvdatahandler.h"
 #include "cuviewdoc.h"
@@ -321,8 +322,9 @@ bool CUViewDoc::initializeData()
 			showWarningMessage("Could not get depth buffer; incorrect results may occur.");
 		if (glInitState & GLRenderer::GErrorDubBuff)
 			showWarningMessage("Could not get double buffer; incorrect results may occur.");
-		if (glInitState & GLRenderer::GErrorAccumBuff)
-			showWarningMessage("Could not get accumulation buffer; incorrect results may occur.");
+		// Only warn about accumulation buffer if antialiasing is enabled (Qt5 doesn't support accum buffers)
+		if ((glInitState & GLRenderer::GErrorAccumBuff) && glRenderer->antialias())
+			showWarningMessage("Could not get accumulation buffer; antialiasing will not work.");
 	}
 	else
 	{

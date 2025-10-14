@@ -33,7 +33,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <GL/gl.h>
 #endif
 
-#include "../include/cuvtags.h"
+#include <QElapsedTimer>
+#include <QScreen>
+
+#ifdef Q_OS_MAC
+#include <OpenGL/glu.h>
+#else
+#include <GL/glu.h>
+#endif
 #include "../include/cuvcommonstructs.h"
 #include "../include/cuvvector.h"
 
@@ -134,7 +141,7 @@ class GLRenderer: public QGLWidget
   void cameraFix();
 
   public:
-  GLRenderer(QGLFormat * glformat, QWidget *parent = 0, const char *name = 0, const QGLWidget *shareWidget = 0, Qt::WFlags f = 0);
+  GLRenderer(QGLFormat * glformat, QWidget *parent = 0, const char *name = 0, const QGLWidget *shareWidget = 0, Qt::WindowFlags f = 0);
    ~GLRenderer();
   virtual void keyPressEvent(QKeyEvent *keyEvent);
   virtual void mousePressEvent(QMouseEvent *mouseEvent);

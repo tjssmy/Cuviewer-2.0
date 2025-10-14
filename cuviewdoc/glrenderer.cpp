@@ -61,7 +61,7 @@ using namespace Qt;
     @brief Constructs a GLRenderer object.
   */
 GLRenderer::GLRenderer(QGLFormat * glformat, QWidget *parent, 
-             const char *name, const QGLWidget *shareWidget, Qt::WFlags f)
+             const char *name, const QGLWidget *shareWidget, Qt::WindowFlags f)
   : QGLWidget(*glformat, parent, shareWidget, f)
 {
   dispListRefs = new QMap<GLuint, unsigned long>();
@@ -162,7 +162,7 @@ GLRenderer::GLRenderer(QGLFormat * glformat, QWidget *parent,
     viewState.lightColor[i][1]=1;
     viewState.lightColor[i][2]=1;
   }
-  viewState.showLightPosition = FALSE;
+  viewState.showLightPosition = false;
 
 // end default state setup
 
@@ -883,9 +883,9 @@ void GLRenderer::resizeGL(int w, int h)
   }
   else
   {
-    QWidget *desktop = QApplication::desktop();
-    int desktopWidth = desktop->width();
-    int desktopHeight = desktop->height();
+    QRect screenGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+    int desktopWidth = screenGeometry.width();
+    int desktopHeight = screenGeometry.height();
 
     GLsizei maxGlWindowWidth = desktopWidth - 2 * halfLine;
     GLsizei maxGlWindowHeight = desktopHeight - 2 * halfLine;
@@ -964,7 +964,7 @@ void GLRenderer::paintGL() //protected inherited from qglwidget
     }
     else
     {
-      QTime drawTimer; // to see if it's worthwhile caching the image
+      QElapsedTimer drawTimer; // to see if it's worthwhile caching the image
 
       if (newProjection) // update projection if needed (turned off in DrawAll)
       {
@@ -1547,7 +1547,7 @@ void GLRenderer::drawScene()
     glPushAttrib( GL_LIGHTING_BIT | GL_TEXTURE_BIT );
     glDisable( GL_LIGHTING );
     glDisable( GL_TEXTURE_2D );
-    QFont fnt( "helvetica", 12, QFont::Bold, TRUE );
+    QFont fnt( "helvetica", 12, QFont::Bold );
     for(int i=0;i<scene->scenes();i++){
       textscene = scene->getTextScene(i);
       tsize = textscene->size();
@@ -1592,7 +1592,7 @@ void GLRenderer::drawAxis()
       str.sprintf( "Rot X: %03d - Rot Y: %03d - Rot Z: %03d", x, y, z );
       renderText( (width() - fmc.width( str )) / 2, height() - 15, str, f );
     */
-    QFont fnt( "helvetica", 12, QFont::Bold, TRUE );
+    QFont fnt( "helvetica", 12, QFont::Bold );
     float unit = scene->largestExtremUnit()/2;
     const extremities extrem = scene->getExtremeties();
     

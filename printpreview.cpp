@@ -58,10 +58,10 @@ void PrintPreview::updatePreview()
     img.invertPixels();
   }
   if ( checkMirror->isChecked() ) {
-    img = img.mirrored( TRUE, FALSE );
+    img = img.mirrored( true, false );
   }
   if ( checkFlip->isChecked() ) {
-    img = img.mirrored( FALSE, TRUE );
+    img = img.mirrored( false, true );
   }
   QPixmap pm;
   pm.convertFromImage( img );

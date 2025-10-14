@@ -1,9 +1,10 @@
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QTextStream>
-#include <QWindowsStyle>
+#include <QStyleFactory>
 #include <QString>
 #include <QStringList>
 #include <QFile>
+#include <QTimer>
 
 #include "mainwindow.h"
 #include "config.h"
@@ -25,7 +26,7 @@ void createApp()
   mainwindow->loadSeparately(*files);
 
   if (!useNativeStyle){
-    qApp->setStyle(new QWindowsStyle());
+    qApp->setStyle(QStyleFactory::create("windows"));
   }
   mainwindow->show();
 
@@ -50,11 +51,8 @@ int main(int argc, char *argv[])
   stdOutFile->open(stdout, QIODevice::WriteOnly | QIODevice::Unbuffered);
   QTextStream stdOutStream(stdOutFile);
 
-  QApplication::setColorSpec(QApplication::ManyColor);
   //preprocess the command line before QApplication
   for(int i=1; i<argc ;i++) {
-    if(QString(argv[i]) == "-lowcolor")
-      QApplication::setColorSpec(QApplication::NormalColor);
     if(QString(argv[i]) == "-style")
       useNativeStyle=false;
   }

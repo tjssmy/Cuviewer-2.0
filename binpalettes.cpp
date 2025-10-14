@@ -63,12 +63,12 @@ void BinPalettes::setBinPalettes(int maxNumber)
 void BinPalettes::setPaletteIndex(int index){
   bool bwOn = index<=binPalettes;
 
-  vs->colorBinPalette->blockSignals(TRUE);
-  vs->bwBinPalette->blockSignals(TRUE);
+  vs->colorBinPalette->blockSignals(true);
+  vs->bwBinPalette->blockSignals(true);
   vs->colorBinPalette->setChecked(!bwOn);
   vs->bwBinPalette->setChecked(bwOn);
-  vs->colorBinPalette->blockSignals(FALSE);
-  vs->bwBinPalette->blockSignals(FALSE);
+  vs->colorBinPalette->blockSignals(false);
+  vs->bwBinPalette->blockSignals(false);
 
   if(cuviewDoc){
     int loop =0;
@@ -83,9 +83,9 @@ void BinPalettes::setPaletteIndex(int index){
         int bins = cuviewDoc->binWindowPalette( i )->count-2;
         ((QMainWindow*)parent)->statusBar()->showMessage(QString("Bin Palette index %1 with %2 bins")
                  .arg(i).arg(bins-2));
-        vs->paletteIndexSpinBox->blockSignals(TRUE);
+        vs->paletteIndexSpinBox->blockSignals(true);
         vs->paletteIndexSpinBox->setValue(index);
-        vs->paletteIndexSpinBox->blockSignals(FALSE);
+        vs->paletteIndexSpinBox->blockSignals(false);
         return;
       }
       if(loop>256){ //avoid infinite loop
@@ -245,8 +245,8 @@ void BinPalettes::setPalette(){
   }
   /*  else
     {
-      vs->bwBinPalette->setOn(FALSE);
-      vs->colorBinPalette->setOn(FALSE);
+      vs->bwBinPalette->setOn(false);
+      vs->colorBinPalette->setOn(false);
     }
   */
 }

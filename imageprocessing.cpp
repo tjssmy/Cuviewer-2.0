@@ -154,9 +154,9 @@ void ImageProcessing::autoExportImage( bool c )
      if ( absfilename.isEmpty() ){
        //Switch autoexport check to off.
        qDebug("Autoimage file name is empty");
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(TRUE);
-       ((MainWindow*)parent)->autoExportImageAction->setChecked(FALSE);
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(FALSE);
+       ((MainWindow*)parent)->autoExportImageAction->blockSignals(true);
+       ((MainWindow*)parent)->autoExportImageAction->setChecked(false);
+       ((MainWindow*)parent)->autoExportImageAction->blockSignals(false);
        return;
      }
      autoimagefile = absfilename;
@@ -177,9 +177,9 @@ void ImageProcessing::autoExportImage( bool c )
      }else {
        //Remove any values stored and uncheck action.
        autoimagefile.clear();
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(TRUE);
-       ((MainWindow*)parent)->autoExportImageAction->setChecked(FALSE);
-       ((MainWindow*)parent)->autoExportImageAction->blockSignals(FALSE);
+       ((MainWindow*)parent)->autoExportImageAction->blockSignals(true);
+       ((MainWindow*)parent)->autoExportImageAction->setChecked(false);
+       ((MainWindow*)parent)->autoExportImageAction->blockSignals(false);
        return;
      }
 
@@ -301,7 +301,7 @@ void ImageProcessing::exportImage(QPixmap pm){
 
     //Setup list to select preferred image format
     //Adding 1 to imageFormat to skip the "Images(*.bmp *.jpg ...etc)" text
-    qfd.selectFilter( qfd.filters().at(imageFormat + 1) );
+    qfd.selectNameFilter( qfd.nameFilters().at(imageFormat + 1) );
 
     if(qfd.exec()){
       filename = qfd.selectedFiles().at(0); //Get name of file.
@@ -332,7 +332,7 @@ void ImageProcessing::exportImage(QPixmap pm){
 //  QComboBox * filtercb = ((MainWindow*)parent)->saveImageFormat;
 //  int count = filtercb->count();
 
-//  bool gotformat=FALSE;
+//  bool gotformat=false;
 //  for(int i=0;i<count;i++){
 //    gotformat=filename.contains(QString("."+filtercb->text(i)),Qt::CaseSensitive/*case-sensitive*/);
 //    if( !gotformat && filtercb->text(i).contains(QString("jpeg"),Qt::CaseSensitive/*case-sensitive*/) )
@@ -414,9 +414,9 @@ QPixmap ImageProcessing::getPixmap( int x, int y, bool preview )
           //Invert RGB values, including alpha channel
           img.invertPixels(QImage::InvertRgba);
         if ( view.checkMirror->isChecked() )
-          img = img.mirrored( TRUE, FALSE );
+          img = img.mirrored( true, false );
         if ( view.checkFlip->isChecked() )
-          img = img.mirrored( FALSE, TRUE );
+          img = img.mirrored( false, true );
         pm.convertFromImage( img );
       }
       else{

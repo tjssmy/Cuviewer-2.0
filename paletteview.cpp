@@ -31,7 +31,7 @@ PaletteView::PaletteView( QWidget *parent)
   postFix = "";
   this->setPalette( QPalette( Qt::black, QColor( 200, 200, 200) ) );
   bwp = NULL;
-  cursorOn = TRUE;
+  cursorOn = true;
   setBackgroundColor(Qt::lightGray);
 }
 

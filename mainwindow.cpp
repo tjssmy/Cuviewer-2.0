@@ -4,27 +4,27 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <qvariant.h>
-#include <qwidget.h>
-#include <qtimer.h>
-#include <qstringlist.h>
-#include <qspinbox.h>
+#include <QVariant>
+#include <QWidget>
+#include <QTimer>
+#include <QStringList>
+#include <QSpinBox>
 #include <QScrollArea>
-#include <qprinter.h>
-#include <qpixmap.h>
-#include <qpainter.h>
-#include <qmessagebox.h>
-#include <qmainwindow.h>
-#include <qlistwidget.h>
-#include <qinputdialog.h>
-#include <qimage.h>
+#include <QPrinter>
+#include <QPixmap>
+#include <QPainter>
+#include <QMessageBox>
+#include <QMainWindow>
+#include <QListWidget>
+#include <QInputDialog>
+#include <QImage>
 #include <QFileDialog>
-#include <qcheckbox.h>
-#include <qapplication.h>
-#include <qtoolbutton.h>
-#include <qlabel.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QCheckBox>
+#include <QApplication>
+#include <QToolButton>
+#include <QLabel>
+#include <QImage>
+#include <QPixmap>
 #include <QStatusBar>
 #include <QDataStream>
 #include <QImageWriter>
@@ -34,7 +34,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #  include <math.h>
 #  include <process.h>
 #else
@@ -100,7 +100,7 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
   cuviewDoc = NULL;
   printer = NULL;
   timer = NULL; //movie, autoexport image
-  filesOnStartup = FALSE; //ie. at prompt: cuviewer somefile.cuv, see main.cpp
+  filesOnStartup = false; //ie. at prompt: cuviewer somefile.cuv, see main.cpp
   QScrollArea * scrollArea = new QScrollArea(viewerSettingsDockWidget);
   vs = new ViewerSettings(scrollArea); //gui
   ip = new ImageProcessing(this, vs); //image export, print, movie
@@ -116,7 +116,7 @@ void MainWindow::init() //NOTE: init is run as the last command in mainwindow.cp
   scrollArea->setWidget(vs);
   scrollArea->show();
   vs->show();
-  vs->setMouseTracking(TRUE);
+  vs->setMouseTracking(true);
 
   qApp->installEventFilter(this);
 
@@ -255,9 +255,9 @@ void MainWindow::connectSlots()
   connect(vs->paletteExportImageCheckBox,SIGNAL(toggled(bool)),
     paletteExportImage,SLOT(setChecked(bool)));
 
-  connect(binnedPaletteColor,SIGNAL(activated()),
+  connect(binnedPaletteColor,SIGNAL(triggered()),
     vs->bwBinPalette,SLOT(toggle())); //QToolButton
-  connect(binnedPaletteColor,SIGNAL(activated()),
+  connect(binnedPaletteColor,SIGNAL(triggered()),
       bp,SLOT(setPalette()));
 
   connect(vs->bpStartValueSpinBox,SIGNAL(valueChanged(int)),
@@ -325,11 +325,11 @@ void MainWindow::connectSlots()
 
   connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),
     vs->paletteView,SLOT(repaint()));
-  connect(cyclebinpalettenext,SIGNAL(activated()),
+  connect(cyclebinpalettenext,SIGNAL(triggered()),
     vs->paletteIndexSpinBox,SLOT(stepUp()));
   connect(vs->paletteIndexSpinBox,SIGNAL(valueChanged(int)),
     vs->paletteView,SLOT(repaint()));
-  connect(cyclebinpaletteprev,SIGNAL(activated()),
+  connect(cyclebinpaletteprev,SIGNAL(triggered()),
     vs->paletteIndexSpinBox,SLOT(stepDown()));
 
   connect(vs->forwardPlayEndButton,SIGNAL(clicked()),
@@ -340,9 +340,9 @@ void MainWindow::connectSlots()
   connect(vs->stopPlayEndButton,SIGNAL(clicked()),
     SLOT(stopPlay()));
 
-  connect(exportImageAction, SIGNAL(activated()),
+  connect(exportImageAction, SIGNAL(triggered()),
     ip,SLOT(exportImage()));
-  connect(exportImageAtSize, SIGNAL(activated()),
+  connect(exportImageAtSize, SIGNAL(triggered()),
     ip,SLOT(exportImageGetSize()));
   connect(autoExportImageAction, SIGNAL(toggled(bool)),
     ip,SLOT(autoExportImage(bool)));
@@ -370,7 +370,7 @@ void MainWindow::filePrint( int width, int height )
   bool hasPrinter = printer || filePrintSetup();
   if ( !hasPrinter ) return;
   ip->setPaintPalette(false);
-  QPixmap pm = ip->getPixmap(width,height,FALSE);
+  QPixmap pm = ip->getPixmap(width,height,false);
   ip->setPaintPalette(true);
   if (pm.isNull()) return;
 
@@ -397,9 +397,9 @@ void MainWindow::filePrint( int width, int height )
     if ( view.checkInvert->isChecked() )
       img.invertPixels();
     if ( view.checkMirror->isChecked() )
-      img = img.mirrored( TRUE, FALSE );
+      img = img.mirrored( true, false );
     if ( view.checkFlip->isChecked() )
-      img = img.mirrored( FALSE, TRUE );
+      img = img.mirrored( false, true );
     pm.convertFromImage( img );
   }
   else return;
@@ -511,7 +511,7 @@ bool MainWindow::filePrintSetup()
   */
 void MainWindow::loadSeparately( QStringList files ){
     if (files.count() > 0){
-      filesOnStartup = TRUE;
+      filesOnStartup = true;
     }
     for( int i=0; i<files.count(); i++){
       if (!cuviewDoc) load( & files[i] );
@@ -614,7 +614,7 @@ void MainWindow::load( QString * loadthisfile ) {
     QGLFormat * glformat;
     QGL::FormatOptions glflags = QGL::DoubleBuffer | QGL::DepthBuffer |
                                  QGL::Rgba | QGL::NoAlphaChannel |
-                                 QGL::AccumBuffer | QGL::NoStencilBuffer |
+                                 QGL::NoStencilBuffer |
                                  QGL::NoStereoBuffers | QGL::NoOverlay;
     if (prefdata.directRendering){
       qDebug("Direct Rendering mode");
@@ -679,7 +679,7 @@ void MainWindow::load( QString * loadthisfile ) {
       else{ //default settings:
         qDebug("Startup script file is empty");
         setViewerSettingsActions();
-        setOutlineChecked(FALSE);
+        setOutlineChecked(false);
         bp->setPaletteIndex(0);
         vs->editLightListBox->clearSelection();
       }
@@ -944,7 +944,7 @@ void MainWindow::slotClose() //closes window
 //activated by ctrl+c
 void MainWindow::closeFile()
 {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 //'delete cuviewDoc' crashes in windows, if file is loaded during startup
   if (filesOnStartup)
     return;
@@ -1109,7 +1109,7 @@ void MainWindow::slotReadMovieFile( QString filename )
       ++frame;
     }else if (pad.contains("camera_position")){
       moviestream >> toFill[0] >> toFill[1] >> toFill[2];
-      cuviewDoc->cameraTranslate(toFill,TRUE);
+      cuviewDoc->cameraTranslate(toFill,true);
     }else if (pad.contains("camera_aim")){
       moviestream >> toFill[0] >> toFill[1] >> toFill[2];
     }else if (pad.contains("camera_up")){
@@ -1337,7 +1337,7 @@ PrefData* MainWindow::getPreferences(){
       pd->mouseButtons = value;
       ts >> pad >> str; //image_format
       QString format = str;
-      int i = ip->supportedFormats.indexOf(format.toAscii());
+      int i = ip->supportedFormats.indexOf(format.toLatin1());
       pd->saveImageFormat = i;
       ts >> pad >> value; //direct_rendering
       pd->directRendering = value;
@@ -1416,7 +1416,7 @@ void MainWindow::setPrefData( PrefData * pd )
 
 void MainWindow::setOutlineColor( QColor c )
 {
-  GLfloat newColor[3] = { (GLfloat)c.red()/255.0, (GLfloat)c.green()/255.0, (GLfloat)c.blue()/255.0 };
+  GLfloat newColor[3] = { static_cast<GLfloat>(c.red())/255.0f, static_cast<GLfloat>(c.green())/255.0f, static_cast<GLfloat>(c.blue())/255.0f };
   GLfloat oldColor[3];
   if (cuviewDoc) {
     cuviewDoc->outlineColor(oldColor);
@@ -1822,17 +1822,17 @@ void MainWindow::slotViewerSettings( bool showMe )
   bool currentlyHiding = viewerSettingsDockWidget->isHidden();
   if (showMe){
     if (currentlyHiding){
-      viewerSettingsDockWidget->blockSignals(TRUE);
+      viewerSettingsDockWidget->blockSignals(true);
       viewerSettingsDockWidget->show();
-      viewerSettingsDockWidget->blockSignals(FALSE);
+      viewerSettingsDockWidget->blockSignals(false);
       statusBar()->showMessage("Viewer settings shown");
     }
   }
   else{
     if (!currentlyHiding) {
-      viewerSettingsDockWidget->blockSignals(TRUE);
+      viewerSettingsDockWidget->blockSignals(true);
       viewerSettingsDockWidget->hide();
-      viewerSettingsDockWidget->blockSignals(FALSE);
+      viewerSettingsDockWidget->blockSignals(false);
       statusBar()->showMessage("Viewer settings hidden");
     }
   }
@@ -1841,9 +1841,9 @@ void MainWindow::slotViewerSettings( bool showMe )
   //Icon pressed down means tabs are shown.
   //Icon not pressed means tabs are hidden.
   if (viewerSettings->isChecked()!=showMe){
-    viewerSettings->blockSignals(TRUE);
+    viewerSettings->blockSignals(true);
     viewerSettings->setChecked(showMe);
-    viewerSettings->blockSignals(FALSE);
+    viewerSettings->blockSignals(false);
   }
 }
 
@@ -1906,9 +1906,9 @@ void MainWindow::goto9() { gotoViewpoint(9); }
 void MainWindow::goto0() { gotoViewpoint(0); }
 void MainWindow::gotoViewpoint( int key )
 {
-  vs->presetNumber->blockSignals( TRUE );
+  vs->presetNumber->blockSignals( true );
   vs->presetNumber->setValue(key);
-  vs->presetNumber->blockSignals( FALSE );
+  vs->presetNumber->blockSignals( false );
   if (cuviewDoc){
     cuviewDoc->gotoViewpoint((unsigned int)key);
     cuviewDoc->redrawDoc();
@@ -1944,9 +1944,9 @@ void MainWindow::showScenes()
     showSceneDialog = new ShowScene(0);
     updateScenes();
 
-    showSceneDialog->editingCheckBox->blockSignals(TRUE);
+    showSceneDialog->editingCheckBox->blockSignals(true);
     showSceneDialog->editingCheckBox->setChecked(editModeAction->isChecked());
-    showSceneDialog->editingCheckBox->blockSignals(FALSE);
+    showSceneDialog->editingCheckBox->blockSignals(false);
 
     QFile file(QDir::home().path()+"/.cuviewer/cuviewer");
     if (QFile::exists(QDir::home().path()+"/.cuviewer/cuviewer")&&
@@ -2060,9 +2060,9 @@ void MainWindow::setDrawAxis( bool toggle )
 void MainWindow::setEditMode( bool edit )
 {
   if (showSceneDialog){
-    showSceneDialog->editingCheckBox->blockSignals(TRUE);
+    showSceneDialog->editingCheckBox->blockSignals(true);
     showSceneDialog->editingCheckBox->setChecked(edit);
-    showSceneDialog->editingCheckBox->blockSignals(FALSE);
+    showSceneDialog->editingCheckBox->blockSignals(false);
   }
   if (cuviewDoc)
     cuviewDoc->setEditMode(edit);
@@ -2088,9 +2088,9 @@ void MainWindow::reversePlayScene()
   if (!showSceneDialog)
     return;
 
-  showSceneDialog->forwardPlay->setChecked(FALSE);
+  showSceneDialog->forwardPlay->setChecked(false);
   QListWidget * visibleList = showSceneDialog->visibleList;
-  visibleList->blockSignals(TRUE);
+  visibleList->blockSignals(true);
   int count = (int)(visibleList->count());
   int start = showSceneDialog->scstartLineEdit->text().toInt();
   int end = showSceneDialog->scendLineEdit->text().toInt();
@@ -2105,10 +2105,10 @@ void MainWindow::reversePlayScene()
     for(int i=0;i<count;i++){
       if (i==start-1) {
         visibleList->item(i)->setSelected(true);
-        cuviewDoc->setSceneVisible(i,TRUE);
+        cuviewDoc->setSceneVisible(i,true);
       } else {
         visibleList->item(i)->setSelected(false);
-        cuviewDoc->setSceneVisible(i,FALSE);
+        cuviewDoc->setSceneVisible(i,false);
       }
     }
 
@@ -2120,29 +2120,29 @@ void MainWindow::reversePlayScene()
   // % decrement
   if ((currentscene!=start-1)&&showSceneDialog->reversePlay->isChecked()) {
     visibleList->item(currentscene)->setSelected(false);
-    cuviewDoc->setSceneVisible(currentscene,FALSE);
+    cuviewDoc->setSceneVisible(currentscene,false);
     currentscene--;
     visibleList->item(currentscene)->setSelected(true);
-    cuviewDoc->setSceneVisible(currentscene,TRUE);
+    cuviewDoc->setSceneVisible(currentscene,true);
     cuviewDoc->redrawDoc();
     QTimer::singleShot(timeout,this, SLOT(reversePlayScene()));
   }
   // % or loop
   else{
     if (showSceneDialog->scloopCheckBox->isChecked()&&showSceneDialog->reversePlay->isChecked()){
-      showSceneDialog->forwardPlay->setChecked(FALSE);
+      showSceneDialog->forwardPlay->setChecked(false);
       visibleList->item(currentscene)->setSelected(false);
-      cuviewDoc->setSceneVisible(currentscene,FALSE);
+      cuviewDoc->setSceneVisible(currentscene,false);
       currentscene=end-1;
       visibleList->item(currentscene)->setSelected(true);
-      cuviewDoc->setSceneVisible(currentscene,TRUE);
+      cuviewDoc->setSceneVisible(currentscene,true);
       cuviewDoc->redrawDoc();
       QTimer::singleShot(timeout,this, SLOT(reversePlayScene()));
     }
     else{  // % end
-      showSceneDialog->visibleList->blockSignals(FALSE);
-      showSceneDialog->reversePlay->setChecked(FALSE);
-      showSceneDialog->forwardPlay->setChecked(FALSE);
+      showSceneDialog->visibleList->blockSignals(false);
+      showSceneDialog->reversePlay->setChecked(false);
+      showSceneDialog->forwardPlay->setChecked(false);
     }
   }
 }
@@ -2152,10 +2152,10 @@ void MainWindow::forwardPlayScene()
   if (!showSceneDialog)
     return;
 
-  showSceneDialog->reversePlay->setChecked(FALSE);
+  showSceneDialog->reversePlay->setChecked(false);
 
   QListWidget * visibleList = showSceneDialog->visibleList;
-  visibleList->blockSignals(TRUE);
+  visibleList->blockSignals(true);
   int count = visibleList->count();
   int start = showSceneDialog->scstartLineEdit->text().toInt();
   int end = showSceneDialog->scendLineEdit->text().toInt();
@@ -2170,12 +2170,12 @@ void MainWindow::forwardPlayScene()
     for(int i=0;i<count;i++){
       if (i==start-1) {
         visibleList->item(i)->setSelected(true);
-//  visibleList->setSelected(i,TRUE);
-        cuviewDoc->setSceneVisible(i,TRUE);
+//  visibleList->setSelected(i,true);
+        cuviewDoc->setSceneVisible(i,true);
       } else {
         visibleList->item(i)->setSelected(false);
-//  visibleList->setSelected(i,FALSE);
-        cuviewDoc->setSceneVisible(i,FALSE);
+//  visibleList->setSelected(i,false);
+        cuviewDoc->setSceneVisible(i,false);
       }
     }
     currentscene=start-1;
@@ -2194,8 +2194,8 @@ void MainWindow::forwardPlayScene()
     else //if (showSceneDialog->scloop->isChecked())
       currentscene = start-1;
     visibleList->item(currentscene)->setSelected(true);
-//    visibleList->setSelected(currentscene,TRUE);
-    cuviewDoc->setSceneVisible(currentscene,TRUE);
+//    visibleList->setSelected(currentscene,true);
+    cuviewDoc->setSceneVisible(currentscene,true);
   }
   else { // % end
     showSceneDialog->visibleList->blockSignals(false);
@@ -2228,22 +2228,22 @@ void MainWindow::forwardPlayScene()
 void MainWindow::reverseStep()
 {
   QListWidget * visibleList = showSceneDialog->visibleList;
-  visibleList->blockSignals(TRUE);
+  visibleList->blockSignals(true);
   int count = visibleList->count();
   int start = showSceneDialog->scstartLineEdit->text().toInt();
   int end = showSceneDialog->scendLineEdit->text().toInt();
-  showSceneDialog->reversePlay->setChecked(FALSE);
-  showSceneDialog->forwardPlay->setChecked(FALSE);
+  showSceneDialog->reversePlay->setChecked(false);
+  showSceneDialog->forwardPlay->setChecked(false);
 
   // % init
   if ( currentscene<=-2 ){
     for(int i=0;i<count;i++){
       if (i==end-1) {
         visibleList->item(i)->setSelected(true);
-        cuviewDoc->setSceneVisible(i,TRUE);
+        cuviewDoc->setSceneVisible(i,true);
       } else {
         visibleList->item(i)->setSelected(false);
-        cuviewDoc->setSceneVisible(i,FALSE);
+        cuviewDoc->setSceneVisible(i,false);
       }
     }
 
@@ -2254,10 +2254,10 @@ void MainWindow::reverseStep()
   // % decrement
   if (currentscene!=start-1) {
     visibleList->item(currentscene)->setSelected(false);
-    cuviewDoc->setSceneVisible(currentscene,FALSE);
+    cuviewDoc->setSceneVisible(currentscene,false);
     currentscene--;
     visibleList->item(currentscene)->setSelected(true);
-    cuviewDoc->setSceneVisible(currentscene,TRUE);
+    cuviewDoc->setSceneVisible(currentscene,true);
     cuviewDoc->redrawDoc();
   }
   else{     // % or loop
@@ -2268,12 +2268,12 @@ void MainWindow::reverseStep()
 
 void MainWindow::forwardStep(){
   QListWidget * visibleList = showSceneDialog->visibleList;
-  visibleList->blockSignals(TRUE);
+  visibleList->blockSignals(true);
   int count = visibleList->count();
   int start = showSceneDialog->scstartLineEdit->text().toInt();
   int end = showSceneDialog->scendLineEdit->text().toInt();
-  showSceneDialog->reversePlay->setChecked(FALSE);
-  showSceneDialog->forwardPlay->setChecked(FALSE);
+  showSceneDialog->reversePlay->setChecked(false);
+  showSceneDialog->forwardPlay->setChecked(false);
 
   // % init
   if ( currentscene<=-2 ) {
@@ -2295,10 +2295,10 @@ void MainWindow::forwardStep(){
   // % increment
   if (currentscene!=end-1) {
     visibleList->item(currentscene)->setSelected(false);
-    cuviewDoc->setSceneVisible(currentscene,FALSE);
+    cuviewDoc->setSceneVisible(currentscene,false);
     currentscene++;
     visibleList->item(currentscene)->setSelected(true);
-    cuviewDoc->setSceneVisible(currentscene,TRUE);
+    cuviewDoc->setSceneVisible(currentscene,true);
     cuviewDoc->redrawDoc();
   }
   else{  // %  loop
@@ -2309,9 +2309,9 @@ void MainWindow::forwardStep(){
 
 void MainWindow::stopPlayScene(){
   if (showSceneDialog) {
-    showSceneDialog->reversePlay->setChecked(FALSE);
-    showSceneDialog->forwardPlay->setChecked(FALSE);
-    showSceneDialog->visibleList->blockSignals(FALSE);
+    showSceneDialog->reversePlay->setChecked(false);
+    showSceneDialog->forwardPlay->setChecked(false);
+    showSceneDialog->visibleList->blockSignals(false);
     currentscene = -2;
     //don't set currentscene (functions as pause)
   }
@@ -2450,13 +2450,13 @@ void MainWindow::setLightEditing()
   if (!cuviewDoc)
     return;
 
-  bool hasItem = FALSE;
+  bool hasItem = false;
   int index = 0;
   QListWidgetItem * lbi = vs->editLightListBox->item(index);
   while(lbi){
     cuviewDoc->setEditLightMode(index, lbi->isSelected());
     if (lbi->isSelected())
-      hasItem = TRUE;
+      hasItem = true;
     lbi = vs->editLightListBox->item(++index);
   }
   cuviewDoc->showLightPosition(hasItem);
@@ -2589,7 +2589,7 @@ void MainWindow::slotLightColor(){
 }
 
 void MainWindow::setLightColor(int index, QColor c){
-  GLfloat newColor[3] = { (GLfloat)c.red()/255.0, (GLfloat)c.green()/255.0, (GLfloat)c.blue()/255.0 };
+  GLfloat newColor[3] = { static_cast<GLfloat>(c.red())/255.0f, static_cast<GLfloat>(c.green())/255.0f, static_cast<GLfloat>(c.blue())/255.0f };
   GLfloat oldColor[3];
   if (cuviewDoc) {
     cuviewDoc->lightColor(index,oldColor);

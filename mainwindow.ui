@@ -1255,7 +1255,7 @@
  <connections>
   <connection>
    <sender>Action_1</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto1()</slot>
    <hints>
@@ -1271,7 +1271,7 @@
   </connection>
   <connection>
    <sender>Action_10</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto0()</slot>
    <hints>
@@ -1287,7 +1287,7 @@
   </connection>
   <connection>
    <sender>Action_2</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto2()</slot>
    <hints>
@@ -1303,7 +1303,7 @@
   </connection>
   <connection>
    <sender>Action_3</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto3()</slot>
    <hints>
@@ -1319,7 +1319,7 @@
   </connection>
   <connection>
    <sender>Action_4</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto4()</slot>
    <hints>
@@ -1335,7 +1335,7 @@
   </connection>
   <connection>
    <sender>Action_5</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto5()</slot>
    <hints>
@@ -1351,7 +1351,7 @@
   </connection>
   <connection>
    <sender>Action_6</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto6()</slot>
    <hints>
@@ -1367,7 +1367,7 @@
   </connection>
   <connection>
    <sender>Action_7</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto7()</slot>
    <hints>
@@ -1383,7 +1383,7 @@
   </connection>
   <connection>
    <sender>Action_8</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto8()</slot>
    <hints>
@@ -1399,7 +1399,7 @@
   </connection>
   <connection>
    <sender>Action_9</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>goto9()</slot>
    <hints>
@@ -1447,7 +1447,7 @@
   </connection>
   <connection>
    <sender>blankAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotClose()</slot>
    <hints>
@@ -1463,7 +1463,7 @@
   </connection>
   <connection>
    <sender>closeFileAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>closeFile()</slot>
    <hints>
@@ -1479,7 +1479,7 @@
   </connection>
   <connection>
    <sender>closeWindowAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotClose()</slot>
    <hints>
@@ -1495,7 +1495,7 @@
   </connection>
   <connection>
    <sender>createMovieAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotCreateMovie()</slot>
    <hints>
@@ -1559,7 +1559,7 @@
   </connection>
   <connection>
    <sender>fileExit</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotExit()</slot>
    <hints>
@@ -1575,7 +1575,7 @@
   </connection>
   <connection>
    <sender>fileOpen</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotOpen()</slot>
    <hints>
@@ -1623,7 +1623,7 @@
   </connection>
   <connection>
    <sender>globalPreferences</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotGlobalPrefs()</slot>
    <hints>
@@ -1639,7 +1639,7 @@
   </connection>
   <connection>
    <sender>helpAbout</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotAbout()</slot>
    <hints>
@@ -1655,7 +1655,7 @@
   </connection>
   <connection>
    <sender>helpContents</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotHelpContents()</slot>
    <hints>
@@ -1687,7 +1687,7 @@
   </connection>
   <connection>
    <sender>loadScriptAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotLoadPreset()</slot>
    <hints>
@@ -1719,7 +1719,7 @@
   </connection>
   <connection>
    <sender>openFileMergeAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>loadFileOpenMerge()</slot>
    <hints>
@@ -1767,7 +1767,7 @@
   </connection>
   <connection>
    <sender>printHighResAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>filePrintHighRes()</slot>
    <hints>
@@ -1783,7 +1783,7 @@
   </connection>
   <connection>
    <sender>printLowResAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>filePrintLowRes()</slot>
    <hints>
@@ -1799,7 +1799,7 @@
   </connection>
   <connection>
    <sender>printMedResAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>filePrintMedRes()</slot>
    <hints>
@@ -1815,7 +1815,7 @@
   </connection>
   <connection>
    <sender>printSetupAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>filePrintSetup()</slot>
    <hints>
@@ -1831,7 +1831,7 @@
   </connection>
   <connection>
    <sender>printWindowResAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>filePrintWindowRes()</slot>
    <hints>
@@ -1847,7 +1847,7 @@
   </connection>
   <connection>
    <sender>QuickHelpAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>quickHelp()</slot>
    <hints>
@@ -1863,7 +1863,7 @@
   </connection>
   <connection>
    <sender>redrawAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>redrawDocument()</slot>
    <hints>
@@ -1879,7 +1879,7 @@
   </connection>
   <connection>
    <sender>reloadFileAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>reload()</slot>
    <hints>
@@ -1895,7 +1895,7 @@
   </connection>
   <connection>
    <sender>saveViewAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>slotSavePreset()</slot>
    <hints>
@@ -1959,7 +1959,7 @@
   </connection>
   <connection>
    <sender>showScenesAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>showScenes()</slot>
    <hints>
@@ -2039,7 +2039,7 @@
   </connection>
   <connection>
    <sender>zeroClippingPlane</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>setZeroClipping()</slot>
    <hints>
