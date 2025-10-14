@@ -1,0 +1,34 @@
+# Qt generated files
+moc_*.cpp
+moc_*.o
+moc_predefs.h
+ui_*.h
+qrc_*.cpp
+qrc_*.o
+
+# Build artifacts
+*.o
+Makefile
+*.pro.user
+.qmake.stash
+
+# Application bundle
+cuviewer.app/
+
+# macOS
+.DS_Store
+*.dSYM/
+
+# Temporary files
+*~
+*.tmp
+*.bak
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
