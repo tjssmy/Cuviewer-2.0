@@ -1,1 +1,195 @@
-Cuviewer is an open gl viewer with a C api
+# CuViewer - Carleton University 3D Scientific Data Viewer
+
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
+
+CuViewer is a powerful 3D scientific data visualization application developed at Carleton University. Originally created for viewing output from ATAR (microfilm growth simulator), it has evolved into a versatile OpenGL-based 3D viewer capable of rendering complex scientific datasets.
+
+## Features
+
+### Core Visualization Capabilities
+- **3D Rendering**: High-performance OpenGL-based 3D visualization
+- **Multiple File Formats**: Support for .cuv, .gl, and .SS files
+- **Scientific Data**: Specialized for physics and materials science simulations
+- **Real-time Interaction**: Smooth 3D navigation and manipulation
+
+### Advanced Rendering Features
+- **Lighting & Materials**: Configurable lighting, ambient/diffuse/specular properties
+- **Transparency**: Alpha blending for complex material visualization
+- **Fog Effects**: Atmospheric rendering for depth perception
+- **Anti-aliasing**: Optional anti-aliasing for smoother edges
+- **Wireframe/Solid Rendering**: Multiple rendering modes
+
+### Data Analysis Tools
+- **Bin Paletting**: Contour mapping with customizable color scales
+- **Scene Management**: Multi-scene support with animation capabilities
+- **Extremity Analysis**: Automatic calculation of data boundaries
+- **Scene Editing**: Interactive modification of 3D scenes
+
+### Output & Export
+- **Image Export**: Save visualizations in multiple formats
+- **Printing**: High-quality print output with preview
+- **Movie Generation**: Create animations from scene sequences
+- **Scripting**: Automated processing capabilities
+
+## Recent Updates
+
+### Qt5 Migration (2025)
+- **Framework Upgrade**: Migrated from Qt3/Qt4 to Qt5.15.17
+- **Modern Compatibility**: Full support for macOS 12+ and modern Linux distributions
+- **API Modernization**: Updated deprecated Qt APIs and signals
+- **Build System**: Updated to Qt5 build system with qmake
+- **OpenGL Compatibility**: Resolved OpenGL context and buffer issues
+
+## Installation
+
+### Prerequisites
+- **Qt5.15.17** or later (Qt6 compatible)
+- **OpenGL** development libraries
+- **C++11** compatible compiler
+- **CMake** or **qmake** build system
+
+### macOS (with Homebrew)
+```bash
+# Install Qt5
+brew install qt@5
+
+# Clone and build
+git clone https://github.com/tjssmy/Cuviewer-2.0.git
+cd Cuviewer-2.0
+/usr/local/Cellar/qt@5/5.15.17/bin/qmake
+make
+```
+
+### Linux
+```bash
+# Install Qt5 development packages
+sudo apt-get install qt5-default libqt5opengl5-dev  # Ubuntu/Debian
+# or
+sudo dnf install qt5-qtbase-devel qt5-qtopengl-devel  # Fedora
+
+# Build
+qmake
+make
+```
+
+### Windows
+- Install Qt5 from [qt.io](https://www.qt.io/download)
+- Open `cuviewer.pro` in Qt Creator
+- Build and run
+
+## Usage
+
+### Basic Operation
+```bash
+# Launch application
+./cuviewer
+
+# Open specific files
+./cuviewer data.cuv simulation.gl results.SS
+```
+
+### File Formats
+- **.cuv**: Primary CuViewer format for 3D scientific data
+- **.gl**: OpenGL geometry files
+- **.SS**: Scene snapshot files
+
+### Mouse Controls
+- **Left Click + Drag**: Rotate view
+- **Middle Click + Drag**: Pan/translate
+- **Right Click + Drag**: Zoom
+- **Scroll Wheel**: Zoom in/out
+
+### Keyboard Shortcuts
+- **P/p**: Toggle bin paletting
+- **[ / ]**: Adjust palette ranges
+- **E**: Scene management dialog
+- **Space**: Reset view
+- **H**: Help documentation
+
+## Development
+
+### Architecture
+- **Frontend**: Qt5 Widgets-based GUI
+- **Rendering**: OpenGL with custom shaders
+- **Data Handling**: Custom binary format parsers
+- **Scene Graph**: Hierarchical 3D scene management
+
+### Key Components
+- `glrenderer.cpp`: OpenGL rendering engine
+- `cuviewdoc.cpp`: Document/scene management
+- `entityscene.cpp`: 3D entity handling
+- `cuvdatahandler.cpp`: File format parsing
+
+### Building from Source
+```bash
+# Generate build files
+qmake cuviewer.pro
+
+# Compile
+make
+
+# Run
+./cuviewer.app/Contents/MacOS/cuviewer  # macOS
+./cuviewer                              # Linux
+```
+
+## Documentation
+
+Complete documentation is available in the `cuviewhtml/` directory:
+- [User Manual](cuviewhtml/manual.html)
+- [File Format Specification](cuviewhtml/fileformat.html)
+- [Installation Guide](cuviewhtml/manual.html#1)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
+
+```
+Copyright (C) 1999, 2000 Carleton University Department of Electronics
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+```
+
+## Credits
+
+**Original Development Team:**
+- Cliff Dugal
+- Bryan Wan
+- Tom Smy
+
+**Institution:**
+Carleton University, Department of Electronics
+
+**Related Projects:**
+- [ATAR](http://www.doe.carleton.ca/~tjs/atar/atar.html) - Microfilm growth simulator
+- [SIMBAD](http://www.doe.carleton.ca/~tjs/simbad.html) - Semiconductor simulation
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/tjssmy/Cuviewer-2.0/issues)
+- **Documentation**: See `cuviewhtml/` directory
+- **Legacy**: [SourceForge Project](http://sourceforge.net/projects/cuviewer/)
+
+---
+
+*CuViewer - Bringing scientific visualization to the desktop since 1999*
