@@ -2,7 +2,7 @@
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
 
-CuViewer is a powerful 3D scientific data visualization application developed at Carleton University. Originally created for viewing output from ATAR (microfilm growth simulator), it has evolved into a versatile OpenGL-based 3D viewer capable of rendering complex scientific datasets.
+CuViewer is a powerful 3D scientific data visualization application developed at Carleton University. Originally created for viewing output from 3D-Films and ATAR (microfilm growth simulator, thermal simulator), it has evolved into a versatile OpenGL-based 3D viewer capable of rendering complex scientific datasets and geometry.
 
 ## Features
 
